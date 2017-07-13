@@ -1,0 +1,5 @@
+Log file created at: 2017/06/30 16:04:44
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+E0630 16:04:44.695226   26813 service.go:115] >>>>>Request Body err = <<<<<EOF

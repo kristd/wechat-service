@@ -1,0 +1,6 @@
+Log file created at: 2017/06/30 16:15:23
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0630 16:15:23.405019   27110 service.go:109]  >>>>> Handle Connection c <<<<<&{POST / HTTP/1.1 1 1 map[Content-Length:[233] Content-Type:[application/json; charset=utf-8] Accept-Encoding:[gzip] User-Agent:[Go-http-client/1.1]] 0xc420164ec0 <nil> 233 [] false 127.0.0.1:8888 map[] map[] <nil> map[] 127.0.0.1:53677 / <nil> <nil> <nil> 0xc420164f00}
+E0630 16:15:23.405697   27110 service.go:115] >>>>> Request Body err <<<<<EOF
