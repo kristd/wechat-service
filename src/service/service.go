@@ -130,48 +130,48 @@ func HandleConn(c *gin.Context) {
 		SessionTable[s.UserID] = s
 		fmt.Println("SessionTable[uid] =", SessionTable)
 
-		s.AutoReplies = make([]AutoReplyConf, len(reqMsg.Config))
+		s.AutoRepliesConf = make([]AutoReplyConf, len(reqMsg.Config))
 
 		for i := 0; i < len(reqMsg.Config); i++ {
-			s.AutoReplies[i].GroupName, _ = reqMsg.Config[i]["group"].(string)
+			s.AutoRepliesConf[i].GroupName, _ = reqMsg.Config[i]["group"].(string)
 			sections, succ := reqMsg.Config[i]["keywords"].([]interface{})
 			if succ {
-				s.AutoReplies[i].KeyWords = make([]KeyWord, len(sections))
+				s.AutoRepliesConf[i].KeyWords = make([]KeyWord, len(sections))
 
 				for j := 0; j < len(sections); j++ {
 					section, ok := sections[j].(map[string]interface{})
 					if ok {
 						key, ok := section["keyword"].(string)
 						if ok {
-							s.AutoReplies[i].KeyWords[j].Key = key
+							s.AutoRepliesConf[i].KeyWords[j].Key = key
 						} else {
-							s.AutoReplies[i].KeyWords[j].Key = ""
+							s.AutoRepliesConf[i].KeyWords[j].Key = ""
 							fmt.Println("No Keyword <keyword>")
 						}
 
 						content, ok := section["cotent"].(string)
 						if ok {
-							s.AutoReplies[i].KeyWords[j].Text = content
+							s.AutoRepliesConf[i].KeyWords[j].Text = content
 						} else {
-							s.AutoReplies[i].KeyWords[j].Text = ""
+							s.AutoRepliesConf[i].KeyWords[j].Text = ""
 							fmt.Println("No Keyword <cotent>")
 						}
 
 						img, ok := section["Image"].(string)
 						if ok {
-							s.AutoReplies[i].KeyWords[j].Image = img
+							s.AutoRepliesConf[i].KeyWords[j].Image = img
 						} else {
-							s.AutoReplies[i].KeyWords[j].Image = ""
+							s.AutoRepliesConf[i].KeyWords[j].Image = ""
 							fmt.Println("No Keyword <Image>")
 						}
 					}
 				}
 			} else {
-				fmt.Println("group <", s.AutoReplies[i].GroupName, "> has no keywords")
+				fmt.Println("group <", s.AutoRepliesConf[i].GroupName, "> has no keywords")
 			}
 		}
 
-		fmt.Println("s.AutoReplies =", s.AutoReplies)
+		fmt.Println("s.AutoRepliesConf =", s.AutoRepliesConf)
 		fmt.Println("SessionTable[uid] =", SessionTable)
 
 		s.UuID, s.Qrcode = s.wxApi.WebwxGetUuid(s.WxWebCommon)

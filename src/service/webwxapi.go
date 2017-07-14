@@ -133,7 +133,7 @@ type WebwxApi struct {
 func (s *SyncKeyList) String() string {
     strs := make([]string, 0)
 
-    fmt.Println(">>> s.List <<< =", s.List)
+    //fmt.Println(">>> s.List <<< =", s.List)
 
     for _, v := range s.List {
         strs = append(strs, strconv.Itoa(v.Key)+"_"+strconv.Itoa(v.Val))

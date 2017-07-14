@@ -38,9 +38,9 @@ type Session struct {
 	//user info
 	UserID int
 	//UserPushMsgList []*UserPushMsg
-	LoginStat   int
-	AutoReplies []AutoReplyConf
-	loginMax    int
+	LoginStat       int
+	AutoRepliesConf []AutoReplyConf
+	loginMax        int
 
 	redirectUrl string
 
@@ -100,48 +100,48 @@ func (s *Session) InitSession(request *Msg_Create_Request) {
 	SessionTable[s.UserID] = s
 	fmt.Println("SessionTable =", SessionTable)
 
-	s.AutoReplies = make([]AutoReplyConf, len(request.Config))
+	s.AutoRepliesConf = make([]AutoReplyConf, len(request.Config))
 
 	for i := 0; i < len(request.Config); i++ {
-		s.AutoReplies[i].GroupName, _ = request.Config[i]["group"].(string)
+		s.AutoRepliesConf[i].GroupName, _ = request.Config[i]["group"].(string)
 		sections, succ := request.Config[i]["keywords"].([]interface{})
 		if succ {
-			s.AutoReplies[i].KeyWords = make([]KeyWord, len(sections))
+			s.AutoRepliesConf[i].KeyWords = make([]KeyWord, len(sections))
 
 			for j := 0; j < len(sections); j++ {
 				section, ok := sections[j].(map[string]interface{})
 				if ok {
 					key, ok := section["keyword"].(string)
 					if ok {
-						s.AutoReplies[i].KeyWords[j].Key = key
+						s.AutoRepliesConf[i].KeyWords[j].Key = key
 					} else {
-						s.AutoReplies[i].KeyWords[j].Key = ""
+						s.AutoRepliesConf[i].KeyWords[j].Key = ""
 						fmt.Println("No Keyword <keyword>")
 					}
 
 					content, ok := section["cotent"].(string)
 					if ok {
-						s.AutoReplies[i].KeyWords[j].Text = content
+						s.AutoRepliesConf[i].KeyWords[j].Text = content
 					} else {
-						s.AutoReplies[i].KeyWords[j].Text = ""
+						s.AutoRepliesConf[i].KeyWords[j].Text = ""
 						fmt.Println("No Keyword <cotent>")
 					}
 
 					img, ok := section["Image"].(string)
 					if ok {
-						s.AutoReplies[i].KeyWords[j].Image = img
+						s.AutoRepliesConf[i].KeyWords[j].Image = img
 					} else {
-						s.AutoReplies[i].KeyWords[j].Image = ""
+						s.AutoRepliesConf[i].KeyWords[j].Image = ""
 						fmt.Println("No Keyword <Image>")
 					}
 				}
 			}
 		} else {
-			fmt.Println("group <", s.AutoReplies[i].GroupName, "> has no keywords")
+			fmt.Println("group <", s.AutoRepliesConf[i].GroupName, "> has no keywords")
 		}
 	}
 
-	fmt.Println("s.AutoReplies =", s.AutoReplies)
+	fmt.Println("s.AutoRepliesConf =", s.AutoRepliesConf)
 }
 
 func (s *Session) GetLoginStat() int {
@@ -291,10 +291,12 @@ func (s *Session) Serve() {
 	fmt.Println("Session Serving")
 
 	for {
-		time.Sleep(1 * time.Second)
+        select {
+        case <- s.quit:
+            return
+        }
 
-        fmt.Println("")
-        fmt.Println(">>> s.SynKeyList <<< =", s.SynKeyList)
+		time.Sleep(1 * time.Second)
 
 		ret, selector, err := s.wxApi.SyncCheck(s.WxWebCommon, s.WxWebXcg, s.Cookies, s.WxWebCommon.SyncSrv, s.SynKeyList)
 		if err != nil {
@@ -310,7 +312,25 @@ func (s *Session) Serve() {
 					glog.Error(err)
 				} else {
 					fmt.Println(">>> Receive message <<< =", string(msg))
-					s.ReplyMsg(msg)
+                    // analize message
+                    jc, _ := LoadJsonConfigFromBytes(msg)
+                    msgCount, _ := jc.GetInt("AddMsgCount")
+                    if msgCount < 1 {
+                        // no msg
+                        return
+                    }
+                    msgis, _ := jc.GetInterfaceSlice("AddMsgList")
+                    for _, v := range msgis {
+                        rmsg := s.Analize(v.(map[string]interface{}))
+                        //err, handles := s.HandlerRegister.Get(rmsg.MsgType)
+                        if err != nil {
+                            glog.Error(err)
+                            continue
+                        } else {
+                            fmt.Println(rmsg.FromUserName, "<<< >>> rmsg.Content = <<< ", rmsg.Content)
+                        }
+                        go s.ReplyMsg(rmsg.FromUserName, rmsg.Content)
+                    }
 				}
 			} else if selector != 0 && selector != 7 {
 				glog.Error("session down, sel %d", selector)
@@ -329,6 +349,97 @@ func (s *Session) Serve() {
 	}
 }
 
-func (s *Session) ReplyMsg(msg []byte) error {
-	return nil
+func (s *Session) Analize(msg map[string]interface{}) *ReceivedMessage {
+    rmsg := &ReceivedMessage{
+        MsgId:         msg["MsgId"].(string),
+        OriginContent: msg["Content"].(string),
+        FromUserName:  msg["FromUserName"].(string),
+        ToUserName:    msg["ToUserName"].(string),
+        MsgType:       int(msg["MsgType"].(float64)),
+    }
+
+    if rmsg.MsgType == MSG_FV {
+        riif := msg["RecommendInfo"].(map[string]interface{})
+        rmsg.RecommendInfo = &RecommendInfo{
+            Ticket:   riif["Ticket"].(string),
+            UserName: riif["UserName"].(string),
+            NickName: riif["NickName"].(string),
+            Content:  riif["Content"].(string),
+            Sex:      int(riif["Sex"].(float64)),
+        }
+    }
+
+    if strings.Contains(rmsg.FromUserName, "@@") ||
+        strings.Contains(rmsg.ToUserName, "@@") {
+        rmsg.IsGroup = true
+        // group message
+        ss := strings.Split(rmsg.OriginContent, ":<br/>")
+        if len(ss) > 1 {
+            rmsg.Who = ss[0]
+            rmsg.Content = ss[1]
+        } else {
+            rmsg.Who = s.Bot.UserName
+            rmsg.Content = rmsg.OriginContent
+        }
+    } else {
+        // no group message
+        rmsg.Who = rmsg.FromUserName
+        rmsg.Content = rmsg.OriginContent
+    }
+
+    if rmsg.MsgType == MSG_TEXT &&
+        len(rmsg.Content) > 1 &&
+        strings.HasPrefix(rmsg.Content, "@") {
+        // @someone
+        ss := strings.Split(rmsg.Content, "\u2005")
+        if len(ss) == 2 {
+            rmsg.At = ss[0] + "\u2005"
+            rmsg.Content = ss[1]
+        }
+    }
+    return rmsg
+}
+
+func (s *Session) ReplyMsg(group, msg string) {
+    toUser := &User{}
+    match := false
+
+    for _, toUser = range s.Cm.cl {
+        if toUser.UserName == group {
+            match = true
+            break
+        }
+    }
+
+   if match {
+        for _, groupConf := range s.AutoRepliesConf {
+            if groupConf.GroupName == toUser.NickName {
+                for _, keyword := range groupConf.KeyWords {
+                    if strings.Contains(msg, keyword.Key) {
+                        if keyword.Text != "" {
+                            msgID, localID, err := s.SendText(keyword.Text, s.Bot.UserName, toUser.UserName)
+                            if err != nil {
+                                fmt.Println("text err =", err)
+                            } else {
+                                fmt.Println("msgID & localID =", msgID, " || ", localID)
+                            }
+                        }
+
+                        if keyword.Image != "" {
+                            ret, err := s.SendImage("/Users/kristd/Documents/sublime/image/logo.png", s.Bot.UserName, toUser.UserName)
+                            if err != nil {
+                                fmt.Println("image err =", err)
+                            } else {
+                                fmt.Println("retcd =", ret)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+func (s *Session) Stop() {
+    s.quit <- true
 }

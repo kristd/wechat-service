@@ -1,7 +1,0 @@
-Log file created at: 2017/07/09 20:39:16
-Running on machine: macbook
-Binary: Built with gc go1.8.1 for darwin/amd64
-Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
-I0709 20:39:16.587072   36619 create_handler.go:195]  >>>>> Handle Connection c <<<<<&{POST /api/create HTTP/1.1 1 1 map[User-Agent:[Go-http-client/1.1] Content-Length:[233] Content-Type:[application/json; charset=utf-8] Accept-Encoding:[gzip]] 0xc4201c2240 <nil> 233 [] false 127.0.0.1:8888 map[] map[] <nil> map[] 127.0.0.1:63369 /api/create <nil> <nil> <nil> 0xc4201c2280}
-I0709 20:39:16.588566   36619 create_handler.go:200] >>>>> Request Body <<<<<{"action":1,"id":6,"conf":[{"group":"广东麻将","keywords":[{"keyword":"游戏","cotent":"http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe","img":"/data/pic_tmp/bf3/510/a68/1d4f42e0cdcb0aaf8c8f35c5d297c2ab.gif"}]}]}
-I0709 20:39:16.588701   36619 create_handler.go:210] Client_Action_Create create_request &{1 [map[group:广东麻将 keywords:[map[keyword:游戏 cotent:http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe img:/data/pic_tmp/bf3/510/a68/1d4f42e0cdcb0aaf8c8f35c5d297c2ab.gif]]]] 6}

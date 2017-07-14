@@ -1,6 +1,0 @@
-Log file created at: 2017/07/13 17:47:25
-Running on machine: macbook
-Binary: Built with gc go1.8.1 for darwin/amd64
-Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
-I0713 17:47:25.270481    6459 create_handler.go:32] >>>>> Request Body <<<<<{"action":1,"id":6,"conf":[{"group":"广东麻将","keywords":[{"keyword":"游戏","cotent":"http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe","img":"/data/pic_tmp/bf3/510/a68/1d4f42e0cdcb0aaf8c8f35c5d297c2ab.gif"}]}]}
-I0713 17:47:25.271178    6459 create_handler.go:42] Client_Action_Create create_request &{1 [map[group:广东麻将 keywords:[map[keyword:游戏 cotent:http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe img:/data/pic_tmp/bf3/510/a68/1d4f42e0cdcb0aaf8c8f35c5d297c2ab.gif]]]] 6}
