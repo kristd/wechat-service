@@ -12,7 +12,7 @@ import (
 
 
 func main() {
-	data := "{\"action\":1,\"id\":6,\"conf\":[{\"group\":\"广东麻将\",\"keywords\":[{\"keyword\":\"游戏\",\"cotent\":\"http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe\",\"img\":\"/data/pic_tmp/bf3/510/a68/1d4f42e0cdcb0aaf8c8f35c5d297c2ab.gif\"}]}]}"
+	data := "{\"action\":1,\"id\":6,\"conf\":[{\"group\":\"测试\",\"keywords\":[{\"keyword\":\"麻将\",\"cotent\":\"http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe\",\"img\":\"\"}]}]}"
 
 	//http
 	body := strings.NewReader(data)

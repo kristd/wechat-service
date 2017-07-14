@@ -36,9 +36,9 @@ func SendMessage(c *gin.Context)  {
         return
     }
 
-    //ToUsers := s.Cm.GetContactByName(reqMsg.Group)
+    //ToUsers := s.contactMgr.GetContactByName(reqMsg.Group)
     toUser := &User{}
-    for _, toUser = range s.Cm.cl {
+    for _, toUser = range s.contactMgr.contactList {
         fmt.Println(">>>>> Users Nick Name <<<<<", toUser.NickName)
         fmt.Println(">>>>> Users User Name <<<<<", toUser.UserName)
 
@@ -49,51 +49,32 @@ func SendMessage(c *gin.Context)  {
 
     var msgID string
     var localID string
-    var result string
 
     switch send_request.Params.Type {
     case TEXT_MSG:
-        msgID, localID, err = s.SendText(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
+        msgID, localID, err = s.SendText(send_request.Params.Content, s.bot.UserName, toUser.UserName)
         if msgID != "" && localID != "" {
-            fmt.Println("send msg succecss")
-            result = "success"
+            fmt.Println("send msg success")
         } else {
             fmt.Println("SendText err =", err)
-            result = "failed"
         }
     case IMG_MSG:
-        fileName, err := LoadImage(send_request.Params.Content)
+        //fileName, err := LoadImage(send_request.Params.Content)
+        fileName := "/Users/kristd/Documents/sublime/image/logo.png"
         if err != nil {
             fmt.Println("LoadImage err = ", err)
-            result = "failed"
         } else {
-            retcd, err := s.SendImage(fileName, s.Bot.UserName, toUser.UserName)
+            retcd, err := s.SendImage(fileName, s.bot.UserName, toUser.UserName)
             if retcd == 0 {
-                fmt.Println("send image succecss")
-                result = "success"
+                fmt.Println("send image success")
             } else if err != nil {
                 fmt.Println("SendImage err =", err)
-                result = "failed"
             }
         }
-    default:
-        result = "failed"
     }
 
-    fmt.Println(result)
+    send_response = makeSendResponse(s.userID, 200, "success")
 
-    resp := &Msg_Send_Response{
-        Action: Client_Action_Login,
-        UserID: s.UserID,
-        Code:   200,
-        Msg:    "success",
-    }
-
-    respBuf, err := json.Marshal(resp)
-    if err != nil {
-        fmt.Println("Client_Action_Send err2 =", err, respBuf)
-    }
-
-    send_response = makeSendResponse(s.UserID, 200, "")
     c.JSON(http.StatusOK, send_response)
+    return
 }

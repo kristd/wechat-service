@@ -66,6 +66,7 @@ func LoginScan(c *gin.Context) {
         }
 
 		login_response = makeLoginResponse(login_request.UserID, 200, statcd, "success")
+
 		c.JSON(http.StatusOK, login_response)
 		return
 	}

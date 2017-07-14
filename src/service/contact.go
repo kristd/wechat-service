@@ -7,7 +7,7 @@ import (
 
 // ContactManager: contact manager
 type ContactManager struct {
-    cl []*User //contact list
+    contactList []*User //contact list
 }
 
 // ContactResponse: get contact response struct
@@ -59,7 +59,7 @@ func CreateContactManagerFromBytes(cb []byte) (*ContactManager, error) {
         return nil, err
     }
     cm := &ContactManager{
-        cl: cr.MemberList,
+        contactList: cr.MemberList,
     }
     return cm, nil
 }
@@ -71,7 +71,7 @@ func (s *ContactManager) AddContactFromBytes(cb []byte) error {
     if err := json.Unmarshal(cb, &cr); err != nil {
         return err
     }
-    s.cl = append(s.cl, cr.MemberList...)
+    s.contactList = append(s.contactList, cr.MemberList...)
     return nil
 }
 
@@ -81,13 +81,13 @@ func (s *ContactManager) AddContactFromUser(user *User) {
     if user == nil {
         return
     }
-    s.cl = append(s.cl, user)
+    s.contactList = append(s.contactList, user)
 }
 
 // GetContactByUserName
 // get contact by UserName
 func (s *ContactManager) GetContactByUserName(un string) *User {
-    for _, v := range s.cl {
+    for _, v := range s.contactList {
         if v.UserName == un {
             return v
         }
@@ -98,7 +98,7 @@ func (s *ContactManager) GetContactByUserName(un string) *User {
 // GetGroupContacts: get group contacts
 func (s *ContactManager) GetGroupContacts() []*User {
     clarray := make([]*User, 0)
-    for _, v := range s.cl {
+    for _, v := range s.contactList {
         if strings.Contains(v.UserName, "@@") {
             clarray = append(clarray, v)
         }
@@ -109,7 +109,7 @@ func (s *ContactManager) GetGroupContacts() []*User {
 // GetStrangers: not group and not StarFriend
 func (s *ContactManager) GetStrangers() []*User {
     clarray := make([]*User, 0)
-    for _, v := range s.cl {
+    for _, v := range s.contactList {
         if !strings.Contains(v.UserName, "@@") &&
             v.StarFriend == 0 &&
             v.VerifyFlag&8 == 0 &&
@@ -123,7 +123,7 @@ func (s *ContactManager) GetStrangers() []*User {
 // GetContactByName: get contacts by name
 func (s *ContactManager) GetContactByName(sig string) []*User {
     clarray := make([]*User, 0)
-    for _, v := range s.cl {
+    for _, v := range s.contactList {
         if v.NickName == sig || v.RemarkName == sig {
             clarray = append(clarray, v)
         }
@@ -133,7 +133,7 @@ func (s *ContactManager) GetContactByName(sig string) []*User {
 
 // GetContactByPYQuanPin: get contact by User.PYQuanPin
 func (s *ContactManager) GetContactByPYQuanPin(sig string) *User {
-    for _, v := range s.cl {
+    for _, v := range s.contactList {
         if v.PYQuanPin == sig || v.RemarkPYQuanPin == sig {
             return v
         }
@@ -143,5 +143,5 @@ func (s *ContactManager) GetContactByPYQuanPin(sig string) *User {
 
 // GetAll: get all contacts
 func (s *ContactManager) GetAll() []*User {
-    return s.cl
+    return s.contactList
 }

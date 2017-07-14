@@ -553,10 +553,14 @@ func (wx *WebwxApi) SyncCheck(common *Common, ce *XmlConfig, cookies []*http.Coo
     req.Header.Add("Content-Type", "application/json; charset=UTF-8")
     req.Header.Add("User-Agent", common.UserAgent)
 
+    fmt.Println(">>> Before SyncCheck client Do")
+
     resp, err := client.Do(req)
     if err != nil {
         return 0, 0, err
     }
+
+    fmt.Println(">>> After SyncCheck client Do")
 
     defer resp.Body.Close()
     body, _ := ioutil.ReadAll(resp.Body)
@@ -600,7 +604,12 @@ func (wx *WebwxApi) WebWxSync(common *Common, ce *XmlConfig, cookies []*http.Coo
     req.Header.Add("Content-Type", "application/json; charset=UTF-8")
     req.Header.Add("User-Agent", common.UserAgent)
 
+    fmt.Println(">>> Before WebWxSync client Do")
+
     resp, err := client.Do(req)
+
+    fmt.Println(">>> After WebWxSync client Do")
+
     if err != nil {
         return nil, err
     }

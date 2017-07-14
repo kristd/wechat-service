@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func makeCreateResponse(uid, code int, uuid, qrcode, msg string) *Msg_Create_Response {
+func makeCreateResponse(uid int, uuid, qrcode string, code int, msg string) *Msg_Create_Response {
 	resp := &Msg_Create_Response{
 		Action: 1,
 		UserID: uid,
@@ -35,7 +35,7 @@ func SessionCreate(c *gin.Context) {
 	err := json.Unmarshal(reqMsgBuf[:n], create_request)
 	if err != nil {
 		glog.Info("Client_Action_Create Unmarshal err ", err)
-		create_response = makeCreateResponse(0, 10001, "", "", "request json format error")
+		create_response = makeCreateResponse(0, "", "", 10001, "request json format error")
 		c.JSON(http.StatusBadRequest, create_response)
 		return
 	} else {
@@ -43,25 +43,28 @@ func SessionCreate(c *gin.Context) {
 	}
 
 	s := &Session{
-		UserID:      create_request.UserID,
-		WxWebCommon: DefaultCommon,
-		WxWebXcg:    &XmlConfig{},
-		wxApi:       &WebwxApi{},
-		CreateTime:  time.Now().Unix(),
-		LoginStat:   0,
+		userID:         create_request.UserID,
+		wxWebCommon:    DefaultCommon,
+		wxWebXcg:       &XmlConfig{},
+		wxApi:          &WebwxApi{},
+		createTime:     time.Now().Unix(),
+		loginStat:      0,
+		stop:           false,
+        quit:           make(chan bool),
 	}
 
-	s.UuID, s.Qrcode = s.wxApi.WebwxGetUuid(s.WxWebCommon)
+	s.uuID, s.qrcode = s.wxApi.WebwxGetUuid(s.wxWebCommon)
 
 	repsMsg := &Msg_Create_Response{
 		Action: Client_Action_Create,
-		UserID: s.UserID,
-		Uuid:   s.UuID,
-		QrCode: s.Qrcode,
+		UserID: s.userID,
+		Uuid:   s.uuID,
+		QrCode: s.qrcode,
 	}
 
-	c.JSON(http.StatusOK, repsMsg)
-	go s.InitSession(create_request)
+    create_response = makeCreateResponse(s.userID, s.uuID, s.qrcode, 200, "success")
+    go s.InitSession(create_request)
 
+    c.JSON(http.StatusOK, repsMsg)
 	return
 }
