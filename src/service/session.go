@@ -49,7 +49,7 @@ type Session struct {
 	statLock sync.RWMutex
 
 	//serve
-	stop bool //loop:1/stop:0
+	stop bool
 }
 
 // SendText: send text msg type 1
@@ -118,12 +118,12 @@ func (s *Session) InitSession(request *Msg_Create_Request) {
 						fmt.Println("No Keyword <keyword>")
 					}
 
-					content, ok := section["cotent"].(string)
+					content, ok := section["text"].(string)
 					if ok {
 						s.autoRepliesConf[i].KeyWords[j].Text = content
 					} else {
 						s.autoRepliesConf[i].KeyWords[j].Text = ""
-						fmt.Println("No Keyword <cotent>")
+						fmt.Println("No Keyword <text>")
 					}
 
 					img, ok := section["Image"].(string)
@@ -351,7 +351,7 @@ func (s *Session) Serve() {
 	fmt.Println("")
 	fmt.Println(">>> Serve Stop <<<")
 	s.quit <- true
-    fmt.Println(">>> Write Chan")
+	fmt.Println(">>> Write Chan")
 }
 
 func (s *Session) Analize(msg map[string]interface{}) *ReceivedMessage {

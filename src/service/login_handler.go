@@ -2,15 +2,15 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
 	"net/http"
-    "fmt"
 )
 
 func makeLoginResponse(uid, code, status int, msg string) *Msg_Login_Response {
 	resp := &Msg_Login_Response{
-		Action: 2,
+		Action: CLIENT_LOGIN,
 		UserID: uid,
 		Code:   code,
 		Msg:    msg,
@@ -34,36 +34,36 @@ func LoginScan(c *gin.Context) {
 
 	err := json.Unmarshal(reqMsgBuf[:n], login_request)
 	if err != nil {
-		glog.Info("Client_Action_Create Unmarshal err ", err)
+		glog.Info("CLIENT_CREATE Unmarshal err ", err)
 		login_response = makeLoginResponse(0, 10001, 10001, "request json format error")
 		c.JSON(http.StatusBadRequest, login_response)
 		return
 	} else {
-		glog.Info("Client_Action_Create create_request ", login_request)
+		glog.Info("CLIENT_CREATE create_request ", login_request)
 	}
 
-    s, ok := SessionTable[login_request.UserID]
+	s, ok := SessionTable[login_request.UserID]
 
-    if !ok {
-        glog.Info("Client_Action_Create create_request ", login_request)
-        login_response = makeLoginResponse(0, 10001, 10001, "request json format error")
-        c.JSON(http.StatusBadRequest, login_response)
-        return
-    }
+	if !ok {
+		glog.Info("CLIENT_CREATE create_request ", login_request)
+		login_response = makeLoginResponse(0, 10001, 10001, "request json format error")
+		c.JSON(http.StatusBadRequest, login_response)
+		return
+	}
 
-    go s.StatusPolling(statChan)
+	go s.StatusPolling(statChan)
 
 	select {
 	case <-statChan:
-        statcd := s.GetLoginStat()
-        if statcd == 200 {
+		statcd := s.GetLoginStat()
+		if statcd == 200 {
 
-            fmt.Println("go s.InitAndServe()")
+			fmt.Println("go s.InitAndServe()")
 
-            go s.InitAndServe()
-        } else {
-            glog.Info(">>> Session status =", statcd)
-        }
+			go s.InitAndServe()
+		} else {
+			glog.Info(">>> Session status =", statcd)
+		}
 
 		login_response = makeLoginResponse(login_request.UserID, 200, statcd, "success")
 

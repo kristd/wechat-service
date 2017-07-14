@@ -12,9 +12,8 @@ import (
 
 
 func main() {
-	data := "{\"action\":1,\"id\":6,\"conf\":[{\"group\":\"测试\",\"keywords\":[{\"keyword\":\"麻将\",\"cotent\":\"http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe\",\"img\":\"\"}]}]}"
+	data := "{\"action\":1,\"id\":6,\"conf\":[{\"group\":\"测试\",\"keywords\":[{\"keyword\":\"麻将\",\"text\":\"http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe\",\"img\":\"\"}]}]}"
 
-	//http
 	body := strings.NewReader(data)
 
 	req, err := http.NewRequest("POST", "http://127.0.0.1:8888/api/create", body)

@@ -10,7 +10,7 @@ import (
 
 func makeExitResponse(uid, code int, msg string) *Msg_Exit_Response {
 	resp := &Msg_Exit_Response{
-		Action: 1,
+		Action: CLIENT_EXIT,
 		UserID: uid,
 		Code:   code,
 		Msg:    msg,
@@ -31,12 +31,12 @@ func Exit(c *gin.Context) {
 
 	err := json.Unmarshal(reqMsgBuf[:n], exit_request)
 	if err != nil {
-		glog.Info("Client_Action_Exit Unmarshal err ", err)
+		glog.Info("CLIENT_EXIT Unmarshal err ", err)
 		exit_response = makeExitResponse(exit_request.UserID, 200, "success")
 		c.JSON(http.StatusBadRequest, exit_response)
 		return
 	} else {
-		glog.Info("Client_Action_Exit exit_request ", exit_request)
+		glog.Info("CLIENT_EXIT exit_request ", exit_request)
 	}
 
 	s, succ := SessionTable[exit_request.UserID]
@@ -45,14 +45,14 @@ func Exit(c *gin.Context) {
 	}
 
 	go s.Stop()
-   
-    select {
-    case q := <-s.quit:
-        delete(SessionTable, exit_request.UserID)
-        fmt.Println(">>> Delete Session <<<", q)
-    }
 
-    fmt.Println(">>> Stopped")
+	select {
+	case q := <-s.quit:
+		delete(SessionTable, exit_request.UserID)
+		fmt.Println(">>> Delete Session <<<", q)
+	}
+
+	fmt.Println(">>> Stopped")
 
 	exit_response = makeExitResponse(exit_request.UserID, 200, "success")
 
