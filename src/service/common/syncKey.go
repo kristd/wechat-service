@@ -4,7 +4,6 @@ import (
     "strconv"
     "strings"
     "service/conf"
-    "fmt"
 )
 
 // SyncKey: struct for synccheck
@@ -23,8 +22,6 @@ type SyncKeyList struct {
 func (s *SyncKeyList) String() string {
     strs := make([]string, 0)
 
-    //fmt.Println(">>> s.List <<< =", s.List)
-
     for _, v := range s.List {
         strs = append(strs, strconv.Itoa(v.Key)+"_"+strconv.Itoa(v.Val))
     }
@@ -37,8 +34,6 @@ func GetSyncKeyListFromJc(jc *conf.JsonConfig) (*SyncKeyList, error) {
         return nil, err
     }
     synks := make([]SyncKey, 0)
-
-    fmt.Println(">>> GetSyncKeyListFromJc IS <<< ", is)
 
     for _, v := range is {
         // interface{}

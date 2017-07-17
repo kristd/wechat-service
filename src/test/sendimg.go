@@ -36,7 +36,7 @@ func main() {
 	data := "{\"action\":4,\"id\":6,\"group\":\"测试\",\"params\":{\"type\":2,\"method\":\"new_player\",\"content\":\"http://weixin.xoyo.com/award/images/logo.png\"}}"
 
 	body := strings.NewReader(data)
-	req, err := http.NewRequest("POST", "http://120.92.234.72:8888/api/send", body)
+	req, err := http.NewRequest("POST", "http://localhost:8888/api/send", body)
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
 	fmt.Println("req =", req)

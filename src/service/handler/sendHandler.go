@@ -2,12 +2,12 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"service/conf"
 	"service/common"
 	"service/module"
+	"github.com/golang/glog"
 )
 
 func makeSendResponse(uid, code int, msg string) *common.Msg_Send_Response {
@@ -30,53 +30,84 @@ func SendMessage(c *gin.Context) {
 
 	err := json.Unmarshal(reqMsgBuf[:n], send_request)
 	if err != nil {
-		fmt.Println("CLIENT_SEND err1 =", err)
-	}
-
-	s, ok := module.SessionTable[send_request.UserID]
-	if !ok {
-		fmt.Println("Session not exit")
-		return
-	}
-
-	//ToUsers := s.contactMgr.GetContactByName(reqMsg.Group)
-	toUser := &common.User{}
-	for _, toUser = range s.ContactMgr.ContactList {
-		fmt.Println(">>>>> Users Nick Name <<<<<", toUser.NickName)
-		fmt.Println(">>>>> Users User Name <<<<<", toUser.UserName)
-
-		if toUser.NickName == send_request.Group {
-			break
+		if glog.V(2) {
+			glog.Error("[SendMessage] request json data unmarshal err = [", err, "]")
 		}
-	}
 
-	var msgID string
-	var localID string
+		send_response = makeSendResponse(send_request.UserID, -30000, "request json format error")
+	} else {
+		s, exist := module.SessionTable[send_request.UserID]
+		if !exist {
+			if glog.V(2) {
+				glog.Error("[SendMessage] request json data unmarshal err = [", err, "]")
+			}
 
-	switch send_request.Params.Type {
-	case conf.TEXT_MSG:
-		msgID, localID, err = s.SendText(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
-		if msgID != "" && localID != "" {
-			fmt.Println("send msg success")
+			send_response = makeSendResponse(send_request.UserID, -30001, "request json format error")
 		} else {
-			fmt.Println("SendText err =", err)
-		}
-	case conf.IMG_MSG:
-		//fileName, err := LoadImage(send_request.Params.Content)
-		fileName := "./image/logo.png"
-		if err != nil {
-			fmt.Println("LoadImage err = ", err)
-		} else {
-			retcd, err := s.SendImage(fileName, s.Bot.UserName, toUser.UserName)
-			if retcd == 0 {
-				fmt.Println("send image success")
-			} else if err != nil {
-				fmt.Println("SendImage err =", err)
+			toUser := &common.User{
+				NickName:	"",
+				UserName:	"",
+			}
+
+			for _, u := range s.ContactMgr.ContactList {
+				if u.NickName == send_request.Group {
+					toUser = u
+					break
+				}
+			}
+
+			if toUser.UserName == "" {
+				if glog.V(2) {
+					glog.Error("[SendMessage] User ", send_request.UserID, " group ", send_request.Group, " not found")
+				}
+
+				send_response = makeSendResponse(send_request.UserID, -30002, "group not found")
+			} else {
+				switch send_request.Params.Type {
+				case conf.TEXT_MSG:
+					msgID, localID, err := s.SendText(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
+					if msgID != "" && localID != "" {
+						if glog.V(2) {
+							glog.Info(">>> [SendMessage] User ", send_request.UserID, " send text message success")
+						}
+
+						send_response = makeSendResponse(s.UserID, 200, "success")
+					} else {
+						if glog.V(2) {
+							glog.Error("[SendMessage] User ", send_request.UserID, " send text message failed, err = [", err, "]")
+						}
+
+						send_response = makeSendResponse(s.UserID, -30003, "send text message failed")
+					}
+				case conf.IMG_MSG:
+					//fileName, err := utils.LoadImage(send_request.Params.Content)
+					fileName := "./image/logo.png"
+					if err != nil {
+						if glog.V(2) {
+							glog.Error("[SendMessage] User ", send_request.UserID, " load image message failed, err = [", err, "]")
+						}
+
+						send_response = makeSendResponse(s.UserID, -30004, "load image message failed")
+					} else {
+						retcd, err := s.SendImage(fileName, s.Bot.UserName, toUser.UserName)
+						if retcd == 0 {
+							if glog.V(2) {
+								glog.Info(">>> [SendMessage] User ", send_request.UserID, " send image message success")
+							}
+
+							send_response = makeSendResponse(s.UserID, 200, "success")
+						} else if err != nil {
+							if glog.V(2) {
+								glog.Error("[SendMessage] User ", send_request.UserID, " send image message failed, err = [", err, "]")
+							}
+
+							send_response = makeSendResponse(s.UserID, -30005, "send image message failed")
+						}
+					}
+				}
 			}
 		}
 	}
-
-	send_response = makeSendResponse(s.UserID, 200, "success")
 
 	c.JSON(http.StatusOK, send_response)
 	return

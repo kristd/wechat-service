@@ -1,13 +1,12 @@
 package conf
 
 const (
-	MAX_BUF_SIZE = 1024
+	MAX_BUF_SIZE = 2048
 
-	//IMG_PATH = "/Users/kristd/Documents/sublime/image/"
 	IMG_PATH = "./image/"
 
-	SCAN    = "0"
-	CONFIRM = "1"
+	SCAN    = "1"
+	CONFIRM = "0"
 
 	LOGIN_WAIT = 201
 	LOGIN_SUCC = 200
@@ -39,6 +38,8 @@ const (
 	CLIENT_SEND   = 4
 	CLIENT_EXIT   = 5
 
-	TEXT_MSG = 1
-	IMG_MSG  = 2
+	TEXT_MSG 		= 1
+	IMG_MSG  		= 2
+
+	MAXTRY 			= 5
 )

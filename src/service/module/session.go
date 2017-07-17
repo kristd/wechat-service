@@ -10,6 +10,7 @@ import (
 	"service/wxapi"
     "service/conf"
     "service/common"
+	"net/url"
 )
 
 type keyWord struct {
@@ -42,7 +43,7 @@ type Session struct {
 	LoginStat       int
 	autoRepliesConf []autoReplyConf
 
-	redirectUrl string
+	RedirectUrl string
 
 	//channels
 	Quit chan bool
@@ -78,17 +79,14 @@ func (s *Session) SendImage(path, from, to string) (int, error) {
 	ss := strings.Split(path, "/")
 	b, err := ioutil.ReadFile(path)
 	if err != nil {
-		//logs.Error(err)
 		return -1, err
 	}
 	mediaId, err := s.WxApi.WebWxUploadMedia(s.WxWebCommon, s.WxWebXcg, s.cookies, ss[len(ss)-1], b)
 	if err != nil {
-		//logs.Error(err)
 		return -1, fmt.Errorf("Upload image failed")
 	}
 	ret, err := s.WxApi.WebWxSendMsgImg(s.WxWebCommon, s.WxWebXcg, s.cookies, from, to, mediaId)
 	if err != nil || ret != 0 {
-		//logs.Error(ret, err)
 		return ret, err
 	} else {
 		return ret, nil
@@ -162,57 +160,97 @@ func (s *Session) UpdateLoginStat(stat int) {
 	s.statLock.Unlock()
 }
 
-func (s *Session) StatusPolling(stat chan int) {
+func (s *Session) LoginPolling() int {
+    tryCount := 0
 	flag := conf.SCAN
 
-	redirectUrl, err := s.WxApi.WebwxLogin(s.WxWebCommon, s.UuID, flag)
 	for {
-		if redirectUrl == "201;" {
+		redirectUrl, err := s.WxApi.WebwxLogin(s.WxWebCommon, s.UuID, flag)
+		if err != nil {
+			if glog.V(2) {
+				glog.Error("[LoginPolling] sec1 WebwxLogin failed, uuid = ", s.UuID, " err = [", err, "]")
+			}
+		} else if redirectUrl == "201;" {
 			if flag == conf.SCAN {
 				flag = conf.CONFIRM
 			}
 
-			fmt.Println("redirectUrl == 201")
+			if glog.V(2) {
+				glog.Info("[LoginPolling] sec1 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
+			}
 
 			redirectUrl, err = s.WxApi.WebwxLogin(s.WxWebCommon, s.UuID, flag)
 			if err != nil {
-				fmt.Println(">>> WebwxLogin err1 =", err)
-				s.UpdateLoginStat(999)
-				stat <- 0
-				break
+                if glog.V(2) {
+                    glog.Error("[LoginPolling] sec2 WebwxLogin failed, uuid = ", s.UuID, ", err = [", err, "]")
+                }
+
+				s.UpdateLoginStat(-200)
+
+				return -200
 			} else if strings.Contains(redirectUrl, "http") {
-
-				fmt.Println("redirectUrl == ", redirectUrl)
-
-				s.redirectUrl = redirectUrl
+				s.RedirectUrl = redirectUrl
 				s.UpdateLoginStat(conf.LOGIN_SUCC)
-				stat <- 200
-				break
+
+                if glog.V(2) {
+                    glog.Info("[LoginPolling] sec2 WebwxLogin success, uuid = ", s.UuID)
+                }
+
+				return 200
 			}
 		} else if redirectUrl == "408;" {
 			s.UpdateLoginStat(conf.LOGIN_FAIL)
-			stat <- 2
-
-			fmt.Println("redirectUrl == 408")
-
 			if flag == conf.CONFIRM {
 				flag = conf.SCAN
 			}
-			redirectUrl, err = s.WxApi.WebwxLogin(s.WxWebCommon, s.UuID, flag)
+
+			if glog.V(2) {
+				glog.Info("[LoginPolling] sec3 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
+			}
+
+			tryCount++
+			if tryCount >= conf.MAXTRY {
+				s.UpdateLoginStat(-998)
+				return -998
+			} else {
+				if glog.V(2) {
+					glog.Info("[LoginPolling] sec3 WebwxLogin uuid = ", s.UuID, " retry =", tryCount)
+				}
+			}
 		} else if strings.Contains(redirectUrl, "http") {
-
-			fmt.Println("redirectUrl == ", redirectUrl)
-
-			s.redirectUrl = redirectUrl
+			s.RedirectUrl = redirectUrl
 			s.UpdateLoginStat(conf.LOGIN_SUCC)
-			stat <- 200
-			break
+
+			if glog.V(2) {
+				glog.Info("[LoginPolling] sec3 WebwxLogin success, uuid = ", s.UuID)
+			}
+
+			return 200
 		} else {
-			fmt.Println(">>> WebwxLogin err2 =", err)
-			s.UpdateLoginStat(999)
-			stat <- 4
-			break
+			s.UpdateLoginStat(-999)
+
+			if glog.V(2) {
+				glog.Error("[LoginPolling] sec4 WebwxLogin failed, uuid = ", s.UuID, ", redirectUrl = ", redirectUrl)
+			}
+
+			return -999
 		}
+	}
+}
+
+func (s *Session) AnalizeVersion(uri string) {
+	u, _ := url.Parse(uri)
+
+	// version may change
+	s.WxWebCommon.CgiDomain = u.Scheme + "://" + u.Host
+	s.WxWebCommon.CgiUrl = s.WxWebCommon.CgiDomain + "/cgi-bin/mmwebwx-bin"
+
+	if strings.Contains(u.Host, "wx2") {
+		// new version
+		s.WxWebCommon.SyncSrv = "webpush.wx2.qq.com"
+	} else {
+		// old version
+		s.WxWebCommon.SyncSrv = "webpush.wx.qq.com"
 	}
 }
 
@@ -221,58 +259,61 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 
 	s.cookies, err = s.WxApi.WebNewLoginPage(s.WxWebCommon, s.WxWebXcg, redirectUrl)
 	if err != nil {
-		fmt.Println("WebNewLoginPage err =", err)
+		if glog.V(2) {
+			glog.Error("[InitUserCookies] WebNewLoginPage err = ", err)
+		}
 		return -1
-	} else {
-		fmt.Println("")
-		fmt.Println(">>>>>cookies <<<<< =", s.cookies)
 	}
 
 	session, err := s.WxApi.WebWxInit(s.WxWebCommon, s.WxWebXcg)
 	if err != nil {
-		fmt.Println("WebWxInit err =", err)
+		if glog.V(2) {
+			glog.Error("[InitUserCookies] WebWxInit err =", err)
+		}
 		return -2
-	} else {
-		fmt.Println("")
-		fmt.Println("")
-		fmt.Println(">>>>>WebWxInit <<<<< ret =", string(session))
 	}
+
+
+	//fmt.Println("")
+	//fmt.Println("")
+	//fmt.Println(">>> SESSION DATA =[", string(session), "]")
+	//fmt.Println("")
+	//fmt.Println("")
+
 
 	jc := &conf.JsonConfig{}
 	jc, _ = conf.LoadJsonConfigFromBytes(session)
 
 	s.synKeyList, err = common.GetSyncKeyListFromJc(jc)
 	if err != nil {
-		fmt.Println("GetSyncKeyListFromJc err =", err)
+		if glog.V(2) {
+			glog.Error("[InitUserCookies] GetSyncKeyListFromJc err =", err)
+		}
 		return -3
-	} else {
-		fmt.Println("")
-		fmt.Println(">>>>>GetSyncKeyListFromJc keylist =", s.synKeyList)
 	}
 
 	s.Bot, err = common.GetUserInfoFromJc(jc)
 	if err != nil {
-		fmt.Println("GetUserInfoFromJc err =", err)
+		if glog.V(2) {
+			glog.Error("[InitUserCookies] GetUserInfoFromJc err =", err)
+		}
 		return -4
-	} else {
-		fmt.Println("")
-		fmt.Println(">>>>>USER List<<<<< =", s.Bot)
-		fmt.Println(">>>>> User Name <<<<< =", s.Bot.UserName)
 	}
 
 	var contacts []byte
 	contacts, err = s.WxApi.WebWxGetContact(s.WxWebCommon, s.WxWebXcg, s.cookies)
 	if err != nil {
-		fmt.Println("WebWxGetContact err =", err)
+		if glog.V(2) {
+			glog.Error("[InitUserCookies] WebWxGetContact err =", err)
+		}
 		return -5
-	} else {
-		fmt.Println("")
-		fmt.Println(">>>>>Contact List<<<<< =", string(contacts))
 	}
 
 	s.ContactMgr, err = common.CreateContactManagerFromBytes(contacts)
 	if err != nil {
-		fmt.Println(">>>>>CreateContactManagerFromBytes err =", err)
+		if glog.V(2) {
+			glog.Error("[InitUserCookies] CreateContactManagerFromBytes err =", err)
+		}
 		return -6
 	}
 
@@ -280,28 +321,12 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 	return 0
 }
 
-func (s *Session) InitAndServe() {
-	ret := s.InitUserCookies(s.redirectUrl)
-
-	fmt.Println("After s.InitUserCookies(s.redirectUrl) ")
-
-	if ret == 0 {
-		go s.Serve()
-	} else {
-		glog.Error("init cookies failed =", ret)
-	}
-}
-
 func (s *Session) Serve() {
-
-	fmt.Println("")
-	fmt.Println(">>> Session Serving <<<")
+	fmt.Println(">>> [Serve] Serving start userID = ", s.UserID)
 
 	for s.Loop {
+        //Will be blocked here until wechat return response
 		ret, selector, err := s.WxApi.SyncCheck(s.WxWebCommon, s.WxWebXcg, s.cookies, s.WxWebCommon.SyncSrv, s.synKeyList)
-
-		fmt.Println("ret =", ret, "||select =", selector, "||err =", err)
-
 		if err != nil {
 			glog.Info(">>> SyncCheck err =", err)
 			continue
@@ -310,13 +335,7 @@ func (s *Session) Serve() {
 			// check success
 			if selector == 2 {
 				// new message
-
-				fmt.Println(">>> Before s.WxApi.WebWxSync")
-
 				msg, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.cookies, s.synKeyList)
-
-				fmt.Println(">>> After s.WxApi.WebWxSync")
-
 				if err != nil {
 					fmt.Println("WebWxSync err", err)
 				} else {
@@ -344,14 +363,17 @@ func (s *Session) Serve() {
 			}
 		} else if ret == 1101 {
 			fmt.Println("error code =", ret)
+			break
 		} else if ret == 1205 {
 			fmt.Println("api blocked, ret:%d", 1205)
+			break
 		} else {
 			fmt.Println("unhandled exception ret %d", ret)
+			break
 		}
 	}
 
-    fmt.Println(">>> Serving Stop <<<")
+    fmt.Println(">>> [Serve] Serving stop userID = ", s.UserID)
 	s.Quit <- true
 }
 
@@ -411,9 +433,6 @@ func (s *Session) ReplyMsg(group, msg string) {
 	match := false
 
 	for _, toUser = range s.ContactMgr.ContactList {
-
-		fmt.Println(">>> User Name =", toUser.UserName, "||", toUser.NickName)
-
 		if toUser.UserName == group {
 			match = true
 			break
@@ -422,9 +441,6 @@ func (s *Session) ReplyMsg(group, msg string) {
 
 	if match {
 		for _, groupConf := range s.autoRepliesConf {
-
-			fmt.Println("s.autoRepliesConf =", groupConf.groupName)
-
 			if groupConf.groupName == toUser.NickName {
 				for _, keyword := range groupConf.keyWords {
 

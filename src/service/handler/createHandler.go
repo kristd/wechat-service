@@ -35,15 +35,13 @@ func SessionCreate(c *gin.Context) {
 	err := json.Unmarshal(reqMsgBuf[:n], create_request)
 	if err != nil {
 		if glog.V(2) {
-			glog.Error("[SessionCreate] request json data unmarshal err =[", err, "]")
+			glog.Error("[SessionCreate] request json data unmarshal err = [", err, "]")
 		}
 
-		create_response = makeCreateResponse(0, "", "", -10000, "Request json format error")
-		c.JSON(http.StatusBadRequest, create_response)
-		return
+		create_response = makeCreateResponse(create_request.UserID, "", "", -10000, "Request json format error")
 	} else {
 		if glog.V(2) {
-			glog.Info(">>> [SessionCreate] request json data =[", create_request, "]")
+			glog.Info(">>> [SessionCreate] Request json data = [", create_request, "]")
 		}
 
 		s := &module.Session{

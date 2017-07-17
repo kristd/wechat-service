@@ -15,7 +15,7 @@ func main() {
 
 	body := strings.NewReader(data)
 
-	req, err := http.NewRequest("POST", "http://120.92.234.72:8888/api/create", body)
+	req, err := http.NewRequest("POST", "http://localhost:8888/api/create", body)
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
 	fmt.Println("req =", req)

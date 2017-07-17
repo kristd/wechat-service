@@ -107,17 +107,14 @@ func (wx *WebwxApi) WebNewLoginPage(common *common.Common, xc *conf.XmlConfig, u
 	km := u.Query()
 	km.Add("fun", "new")
 	uri = common.CgiUrl + "/webwxnewloginpage?" + km.Encode()
-	//uri = "https://wx.qq.com/cgi-bin/mmwebwx-bin" + "/webwxnewloginpage?" + km.Encode()
+
 	resp, err := http.Get(uri)
 	if err != nil {
-		fmt.Println("http.Get err =", err, " url =", uri)
 		return nil, err
 	}
 
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-
-	fmt.Println("ioutil.ReadAll =", string(body))
 
 	if err := xml.Unmarshal(body, xc); err != nil {
 		return nil, err
@@ -125,9 +122,6 @@ func (wx *WebwxApi) WebNewLoginPage(common *common.Common, xc *conf.XmlConfig, u
 	if xc.Ret != 0 {
 		return nil, fmt.Errorf("xc.Ret != 0, %s", string(body))
 	}
-
-	fmt.Println("xml config =", xc)
-	fmt.Println("response body =", resp.Body)
 
 	return resp.Cookies(), nil
 }
@@ -441,14 +435,10 @@ func (wx *WebwxApi) SyncCheck(c *common.Common, ce *conf.XmlConfig, cookies []*h
 	req.Header.Add("Content-Type", "application/json; charset=UTF-8")
 	req.Header.Add("User-Agent", c.UserAgent)
 
-	fmt.Println(">>> Before SyncCheck client Do")
-
 	resp, err := client.Do(req)
 	if err != nil {
 		return 0, 0, err
 	}
-
-	fmt.Println(">>> After SyncCheck client Do")
 
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
@@ -491,12 +481,7 @@ func (wx *WebwxApi) WebWxSync(c *common.Common, ce *conf.XmlConfig, cookies []*h
 	req.Header.Add("Content-Type", "application/json; charset=UTF-8")
 	req.Header.Add("User-Agent", c.UserAgent)
 
-	fmt.Println(">>> Before WebWxSync client Do")
-
 	resp, err := client.Do(req)
-
-	fmt.Println(">>> After WebWxSync client Do")
-
 	if err != nil {
 		return nil, err
 	}

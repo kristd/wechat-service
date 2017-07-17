@@ -10,7 +10,7 @@ import (
 	"service/module"
 )
 
-func makeLoginResponse(uid, code, status int, msg string) *common.Msg_Login_Response {
+func makeLoginResponse(uid, status, code int, msg string) *common.Msg_Login_Response {
 	resp := &common.Msg_Login_Response{
 		Action: conf.CLIENT_LOGIN,
 		UserID: uid,
@@ -22,52 +22,52 @@ func makeLoginResponse(uid, code, status int, msg string) *common.Msg_Login_Resp
 }
 
 func LoginScan(c *gin.Context) {
-	statChan := make(chan int, 1)
-
 	login_request := &common.Msg_Login_Request{}
 	login_response := &common.Msg_Login_Response{}
 
 	reqMsgBuf := make([]byte, conf.MAX_BUF_SIZE)
 
 	n, _ := c.Request.Body.Read(reqMsgBuf)
-	if glog.V(2) {
-		glog.Info(">>>>> Request Body <<<<<", string(reqMsgBuf[:n]))
-	}
 
 	err := json.Unmarshal(reqMsgBuf[:n], login_request)
 	if err != nil {
-		glog.Info("CLIENT_LOGIN Unmarshal err ", err)
-		login_response = makeLoginResponse(0, 10001, 10001, "request json format error")
-		c.JSON(http.StatusBadRequest, login_response)
-		return
+		if glog.V(2) {
+			glog.Error("[LoginScan] request json data unmarshal err = [", err, "]")
+		}
+		login_response = makeLoginResponse(login_request.UserID, 0, -20000, "request json format error")
 	} else {
-		glog.Info("CLIENT_LOGIN create_request ", login_request)
-	}
+		if glog.V(2) {
+			glog.Info(">>> [LoginScan] request json data = [", login_request, "]")
+		}
 
-	s, succ := module.SessionTable[login_request.UserID]
-
-	if !succ {
-		glog.Info("CLIENT_CREATE create_request ", login_request)
-		login_response = makeLoginResponse(0, 10001, 10001, "request json format error")
-		c.JSON(http.StatusBadRequest, login_response)
-		return
-	}
-
-	go s.StatusPolling(statChan)
-
-	statcd := 0
-
-	select {
-	case <-statChan:
-		statcd = s.GetLoginStat()
-		if statcd == 200 {
-			go s.InitAndServe()
+		s, exist := module.SessionTable[login_request.UserID]
+		if !exist {
+			if glog.V(2) {
+				glog.Error("[LoginScan] User ", login_request.UserID, " session not exist")
+			}
+			login_response = makeLoginResponse(login_request.UserID, 0, -20001, "user session not exist")
 		} else {
-			glog.Info(">>> Session status =", statcd)
+			stat := s.LoginPolling()
+			if stat == 200 {
+				s.AnalizeVersion(s.RedirectUrl)
+				ret := s.InitUserCookies(s.RedirectUrl)
+				if ret == 0 {
+					go s.Serve()
+					login_response = makeLoginResponse(login_request.UserID, 300, stat, "success")
+				} else {
+					if glog.V(2) {
+						glog.Error("[LoginScan] User ", login_request.UserID, " cookies init failed")
+					}
+					login_response = makeLoginResponse(login_request.UserID, 0, -20002, "user cookies init failed")
+				}
+			} else {
+				if glog.V(2) {
+					glog.Error("[LoginScan] User", login_request.UserID, " login failed, status =", stat)
+				}
+				login_response = makeLoginResponse(login_request.UserID, 0, -20003, "user login failed")
+			}
 		}
 	}
-
-	login_response = makeLoginResponse(login_request.UserID, 200, statcd, "success")
 
 	c.JSON(http.StatusOK, login_response)
 	return
