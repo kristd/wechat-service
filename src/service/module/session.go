@@ -274,11 +274,11 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 	}
 
 
-	//fmt.Println("")
-	//fmt.Println("")
-	//fmt.Println(">>> SESSION DATA =[", string(session), "]")
-	//fmt.Println("")
-	//fmt.Println("")
+	fmt.Println("")
+	fmt.Println("")
+	fmt.Println(">>> SESSION DATA =[", string(session), "]")
+	fmt.Println("")
+	fmt.Println("")
 
 
 	jc := &conf.JsonConfig{}
