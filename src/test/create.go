@@ -10,13 +10,12 @@ import (
 	"strings"
 )
 
-
 func main() {
 	data := "{\"action\":1,\"id\":6,\"conf\":[{\"group\":\"测试\",\"keywords\":[{\"keyword\":\"麻将\",\"text\":\"http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe\",\"img\":\"\"}]}]}"
 
 	body := strings.NewReader(data)
 
-	req, err := http.NewRequest("POST", "http://127.0.0.1:8888/api/create", body)
+	req, err := http.NewRequest("POST", "http://120.92.234.72:8888/api/create", body)
 	req.Header.Set("Content-Type", "application/json; charset=utf-8")
 
 	fmt.Println("req =", req)
