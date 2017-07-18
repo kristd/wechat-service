@@ -1,0 +1,21 @@
+Log file created at: 2017/07/18 15:05:00
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0718 15:05:00.231278   16159 main.go:17] wechat-service start
+I0718 15:05:21.973304   16159 createHandler.go:44] >>> [SessionCreate] Request json data = [&{1 [map[group:测试 keywords:[map[keyword:麻将 text:http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe img:]]]] 6}]
+I0718 15:05:22.249041   16159 createHandler.go:61] >>> [SessionCreate] UserID 6's uuid = ocBvLI40rg== && qrcode = https://login.weixin.qq.com/qrcode/ocBvLI40rg==
+I0718 15:05:22.249162   16159 session.go:141] >>> [InitSession] Group [测试] keyword configs = [[{测试 [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe }]}]]
+I0718 15:05:47.605108   16159 loginHandler.go:40] >>> [LoginScan] request json data = [&{2 6}]
+I0718 15:05:47.741123   16159 session.go:225] >>> [LoginPolling] sec3 WebwxLogin success, uuid = ocBvLI40rg==
+I0718 15:05:48.500430   16159 session.go:318] >>> [Serve] Looping start userID = 6
+I0718 15:05:55.926756   16159 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 2 userID = 6
+I0718 15:05:56.215327   16159 session.go:363] >>> [Serve] FromUser = [@5f218bc2a1ac89b8ce2a994c5358a44b] Message Content = [] MessageType =[51] UserID = [6]
+I0718 15:06:14.112123   16159 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 2 userID = 6
+I0718 15:06:14.303919   16159 session.go:363] >>> [Serve] FromUser = [@@a2a04183e04e2ac136539e6b06285208fcce99e6ac7c046e79edb099662d50b8] Message Content = ["TJ"通过扫描你分享的二维码加入群聊] MessageType =[10000] UserID = [6]
+I0718 15:06:15.059253   16159 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:06:15.225689   16159 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:06:40.391265   16159 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:07:05.537390   16159 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:07:30.715123   16159 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:07:55.881954   16159 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6

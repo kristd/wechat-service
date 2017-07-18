@@ -221,10 +221,6 @@ func (wx *WebwxApi) WebWxSendMsg(c *common.Common, ce *conf.XmlConfig, cookies [
 	}
 
 	b, _ := json.Marshal(js)
-
-	fmt.Println("")
-	fmt.Println(">>>>> WebWxSendMsg req <<<<<", string(b))
-
 	req, err := http.NewRequest("POST", uri, bytes.NewReader(b))
 	if err != nil {
 		return nil, err

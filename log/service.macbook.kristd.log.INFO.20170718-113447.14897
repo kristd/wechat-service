@@ -1,0 +1,1331 @@
+Log file created at: 2017/07/18 11:34:47
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0718 11:34:47.210870   14897 main.go:17] wechat-service start
+I0718 11:35:01.129108   14897 createHandler.go:44] >>> [SessionCreate] Request json data = [&{1 [map[group:测试 keywords:[map[keyword:麻将 text:http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe img:]]]] 6}]
+I0718 11:35:01.464069   14897 createHandler.go:61] >>> [SessionCreate] UserID 6's uuid = AeJmCNVvlA== && qrcode = https://login.weixin.qq.com/qrcode/AeJmCNVvlA==
+I0718 11:35:01.464190   14897 session.go:140] >>> [InitSession] Group [测试] keyword configs = [[{测试 [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe }]}]]
+I0718 11:35:41.336281   14897 loginHandler.go:40] >>> [LoginScan] request json data = [&{2 6}]
+I0718 11:35:41.567625   14897 session.go:224] >>> [LoginPolling] sec3 WebwxLogin success, uuid = AeJmCNVvlA==
+I0718 11:35:42.701671   14897 session.go:317] >>> [Serve] Looping start userID = 6
+I0718 11:36:07.937000   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:36:15.428977   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:36:16.409618   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:36:16.563397   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:36:41.714396   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:36:49.318276   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 2 userID = 6
+I0718 11:36:49.602107   14897 session.go:343] >>> Message = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"AddMsgCount": 1,
+"AddMsgList": [{
+"MsgId": "2380537477394611257",
+"FromUserName": "@7b327d277ff2c8b82d9d8f245a738c62",
+"ToUserName": "@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42",
+"MsgType": 51,
+"Content": "",
+"Status": 3,
+"ImgStatus": 1,
+"CreateTime": 1500349009,
+"VoiceLength": 0,
+"PlayLength": 0,
+"FileName": "",
+"FileSize": "",
+"MediaId": "",
+"Url": "",
+"AppMsgType": 0,
+"StatusNotifyCode": 2,
+"StatusNotifyUserName": "@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42",
+"RecommendInfo": {
+"UserName": "",
+"NickName": "",
+"QQNum": 0,
+"Province": "",
+"City": "",
+"Content": "",
+"Signature": "",
+"Alias": "",
+"Scene": 0,
+"VerifyFlag": 0,
+"AttrStatus": 0,
+"Sex": 0,
+"Ticket": "",
+"OpCode": 0
+}
+,
+"ForwardFlag": 0,
+"AppInfo": {
+"AppID": "",
+"Type": 0
+}
+,
+"HasProductId": 0,
+"Ticket": "",
+"ImgHeight": 0,
+"ImgWidth": 0,
+"SubMsgType": 0,
+"NewMsgId": 2380537477394611257,
+"OriContent": ""
+}
+],
+"ModContactCount": 1,
+"ModContactList": [{
+"UserName": "@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42",
+"NickName": "测试",
+"Sex": 0,
+"HeadImgUpdateFlag": 1,
+"ContactType": 0,
+"Alias": "",
+"ChatRoomOwner": "@7b327d277ff2c8b82d9d8f245a738c62",
+"HeadImgUrl": "/cgi-bin/mmwebwx-bin/webwxgetheadimg?seq=0&username=@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42&skey=@crypt_d1ec4fe2_df2be94d1336f5a683367ba621fdaee8",
+"ContactFlag": 2,
+"MemberCount": 1,
+"MemberList": [{
+"Uin": 0,
+"UserName": "@7b327d277ff2c8b82d9d8f245a738c62",
+"NickName": "M.t",
+"AttrStatus": 98339,
+"PYInitial": "",
+"PYQuanPin": "",
+"RemarkPYInitial": "",
+"RemarkPYQuanPin": "",
+"MemberStatus": 0,
+"DisplayName": "",
+"KeyWord": ""
+}
+],
+"HideInputBarFlag": 0,
+"Signature": "",
+"VerifyFlag": 0,
+"RemarkName": "",
+"Statues": 1,
+"AttrStatus": 0,
+"Province": "",
+"City": "",
+"SnsFlag": 0,
+"KeyWord": ""
+}
+],
+"DelContactCount": 1,
+"DelContactList": [{
+"UserName": "@@c130ac0c2a792deef8225e4fd91a5569d1646818ab454452182f039e0bd3fe34",
+"ContactFlag": 0
+}
+],
+"ModChatRoomMemberCount": 0,
+"ModChatRoomMemberList": [],
+"Profile": {
+"BitFlag": 0,
+"UserName": {
+"Buff": ""
+}
+,
+"NickName": {
+"Buff": ""
+}
+,
+"BindUin": 0,
+"BindEmail": {
+"Buff": ""
+}
+,
+"BindMobile": {
+"Buff": ""
+}
+,
+"Status": 0,
+"Sex": 0,
+"PersonalCard": 0,
+"Alias": "",
+"HeadImgUpdateFlag": 0,
+"HeadImgUrl": "",
+"Signature": ""
+}
+,
+"ContinueFlag": 0,
+"SyncKey": {
+"Count": 9,
+"List": [{
+"Key": 1,
+"Val": 654024977
+}
+,{
+"Key": 2,
+"Val": 654025137
+}
+,{
+"Key": 3,
+"Val": 654025128
+}
+,{
+"Key": 11,
+"Val": 654025136
+}
+,{
+"Key": 13,
+"Val": 654020132
+}
+,{
+"Key": 201,
+"Val": 1500349009
+}
+,{
+"Key": 203,
+"Val": 1500348976
+}
+,{
+"Key": 1000,
+"Val": 1500339602
+}
+,{
+"Key": 1001,
+"Val": 1500339633
+}
+]
+}
+,
+"SKey": "",
+"SyncCheckKey": {
+"Count": 9,
+"List": [{
+"Key": 1,
+"Val": 654024977
+}
+,{
+"Key": 2,
+"Val": 654025137
+}
+,{
+"Key": 3,
+"Val": 654025128
+}
+,{
+"Key": 11,
+"Val": 654025136
+}
+,{
+"Key": 13,
+"Val": 654020132
+}
+,{
+"Key": 201,
+"Val": 1500349009
+}
+,{
+"Key": 203,
+"Val": 1500348976
+}
+,{
+"Key": 1000,
+"Val": 1500339602
+}
+,{
+"Key": 1001,
+"Val": 1500339633
+}
+]
+}
+
+}
+]
+I0718 11:36:49.602807   14897 session.go:372] >>> [Serve] FromUser = [@7b327d277ff2c8b82d9d8f245a738c62] Message Content = [] userID = 6
+I0718 11:37:14.766748   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:37:39.913942   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:38:05.116587   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:38:30.294795   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:38:54.055848   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 2 userID = 6
+I0718 11:38:54.236339   14897 session.go:343] >>> Message = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"AddMsgCount": 1,
+"AddMsgList": [{
+"MsgId": "8035139810377209457",
+"FromUserName": "@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42",
+"ToUserName": "@7b327d277ff2c8b82d9d8f245a738c62",
+"MsgType": 10000,
+"Content": "\"TJ\"通过扫描你分享的二维码加入群聊",
+"Status": 3,
+"ImgStatus": 1,
+"CreateTime": 1500349133,
+"VoiceLength": 0,
+"PlayLength": 0,
+"FileName": "",
+"FileSize": "",
+"MediaId": "",
+"Url": "",
+"AppMsgType": 0,
+"StatusNotifyCode": 0,
+"StatusNotifyUserName": "",
+"RecommendInfo": {
+"UserName": "",
+"NickName": "",
+"QQNum": 0,
+"Province": "",
+"City": "",
+"Content": "",
+"Signature": "",
+"Alias": "",
+"Scene": 0,
+"VerifyFlag": 0,
+"AttrStatus": 0,
+"Sex": 0,
+"Ticket": "",
+"OpCode": 0
+}
+,
+"ForwardFlag": 0,
+"AppInfo": {
+"AppID": "",
+"Type": 0
+}
+,
+"HasProductId": 0,
+"Ticket": "",
+"ImgHeight": 0,
+"ImgWidth": 0,
+"SubMsgType": 0,
+"NewMsgId": 8035139810377209457,
+"OriContent": ""
+}
+],
+"ModContactCount": 0,
+"ModContactList": [],
+"DelContactCount": 0,
+"DelContactList": [],
+"ModChatRoomMemberCount": 0,
+"ModChatRoomMemberList": [],
+"Profile": {
+"BitFlag": 0,
+"UserName": {
+"Buff": ""
+}
+,
+"NickName": {
+"Buff": ""
+}
+,
+"BindUin": 0,
+"BindEmail": {
+"Buff": ""
+}
+,
+"BindMobile": {
+"Buff": ""
+}
+,
+"Status": 0,
+"Sex": 0,
+"PersonalCard": 0,
+"Alias": "",
+"HeadImgUpdateFlag": 0,
+"HeadImgUrl": "",
+"Signature": ""
+}
+,
+"ContinueFlag": 0,
+"SyncKey": {
+"Count": 9,
+"List": [{
+"Key": 1,
+"Val": 654024977
+}
+,{
+"Key": 2,
+"Val": 654025138
+}
+,{
+"Key": 3,
+"Val": 654025128
+}
+,{
+"Key": 11,
+"Val": 654025136
+}
+,{
+"Key": 13,
+"Val": 654020132
+}
+,{
+"Key": 201,
+"Val": 1500349133
+}
+,{
+"Key": 203,
+"Val": 1500348976
+}
+,{
+"Key": 1000,
+"Val": 1500339602
+}
+,{
+"Key": 1001,
+"Val": 1500339633
+}
+]
+}
+,
+"SKey": "",
+"SyncCheckKey": {
+"Count": 9,
+"List": [{
+"Key": 1,
+"Val": 654024977
+}
+,{
+"Key": 2,
+"Val": 654025138
+}
+,{
+"Key": 3,
+"Val": 654025128
+}
+,{
+"Key": 11,
+"Val": 654025136
+}
+,{
+"Key": 13,
+"Val": 654020132
+}
+,{
+"Key": 201,
+"Val": 1500349133
+}
+,{
+"Key": 203,
+"Val": 1500348976
+}
+,{
+"Key": 1000,
+"Val": 1500339602
+}
+,{
+"Key": 1001,
+"Val": 1500339633
+}
+]
+}
+
+}
+]
+I0718 11:38:54.237055   14897 session.go:372] >>> [Serve] FromUser = [@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42] Message Content = ["TJ"通过扫描你分享的二维码加入群聊] userID = 6
+I0718 11:38:54.985627   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:38:55.176617   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:39:20.324083   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:39:45.509859   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:40:10.693648   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:40:35.883942   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:41:01.045031   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:41:24.437562   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:41:25.407795   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:41:46.296805   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:41:46.470099   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 2 userID = 6
+I0718 11:41:46.787415   14897 session.go:343] >>> Message = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"AddMsgCount": 1,
+"AddMsgList": [{
+"MsgId": "539956843541057334",
+"FromUserName": "@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42",
+"ToUserName": "@7b327d277ff2c8b82d9d8f245a738c62",
+"MsgType": 10000,
+"Content": "你邀请\"TJ\"加入了群聊",
+"Status": 3,
+"ImgStatus": 1,
+"CreateTime": 1500349306,
+"VoiceLength": 0,
+"PlayLength": 0,
+"FileName": "",
+"FileSize": "",
+"MediaId": "",
+"Url": "",
+"AppMsgType": 0,
+"StatusNotifyCode": 0,
+"StatusNotifyUserName": "",
+"RecommendInfo": {
+"UserName": "",
+"NickName": "",
+"QQNum": 0,
+"Province": "",
+"City": "",
+"Content": "",
+"Signature": "",
+"Alias": "",
+"Scene": 0,
+"VerifyFlag": 0,
+"AttrStatus": 0,
+"Sex": 0,
+"Ticket": "",
+"OpCode": 0
+}
+,
+"ForwardFlag": 0,
+"AppInfo": {
+"AppID": "",
+"Type": 0
+}
+,
+"HasProductId": 0,
+"Ticket": "",
+"ImgHeight": 0,
+"ImgWidth": 0,
+"SubMsgType": 0,
+"NewMsgId": 539956843541057334,
+"OriContent": ""
+}
+],
+"ModContactCount": 1,
+"ModContactList": [{
+"UserName": "@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42",
+"NickName": "测试",
+"Sex": 0,
+"HeadImgUpdateFlag": 1,
+"ContactType": 0,
+"Alias": "",
+"ChatRoomOwner": "@7b327d277ff2c8b82d9d8f245a738c62",
+"HeadImgUrl": "/cgi-bin/mmwebwx-bin/webwxgetheadimg?seq=0&username=@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42&skey=@crypt_d1ec4fe2_df2be94d1336f5a683367ba621fdaee8",
+"ContactFlag": 2,
+"MemberCount": 2,
+"MemberList": [{
+"Uin": 0,
+"UserName": "@7b327d277ff2c8b82d9d8f245a738c62",
+"NickName": "M.t",
+"AttrStatus": 98339,
+"PYInitial": "",
+"PYQuanPin": "",
+"RemarkPYInitial": "",
+"RemarkPYQuanPin": "",
+"MemberStatus": 0,
+"DisplayName": "",
+"KeyWord": ""
+}
+,{
+"Uin": 0,
+"UserName": "@9d77e29f80c805a82336d09e61403e43",
+"NickName": "TJ",
+"AttrStatus": 230759,
+"PYInitial": "",
+"PYQuanPin": "",
+"RemarkPYInitial": "",
+"RemarkPYQuanPin": "",
+"MemberStatus": 0,
+"DisplayName": "",
+"KeyWord": ""
+}
+],
+"HideInputBarFlag": 0,
+"Signature": "",
+"VerifyFlag": 0,
+"RemarkName": "",
+"Statues": 1,
+"AttrStatus": 0,
+"Province": "",
+"City": "",
+"SnsFlag": 0,
+"KeyWord": ""
+}
+],
+"DelContactCount": 0,
+"DelContactList": [],
+"ModChatRoomMemberCount": 0,
+"ModChatRoomMemberList": [],
+"Profile": {
+"BitFlag": 0,
+"UserName": {
+"Buff": ""
+}
+,
+"NickName": {
+"Buff": ""
+}
+,
+"BindUin": 0,
+"BindEmail": {
+"Buff": ""
+}
+,
+"BindMobile": {
+"Buff": ""
+}
+,
+"Status": 0,
+"Sex": 0,
+"PersonalCard": 0,
+"Alias": "",
+"HeadImgUpdateFlag": 0,
+"HeadImgUrl": "",
+"Signature": ""
+}
+,
+"ContinueFlag": 0,
+"SyncKey": {
+"Count": 9,
+"List": [{
+"Key": 1,
+"Val": 654024977
+}
+,{
+"Key": 2,
+"Val": 654025143
+}
+,{
+"Key": 3,
+"Val": 654025128
+}
+,{
+"Key": 11,
+"Val": 654025142
+}
+,{
+"Key": 13,
+"Val": 654020132
+}
+,{
+"Key": 201,
+"Val": 1500349306
+}
+,{
+"Key": 203,
+"Val": 1500349285
+}
+,{
+"Key": 1000,
+"Val": 1500339602
+}
+,{
+"Key": 1001,
+"Val": 1500339633
+}
+]
+}
+,
+"SKey": "",
+"SyncCheckKey": {
+"Count": 9,
+"List": [{
+"Key": 1,
+"Val": 654024977
+}
+,{
+"Key": 2,
+"Val": 654025143
+}
+,{
+"Key": 3,
+"Val": 654025128
+}
+,{
+"Key": 11,
+"Val": 654025142
+}
+,{
+"Key": 13,
+"Val": 654020132
+}
+,{
+"Key": 201,
+"Val": 1500349306
+}
+,{
+"Key": 203,
+"Val": 1500349285
+}
+,{
+"Key": 1000,
+"Val": 1500339602
+}
+,{
+"Key": 1001,
+"Val": 1500339633
+}
+]
+}
+
+}
+]
+I0718 11:41:46.788038   14897 session.go:372] >>> [Serve] FromUser = [@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42] Message Content = [你邀请"TJ"加入了群聊] userID = 6
+I0718 11:41:47.275292   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:42:12.473033   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:42:37.668140   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:43:02.863337   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:43:28.616081   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:43:54.228640   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:44:19.415189   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:44:44.669210   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:45:09.844139   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:45:15.742182   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 2 userID = 6
+I0718 11:45:16.060420   14897 session.go:343] >>> Message = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"AddMsgCount": 1,
+"AddMsgList": [{
+"MsgId": "3641468696208699988",
+"FromUserName": "@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42",
+"ToUserName": "@7b327d277ff2c8b82d9d8f245a738c62",
+"MsgType": 10000,
+"Content": "你将\"TJ\"移出了群聊",
+"Status": 4,
+"ImgStatus": 1,
+"CreateTime": 1500349515,
+"VoiceLength": 0,
+"PlayLength": 0,
+"FileName": "",
+"FileSize": "",
+"MediaId": "",
+"Url": "",
+"AppMsgType": 0,
+"StatusNotifyCode": 0,
+"StatusNotifyUserName": "",
+"RecommendInfo": {
+"UserName": "",
+"NickName": "",
+"QQNum": 0,
+"Province": "",
+"City": "",
+"Content": "",
+"Signature": "",
+"Alias": "",
+"Scene": 0,
+"VerifyFlag": 0,
+"AttrStatus": 0,
+"Sex": 0,
+"Ticket": "",
+"OpCode": 0
+}
+,
+"ForwardFlag": 0,
+"AppInfo": {
+"AppID": "",
+"Type": 0
+}
+,
+"HasProductId": 0,
+"Ticket": "",
+"ImgHeight": 0,
+"ImgWidth": 0,
+"SubMsgType": 0,
+"NewMsgId": 3641468696208699988,
+"OriContent": ""
+}
+],
+"ModContactCount": 1,
+"ModContactList": [{
+"UserName": "@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42",
+"NickName": "测试",
+"Sex": 0,
+"HeadImgUpdateFlag": 1,
+"ContactType": 0,
+"Alias": "",
+"ChatRoomOwner": "@7b327d277ff2c8b82d9d8f245a738c62",
+"HeadImgUrl": "/cgi-bin/mmwebwx-bin/webwxgetheadimg?seq=0&username=@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42&skey=@crypt_d1ec4fe2_df2be94d1336f5a683367ba621fdaee8",
+"ContactFlag": 2,
+"MemberCount": 1,
+"MemberList": [{
+"Uin": 0,
+"UserName": "@7b327d277ff2c8b82d9d8f245a738c62",
+"NickName": "M.t",
+"AttrStatus": 98339,
+"PYInitial": "",
+"PYQuanPin": "",
+"RemarkPYInitial": "",
+"RemarkPYQuanPin": "",
+"MemberStatus": 0,
+"DisplayName": "",
+"KeyWord": ""
+}
+],
+"HideInputBarFlag": 0,
+"Signature": "",
+"VerifyFlag": 0,
+"RemarkName": "",
+"Statues": 1,
+"AttrStatus": 0,
+"Province": "",
+"City": "",
+"SnsFlag": 0,
+"KeyWord": ""
+}
+],
+"DelContactCount": 0,
+"DelContactList": [],
+"ModChatRoomMemberCount": 0,
+"ModChatRoomMemberList": [],
+"Profile": {
+"BitFlag": 0,
+"UserName": {
+"Buff": ""
+}
+,
+"NickName": {
+"Buff": ""
+}
+,
+"BindUin": 0,
+"BindEmail": {
+"Buff": ""
+}
+,
+"BindMobile": {
+"Buff": ""
+}
+,
+"Status": 0,
+"Sex": 0,
+"PersonalCard": 0,
+"Alias": "",
+"HeadImgUpdateFlag": 0,
+"HeadImgUrl": "",
+"Signature": ""
+}
+,
+"ContinueFlag": 0,
+"SyncKey": {
+"Count": 9,
+"List": [{
+"Key": 1,
+"Val": 654024977
+}
+,{
+"Key": 2,
+"Val": 654025146
+}
+,{
+"Key": 3,
+"Val": 654025128
+}
+,{
+"Key": 11,
+"Val": 654025145
+}
+,{
+"Key": 13,
+"Val": 654020132
+}
+,{
+"Key": 201,
+"Val": 1500349515
+}
+,{
+"Key": 203,
+"Val": 1500349307
+}
+,{
+"Key": 1000,
+"Val": 1500339602
+}
+,{
+"Key": 1001,
+"Val": 1500339633
+}
+]
+}
+,
+"SKey": "",
+"SyncCheckKey": {
+"Count": 9,
+"List": [{
+"Key": 1,
+"Val": 654024977
+}
+,{
+"Key": 2,
+"Val": 654025146
+}
+,{
+"Key": 3,
+"Val": 654025128
+}
+,{
+"Key": 11,
+"Val": 654025145
+}
+,{
+"Key": 13,
+"Val": 654020132
+}
+,{
+"Key": 201,
+"Val": 1500349515
+}
+,{
+"Key": 203,
+"Val": 1500349307
+}
+,{
+"Key": 1000,
+"Val": 1500339602
+}
+,{
+"Key": 1001,
+"Val": 1500339633
+}
+]
+}
+
+}
+]
+I0718 11:45:16.061363   14897 session.go:372] >>> [Serve] FromUser = [@@242b130f2cd9e0ce9aa905d88ae2f34945ef998d8d94a43cb390617df0c52f42] Message Content = [你将"TJ"移出了群聊] userID = 6
+I0718 11:45:16.784246   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:45:42.005174   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:46:07.162571   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:46:32.411068   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:46:57.575357   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:47:22.761390   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:47:47.942048   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:48:13.103733   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:48:38.249261   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:49:03.393491   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:49:28.553445   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:49:53.697553   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:50:18.854560   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:50:44.000231   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:51:09.168516   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:51:34.636412   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:51:59.804621   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:52:25.577491   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:52:50.766150   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:53:15.934008   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:53:41.086058   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:54:06.232778   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:54:31.395498   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:54:56.596125   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:55:21.762788   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:55:46.954380   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:56:12.124688   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:56:37.357924   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:57:02.792870   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:57:27.968945   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:57:53.242890   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:58:18.423281   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:58:43.670297   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:59:08.810659   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:59:33.968973   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 11:59:59.132334   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:00:27.409783   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:00:52.558755   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:01:17.706018   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:01:42.868285   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:02:08.013830   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:02:33.205415   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:02:58.382680   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:03:23.565964   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:03:48.782775   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:04:13.937843   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:04:39.085260   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:05:04.240634   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:05:29.402443   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:05:54.565980   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:06:19.735667   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:06:44.900761   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:07:10.045921   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:07:35.191494   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:08:00.342080   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:08:25.506689   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:08:50.647089   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:09:15.857436   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:09:41.010977   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:10:06.166581   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:10:31.334729   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:10:56.476774   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:11:21.637208   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:11:46.805926   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:12:11.963104   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:12:37.107440   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:13:02.362941   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:13:27.568082   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:13:52.759883   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:14:17.953075   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:14:43.186851   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:15:08.330117   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:15:33.507222   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:15:58.659519   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:16:23.802096   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:16:48.956087   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:17:14.106336   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:17:39.277533   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:18:04.457062   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:18:29.659034   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:18:54.797387   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:19:20.015306   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:19:45.182374   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:20:10.345198   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:20:35.516495   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:21:00.676220   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:21:25.832798   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:21:50.969101   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:22:16.123690   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:22:41.270278   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:23:06.556108   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:23:31.742680   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:23:56.916358   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:24:22.135719   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:24:47.347207   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:25:12.602415   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:25:37.833831   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:26:03.012573   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:26:28.191601   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:26:53.370329   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:27:18.563723   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:27:43.781736   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:28:08.946399   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:28:34.136494   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:28:59.289051   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:29:24.450416   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:29:49.658660   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:30:14.889267   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:30:40.034106   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:31:05.169741   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:31:30.338939   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:31:55.485821   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:32:20.621252   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:32:45.767600   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:33:10.911387   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:33:36.057744   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:34:01.199712   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:34:26.359805   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:34:51.613696   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:35:16.849767   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:35:42.145989   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:36:07.292592   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:36:32.517318   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:36:57.676849   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:37:22.892912   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:37:48.072982   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:38:13.216878   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:38:38.386631   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:39:03.577913   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:39:28.780736   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:39:54.035887   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:40:19.237050   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:40:44.492640   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:41:09.700633   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:41:34.903914   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:42:00.127887   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:42:25.286133   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:42:50.442109   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:43:15.636238   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:43:40.809355   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:44:05.996881   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:44:31.239021   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:44:56.388865   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:45:21.625762   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:45:46.767922   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:46:11.910221   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:46:37.058809   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:47:02.208638   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:47:27.352389   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:47:52.510507   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:48:17.676365   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:48:42.830487   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:49:08.020341   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:49:33.235928   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:49:58.395150   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:50:23.593384   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:50:48.789200   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:51:14.028887   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:51:39.251385   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:52:05.222726   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:52:30.437706   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:52:55.757692   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:53:20.958462   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:53:46.169591   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:54:11.392773   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:54:36.636571   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:55:01.852718   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:55:27.173722   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:55:52.517265   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:56:17.701647   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:56:42.894938   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:57:08.117859   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:57:33.315583   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:58:02.384385   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:58:27.903136   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:58:53.125705   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:59:19.227017   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 12:59:44.439928   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:00:11.953127   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:00:37.188101   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:01:06.262611   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:01:31.550242   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:01:56.769490   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:02:22.081280   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:02:47.635712   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:03:13.423504   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:03:39.160660   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:04:04.383633   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:04:29.594300   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:04:54.823934   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:05:20.431757   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:05:45.667385   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:06:11.010991   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:06:36.319346   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:07:02.366874   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:07:27.933446   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:07:53.157313   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:08:18.406692   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:08:43.836864   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:09:09.371176   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:09:35.065040   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:10:00.577885   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:10:25.777257   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:10:50.979615   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:11:16.747156   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:11:42.439802   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:12:07.675996   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:12:33.159213   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:12:58.731683   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:13:23.946704   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:13:50.241620   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:14:16.518731   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:14:42.486676   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:15:07.718132   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:15:34.784913   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:15:59.992857   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:16:25.561808   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:16:50.844051   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:17:16.443303   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:17:42.113839   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:18:07.353622   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:18:34.502309   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:19:00.824550   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:19:27.043880   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:19:52.265698   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:20:17.498118   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:20:43.748741   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:21:08.969318   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:21:35.112683   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:22:01.097937   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:22:26.387050   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:22:51.706978   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:23:17.562667   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:23:42.783783   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:24:08.536918   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:24:34.023409   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:24:59.858794   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:25:25.084683   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:25:50.838152   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:26:16.298849   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:26:42.486943   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:27:09.628735   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:27:35.101466   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:28:01.057774   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:28:26.527829   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:28:52.342723   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:29:17.764674   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:29:43.488798   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:30:08.910522   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:30:34.409648   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:31:01.182370   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:31:27.612492   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:31:53.116704   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:32:18.559271   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:32:43.781850   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:33:09.015029   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:33:34.249680   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:33:59.468304   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:34:24.683704   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:34:50.272798   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:35:15.478135   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:35:40.684538   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:36:05.843722   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:36:30.995966   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:36:56.142667   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:37:21.408001   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:37:46.605299   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:38:11.811486   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:38:38.201805   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:39:03.419807   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:39:28.601709   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:39:53.797951   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:40:19.317153   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:40:44.522056   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:41:09.722110   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:41:34.923402   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:42:00.121795   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:42:25.408095   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:42:50.693492   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:43:15.890399   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:43:41.048299   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:44:06.194644   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:44:31.345289   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:44:56.505999   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:45:21.674489   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:45:46.810791   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:46:11.971692   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:46:36.986461   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:47:02.130420   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:47:27.282939   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:47:52.415739   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:48:17.569439   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:48:42.755002   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:49:07.913312   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:49:33.059803   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:49:58.386746   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:50:23.541328   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:50:48.685073   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:51:13.845601   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:51:38.995406   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:52:04.141008   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:52:29.295482   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:52:54.438206   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:53:19.586762   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:53:44.829488   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:54:09.967860   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:54:35.138639   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:55:00.287094   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:55:25.447923   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:55:50.612247   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:56:15.760162   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:56:40.894080   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:57:06.050039   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:57:31.204012   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:57:56.353888   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:58:21.594037   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:58:46.789656   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:59:11.977687   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 13:59:37.130323   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:00:02.277984   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:00:27.424726   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:00:52.576161   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:01:17.735627   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:01:42.899544   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:02:08.049752   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:02:33.218788   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:02:58.452335   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:03:23.714273   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:03:48.895431   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:04:14.146902   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:04:39.320346   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:05:04.501117   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:05:29.743233   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:05:54.893651   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:06:20.060063   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:06:45.252899   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:07:10.411886   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:07:35.569494   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:08:00.779670   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:08:25.989011   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:08:51.189740   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:09:16.418508   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:09:41.631444   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:10:06.894467   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:10:32.049382   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:10:57.261756   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:11:22.458654   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:11:47.657848   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:12:12.976937   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:12:38.203085   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:13:03.588589   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:13:28.809714   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:13:54.044243   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:14:19.253948   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:14:44.455270   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:15:09.621218   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:15:34.835262   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:16:00.364853   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:16:25.583367   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:16:50.792048   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:17:15.942587   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:17:41.113578   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:18:06.302617   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:18:31.463444   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:18:56.621967   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:19:21.868974   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:19:47.011628   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:20:12.184058   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:20:37.357743   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:21:02.517132   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:21:27.707690   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:21:52.867638   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:22:18.034024   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:22:43.219950   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:23:08.353118   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:23:33.500742   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:23:58.655566   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:24:23.827305   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:24:49.417719   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:25:14.563868   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:25:39.725911   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:26:04.905915   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:26:30.086054   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:26:55.261589   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:27:20.411099   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:27:45.559349   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:28:10.806089   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:28:35.982081   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:29:01.267700   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:29:26.454051   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:29:51.663321   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:30:16.817464   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:30:41.961362   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:31:07.209089   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:31:32.370815   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:31:57.518607   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:32:22.680883   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:32:47.839016   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:33:13.008128   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:33:38.298074   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:34:03.519599   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:34:29.043765   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:34:54.460425   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:35:19.648014   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:35:44.858788   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:36:10.078849   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:36:35.308201   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:37:00.543619   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:37:25.728089   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:37:50.947421   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:38:16.155540   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:38:41.363237   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:39:06.551101   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:39:31.752664   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:39:56.966419   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:40:22.165172   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:40:47.394762   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:41:13.028620   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:41:38.696271   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:42:03.880567   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:42:29.089539   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:42:54.254631   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:43:19.411385   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:43:44.581613   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:44:09.783634   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:44:34.983331   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:45:00.117075   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:45:25.273836   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:45:50.444613   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:46:15.608946   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:46:40.755994   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:47:05.904500   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:47:31.053677   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:47:56.226001   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:48:21.361510   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:48:46.510340   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:49:11.688594   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:49:36.848872   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:50:02.107355   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:50:27.269452   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:50:52.407467   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:51:17.549896   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:51:42.732197   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:52:07.890270   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:52:33.040624   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:52:58.199343   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:53:23.346379   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:53:48.497643   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:54:13.653538   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:54:38.887531   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 14:55:04.038963   14897 session.go:332] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6

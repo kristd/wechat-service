@@ -11,6 +11,8 @@ import (
     "service/conf"
     "service/common"
 	"net/url"
+	"regexp"
+	"github.com/go-playground/locales/ta"
 )
 
 type keyWord struct {
@@ -176,7 +178,7 @@ func (s *Session) LoginPolling() int {
 			}
 
 			if glog.V(2) {
-				glog.Info("[LoginPolling] sec1 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
+				glog.Info(">>> [LoginPolling] sec1 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
 			}
 
 			redirectUrl, err = s.WxApi.WebwxLogin(s.WxWebCommon, s.UuID, flag)
@@ -186,14 +188,13 @@ func (s *Session) LoginPolling() int {
                 }
 
 				s.UpdateLoginStat(-200)
-
 				return -200
 			} else if strings.Contains(redirectUrl, "http") {
 				s.RedirectUrl = redirectUrl
 				s.UpdateLoginStat(conf.LOGIN_SUCC)
 
                 if glog.V(2) {
-                    glog.Info("[LoginPolling] sec2 WebwxLogin success, uuid = ", s.UuID)
+                    glog.Info(">>> [LoginPolling] sec2 WebwxLogin success, uuid = ", s.UuID)
                 }
 
 				return 200
@@ -205,7 +206,7 @@ func (s *Session) LoginPolling() int {
 			}
 
 			if glog.V(2) {
-				glog.Info("[LoginPolling] sec3 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
+				glog.Info(">>> [LoginPolling] sec3 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
 			}
 
 			tryCount++
@@ -214,7 +215,7 @@ func (s *Session) LoginPolling() int {
 				return -998
 			} else {
 				if glog.V(2) {
-					glog.Info("[LoginPolling] sec3 WebwxLogin uuid = ", s.UuID, " retry =", tryCount)
+					glog.Info(">>> [LoginPolling] sec3 WebwxLogin uuid = ", s.UuID, " retry =", tryCount)
 				}
 			}
 		} else if strings.Contains(redirectUrl, "http") {
@@ -222,7 +223,7 @@ func (s *Session) LoginPolling() int {
 			s.UpdateLoginStat(conf.LOGIN_SUCC)
 
 			if glog.V(2) {
-				glog.Info("[LoginPolling] sec3 WebwxLogin success, uuid = ", s.UuID)
+				glog.Info(">>> [LoginPolling] sec3 WebwxLogin success, uuid = ", s.UuID)
 			}
 
 			return 200
@@ -265,21 +266,19 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 		return -1
 	}
 
+	//获取用户临时会话列表
 	session, err := s.WxApi.WebWxInit(s.WxWebCommon, s.WxWebXcg)
+
+
+	fmt.Println(">>> [InitUserCookies] Session = [", string(session), "]")
+
+
 	if err != nil {
 		if glog.V(2) {
-			glog.Error("[InitUserCookies] WebWxInit err =", err)
+			glog.Error("[InitUserCookies] WebWxInit err = ", err)
 		}
 		return -2
 	}
-
-
-	fmt.Println("")
-	fmt.Println("")
-	fmt.Println(">>> SESSION DATA =[", string(session), "]")
-	fmt.Println("")
-	fmt.Println("")
-
 
 	jc := &conf.JsonConfig{}
 	jc, _ = conf.LoadJsonConfigFromBytes(session)
@@ -287,7 +286,7 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 	s.synKeyList, err = common.GetSyncKeyListFromJc(jc)
 	if err != nil {
 		if glog.V(2) {
-			glog.Error("[InitUserCookies] GetSyncKeyListFromJc err =", err)
+			glog.Error("[InitUserCookies] GetSyncKeyListFromJc err = ", err)
 		}
 		return -3
 	}
@@ -295,7 +294,7 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 	s.Bot, err = common.GetUserInfoFromJc(jc)
 	if err != nil {
 		if glog.V(2) {
-			glog.Error("[InitUserCookies] GetUserInfoFromJc err =", err)
+			glog.Error("[InitUserCookies] GetUserInfoFromJc err = ", err)
 		}
 		return -4
 	}
@@ -304,7 +303,7 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 	contacts, err = s.WxApi.WebWxGetContact(s.WxWebCommon, s.WxWebXcg, s.cookies)
 	if err != nil {
 		if glog.V(2) {
-			glog.Error("[InitUserCookies] WebWxGetContact err =", err)
+			glog.Error("[InitUserCookies] WebWxGetContact err = ", err)
 		}
 		return -5
 	}
@@ -312,68 +311,113 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 	s.ContactMgr, err = common.CreateContactManagerFromBytes(contacts)
 	if err != nil {
 		if glog.V(2) {
-			glog.Error("[InitUserCookies] CreateContactManagerFromBytes err =", err)
+			glog.Error("[InitUserCookies] CreateContactManagerFromBytes err = ", err)
 		}
 		return -6
 	}
 
 	s.ContactMgr.AddContactFromUser(s.Bot)
+
+	groups, err := common.GetSessionGroupFromJc(jc)
+	if err != nil {
+		if glog.V(2) {
+			glog.Error("[InitUserCookies] GetSessionGroupFromJc err = ", err)
+		}
+		return -7
+	}
+
+	for _, group := range groups {
+		s.ContactMgr.AddContactFromUser(group)
+	}
+
 	return 0
 }
 
 func (s *Session) Serve() {
-	fmt.Println(">>> [Serve] Serving start userID = ", s.UserID)
+	if glog.V(2) {
+		glog.Info(">>> [Serve] Looping start userID = ", s.UserID)
+	}
 
-	for s.Loop {
+	for ; s.Loop; {
         //Will be blocked here until wechat return response
 		ret, selector, err := s.WxApi.SyncCheck(s.WxWebCommon, s.WxWebXcg, s.cookies, s.WxWebCommon.SyncSrv, s.synKeyList)
 		if err != nil {
-			glog.Info(">>> SyncCheck err =", err)
+			if glog.V(2) {
+				glog.Error("[Serve] SyncCheck err = [", err, "] userID = ", s.UserID)
+			}
 			continue
 		}
+
 		if ret == 0 {
-			// check success
+			if glog.V(2) {
+				glog.Info(">>> [Serve] SyncCheck new message get, ret = ", ret, " && selector = ", selector, " userID = ", s.UserID)
+			}
+
 			if selector == 2 {
-				// new message
 				msg, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.cookies, s.synKeyList)
 				if err != nil {
-					fmt.Println("WebWxSync err", err)
+					if glog.V(2) {
+						glog.Error("[Serve] WebWxSync err = [", err, "] userID = ", s.UserID)
+					}
 				} else {
 					jc, err := conf.LoadJsonConfigFromBytes(msg)
 					if err != nil {
-						fmt.Println(">>> LoadJsonConfigFromBytes err =", err)
+						if glog.V(2) {
+							glog.Error("[Serve] LoadJsonConfigFromBytes err = [", err, "] userID = ", s.UserID)
+						}
+						continue
 					}
 
 					msgCount, _ := jc.GetInt("AddMsgCount")
 					if msgCount < 1 {
-						fmt.Println(">>> MsgCount == 0")
+						if glog.V(2) {
+							glog.Error("[Serve] MsgCount = 0, userID = ", s.UserID)
+						}
 						continue
 					}
+
 					msgis, _ := jc.GetInterfaceSlice("AddMsgList")
 					for _, v := range msgis {
 						rmsg := s.Analize(v.(map[string]interface{}))
+						if glog.V(2) {
+							glog.Info(">>> [Serve] FromUser = [", rmsg.FromUserName, "] Message Content = [", rmsg.Content, "] MessageType =[", rmsg.MsgType, "] UserID = [", s.UserID, "]")
+						}
 
-						fmt.Println(rmsg.FromUserName, "<<< >>> rmsg.Content = <<< ", rmsg.Content)
-
-						go s.ReplyMsg(rmsg.FromUserName, rmsg.Content)
+						switch int(rmsg.MsgType) {
+						case int(conf.MSG_TEXT):
+							go s.ReplyUserMessage(rmsg.FromUserName, rmsg.Content)
+						case int(conf.MSG_SYS):
+							go s.ReplySysMessage(rmsg.FromUserName, rmsg.Content)
+						}
 					}
 				}
 			} else if selector != 0 && selector != 7 {
-				fmt.Println("session down, sel %d", selector)
+				if glog.V(2) {
+					glog.Error("[Serve] Session down, selector = ", selector, ", userID = ", s.UserID)
+				}
+				break
 			}
-		} else if ret == 1101 {
-			fmt.Println("error code =", ret)
+		} else if ret == 1101 || ret == 1100 {
+			if glog.V(2) {
+				glog.Error("[Serve] User logout error code = ", ret, ", userID = ", s.UserID)
+			}
 			break
 		} else if ret == 1205 {
-			fmt.Println("api blocked, ret:%d", 1205)
+			if glog.V(2) {
+				glog.Error("[Serve] Api blocked, ret = ", 1205, ", userID = ", s.UserID)
+			}
 			break
 		} else {
-			fmt.Println("unhandled exception ret %d", ret)
+			if glog.V(2) {
+				glog.Error("[Serve] Unhandled exception ret = ", ret, ", userID = ", s.UserID)
+			}
 			break
 		}
 	}
 
-    fmt.Println(">>> [Serve] Serving stop userID = ", s.UserID)
+	if glog.V(2) {
+    	glog.Info(">>> [Serve] Looping stop userID = ", s.UserID)
+	}
 	s.Quit <- true
 }
 
@@ -428,7 +472,7 @@ func (s *Session) Analize(msg map[string]interface{}) *common.ReceivedMessage {
 	return rmsg
 }
 
-func (s *Session) ReplyMsg(group, msg string) {
+func (s *Session) ReplyUserMessage(group, msg string) {
 	toUser := &common.User{}
 	match := false
 
@@ -443,31 +487,42 @@ func (s *Session) ReplyMsg(group, msg string) {
 		for _, groupConf := range s.autoRepliesConf {
 			if groupConf.groupName == toUser.NickName {
 				for _, keyword := range groupConf.keyWords {
-
-					fmt.Println(">>> msg =", msg, " || range groupConf.keyWords =", keyword.key)
-
 					if strings.Contains(msg, keyword.key) {
 						if keyword.text != "" {
 							msgID, localID, err := s.SendText(keyword.text, s.Bot.UserName, toUser.UserName)
 							if err != nil {
-								fmt.Println("text err =", err)
+								fmt.Println("[ReplyUserMessage] text err =", err)
 							} else {
-								fmt.Println("msgID & localID =", msgID, " || ", localID)
+								fmt.Println("[ReplyUserMessage] msgID & localID =", msgID, " || ", localID)
 							}
 						}
 
 						if keyword.image != "" {
 							ret, err := s.SendImage("./image/logo.png", s.Bot.UserName, toUser.UserName)
 							if err != nil {
-								fmt.Println("image err =", err)
+								fmt.Println("[ReplyUserMessage] image err =", err)
 							} else {
-								fmt.Println("retcd =", ret)
+								fmt.Println("[ReplyUserMessage] retcd =", ret)
 							}
 						}
 					}
 				}
 			}
 		}
+	}
+}
+
+func (s *Session) ReplySysMessage(group, msg string) {
+	reg := regexp.MustCompile(conf.WELCOME_PATTERN)
+	mstr := reg.FindString(msg)
+	//welcome := fmt.Sprintf(conf.WELCOME_MESSAGE, strings.Replace(mstr, "\"", "", -1))
+	welcome := fmt.Sprintf(conf.WELCOME_MESSAGE, mstr)
+
+	msgID, localID, err := s.SendText(welcome, s.Bot.UserName, group)
+	if err != nil {
+		fmt.Println("[ReplySysMessage] text err =", err)
+	} else {
+		fmt.Println("[ReplySysMessage] msgID & localID =", msgID, " || ", localID)
 	}
 }
 

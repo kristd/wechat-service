@@ -81,6 +81,13 @@ func (s *ContactManager) AddContactFromUser(user *User) {
 	if user == nil {
 		return
 	}
+
+	for _, u := range s.ContactList {
+		if u.UserName == user.UserName {
+			return
+		}
+	}
+
 	s.ContactList = append(s.ContactList, user)
 }
 

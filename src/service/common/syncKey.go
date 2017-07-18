@@ -49,3 +49,8 @@ func GetSyncKeyListFromJc(jc *conf.JsonConfig) (*SyncKeyList, error) {
         List:  synks,
     }, nil
 }
+
+func GetSessionGroupFromJc(jc *conf.JsonConfig) ([]*User, error) {
+
+    return nil, nil
+}

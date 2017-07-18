@@ -42,4 +42,7 @@ const (
 	IMG_MSG  		= 2
 
 	MAXTRY 			= 5
+
+	WELCOME_PATTERN = `\"(.*?)\"`
+	WELCOME_MESSAGE = "欢迎新人%s入群"
 )

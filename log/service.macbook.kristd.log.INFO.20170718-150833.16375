@@ -1,0 +1,27 @@
+Log file created at: 2017/07/18 15:08:33
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0718 15:08:33.755808   16375 main.go:17] wechat-service start
+I0718 15:08:37.828524   16375 createHandler.go:44] >>> [SessionCreate] Request json data = [&{1 [map[group:测试 keywords:[map[keyword:麻将 text:http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe img:]]]] 6}]
+I0718 15:08:38.094287   16375 createHandler.go:61] >>> [SessionCreate] UserID 6's uuid = weBqcVda9w== && qrcode = https://login.weixin.qq.com/qrcode/weBqcVda9w==
+I0718 15:08:38.094410   16375 session.go:141] >>> [InitSession] Group [测试] keyword configs = [[{测试 [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe }]}]]
+I0718 15:09:04.337557   16375 loginHandler.go:40] >>> [LoginScan] request json data = [&{2 6}]
+I0718 15:09:04.502723   16375 session.go:225] >>> [LoginPolling] sec3 WebwxLogin success, uuid = weBqcVda9w==
+I0718 15:09:05.321708   16375 session.go:318] >>> [Serve] Looping start userID = 6
+I0718 15:09:16.394403   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:09:17.395387   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:09:17.558502   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:09:19.124487   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 2 userID = 6
+I0718 15:09:19.412078   16375 session.go:363] >>> [Serve] FromUser = [@35d224b1abe03332b460b93dc5bc5e8f] Message Content = [] MessageType =[51] UserID = [6]
+I0718 15:09:35.374588   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 2 userID = 6
+I0718 15:09:35.567096   16375 session.go:363] >>> [Serve] FromUser = [@@adceaba3abc9c0fa92244ca0bf7bd5f28a2d6fb5d5209048c7a655b222ff0adc] Message Content = ["TJ"通过扫描你分享的二维码加入群聊] MessageType =[10000] UserID = [6]
+I0718 15:09:36.314222   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:09:36.515540   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:10:01.652035   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:10:26.812183   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:10:51.963568   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:11:17.108900   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:11:42.240803   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:12:07.389266   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
+I0718 15:12:32.535599   16375 session.go:333] >>> [Serve] SyncCheck new message get, ret = 0 && selector = 0 userID = 6
