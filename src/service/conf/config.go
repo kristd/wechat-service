@@ -73,7 +73,7 @@ func (s *JsonConfig) get(key string, m map[string]interface{}) (interface{}, err
 				return v, nil
 			}
 		} else {
-			return nil, fmt.Errorf("no value for key %s", key)
+			return nil, fmt.Errorf("[get] no value for key %s", key)
 		}
 	}
 	return m, nil
@@ -109,10 +109,10 @@ func (s *JsonConfig) getSliceChilds(key string, m map[string]interface{}) ([]int
 				}
 			}
 		} else {
-			return nil, fmt.Errorf("no value for key %s", key)
+			return nil, fmt.Errorf("[getSliceChilds] no value for key %s", key)
 		}
 	}
-	return nil, fmt.Errorf("can't get []interface{}")
+	return nil, fmt.Errorf("[getSliceChilds] can't get []interface{}")
 }
 
 // user funcs
@@ -168,7 +168,7 @@ func (s *JsonConfig) GetStringSlice(key string) ([]string, error) {
 		return empty, err
 	}
 	if _, ok := f.([]interface{}); !ok {
-		return empty, fmt.Errorf("value for key %s is not slice", key)
+		return empty, fmt.Errorf("[GetStringSlice] value for key %s is not slice", key)
 	}
 	sf := f.([]interface{})
 	ss := make([]string, len(sf))
@@ -176,7 +176,7 @@ func (s *JsonConfig) GetStringSlice(key string) ([]string, error) {
 		if vv, ok := v.(string); ok {
 			ss[i] = vv
 		} else {
-			return empty, fmt.Errorf("%s[%d] is not a string", key, i)
+			return empty, fmt.Errorf("[GetStringSlice] %s[%d] is not a string", key, i)
 		}
 	}
 	return ss, nil
@@ -189,7 +189,7 @@ func (s *JsonConfig) GetString(key string) (string, error) {
 		return "", err
 	}
 	if _, ok := f.(string); !ok {
-		return "", fmt.Errorf("value for key %s is not string", key)
+		return "", fmt.Errorf("[GetString] value for key %s is not string", key)
 	}
 	return f.(string), nil
 }
@@ -201,7 +201,7 @@ func (s *JsonConfig) GetInt(key string) (int, error) {
 		return 0, err
 	}
 	if _, ok := f.(float64); !ok {
-		return 0, fmt.Errorf("value for key %s is not int", key)
+		return 0, fmt.Errorf("[GetInt] value for key %s is not int", key)
 	}
 	return int(f.(float64)), nil
 }
@@ -213,7 +213,7 @@ func (s *JsonConfig) GetFloat64(key string) (float64, error) {
 		return 0.0, err
 	}
 	if _, ok := f.(float64); !ok {
-		return 0.0, fmt.Errorf("value for key %s is not float64", key)
+		return 0.0, fmt.Errorf("[GetFloat64] value for key %s is not float64", key)
 	}
 	return f.(float64), nil
 }
@@ -225,7 +225,7 @@ func (s *JsonConfig) GetInterfaceSlice(key string) ([]interface{}, error) {
 		return nil, err
 	}
 	if _, ok := f.([]interface{}); !ok {
-		return nil, fmt.Errorf("value for key %s is not []interface{}", key)
+		return nil, fmt.Errorf("[GetInterfaceSlice] value for key %s is not []interface{}", key)
 	}
 	return f.([]interface{}), nil
 }

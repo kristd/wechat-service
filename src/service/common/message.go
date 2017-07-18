@@ -1,6 +1,5 @@
 package common
 
-
 type Msg_Create_Request struct {
 	Action int                      `json:"action"`
 	Config []map[string]interface{} `json:"conf"`
@@ -75,74 +74,74 @@ type BaseResponse struct {
 
 // InitReqBody: common http request body struct
 type InitReqBody struct {
-    BaseRequest        *BaseRequest
-    Msg                interface{}
-    SyncKey            *SyncKeyList
-    Rr                 int
-    Code               int
-    FromUserName       string
-    ToUserName         string
-    ClientMsgId        int
-    ClientMediaId      int
-    TotalLen           int
-    StartPos           int
-    DataLen            int
-    MediaType          int
-    Scene              int
-    Count              int
-    List               []*User
-    Opcode             int
-    SceneList          []int
-    SceneListCount     int
-    VerifyContent      string
-    VerifyUserList     []*VerifyUser
-    VerifyUserListSize int
-    skey               string
-    MemberCount        int
-    MemberList         []*User
-    Topic              string
+	BaseRequest        *BaseRequest
+	Msg                interface{}
+	SyncKey            *SyncKeyList
+	Rr                 int
+	Code               int
+	FromUserName       string
+	ToUserName         string
+	ClientMsgId        int
+	ClientMediaId      int
+	TotalLen           int
+	StartPos           int
+	DataLen            int
+	MediaType          int
+	Scene              int
+	Count              int
+	List               []*User
+	Opcode             int
+	SceneList          []int
+	SceneListCount     int
+	VerifyContent      string
+	VerifyUserList     []*VerifyUser
+	VerifyUserListSize int
+	skey               string
+	MemberCount        int
+	MemberList         []*User
+	Topic              string
 }
 
 // TextMessage: text message struct
 type TextMessage struct {
-    Type         int
-    Content      string
-    FromUserName string
-    ToUserName   string
-    LocalID      int
-    ClientMsgId  int
+	Type         int
+	Content      string
+	FromUserName string
+	ToUserName   string
+	LocalID      int
+	ClientMsgId  int
 }
 
 // MediaMessage
 type MediaMessage struct {
-    Type         int
-    Content      string
-    FromUserName string
-    ToUserName   string
-    LocalID      int
-    ClientMsgId  int
-    MediaId      string
+	Type         int
+	Content      string
+	FromUserName string
+	ToUserName   string
+	LocalID      int
+	ClientMsgId  int
+	MediaId      string
 }
 
 type RecommendInfo struct {
-    Ticket   string
-    UserName string
-    NickName string
-    Content  string
-    Sex      int
+	Ticket   string
+	UserName string
+	NickName string
+	Content  string
+	Sex      int
 }
 
 // ReceivedMessage: for received message
 type ReceivedMessage struct {
-    IsGroup       bool
-    MsgId         string
-    Content       string
-    FromUserName  string
-    ToUserName    string
-    Who           string
-    MsgType       int
-    OriginContent string
-    At            string
+	IsGroup       bool
+	MsgId         string
+	Content       string
+	FromUserName  string
+	ToUserName    string
+	Who           string
+	MsgType       int
+	OriginContent string
+	At            string
 
-    RecommendInfo *RecommendInfo
+	RecommendInfo *RecommendInfo
 }

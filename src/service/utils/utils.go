@@ -7,10 +7,10 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
+	"service/conf"
 	"strconv"
 	"strings"
 	"time"
-	"service/conf"
 )
 
 func GetTimeStamp(len int) string {
@@ -34,16 +34,28 @@ func LoadImage(url string) (fileName string, err error) {
 		fileName = path[len(path)-1]
 	}
 
-	fileName = conf.IMG_PATH + fileName
+	fileName = conf.IMG_SAVE_PATH + fileName
 	out, err := os.Create(fileName)
-
+	if err != nil {
+		return "", err
+	}
 	defer out.Close()
 
 	resp, err := http.Get(url)
+	if err != nil {
+		return "", err
+	}
 	defer resp.Body.Close()
 
 	pix, err := ioutil.ReadAll(resp.Body)
-	_, err = io.Copy(out, bytes.NewReader(pix))
+	if err != nil {
+		return "", err
+	}
 
-	return fileName, err
+	_, err = io.Copy(out, bytes.NewReader(pix))
+	if err != nil {
+		return "", err
+	}
+
+	return fileName, nil
 }

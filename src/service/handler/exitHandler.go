@@ -5,8 +5,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
 	"net/http"
-	"service/conf"
 	"service/common"
+	"service/conf"
 	"service/module"
 )
 
@@ -30,19 +30,19 @@ func Exit(c *gin.Context) {
 
 	err := json.Unmarshal(reqMsgBuf[:n], exit_request)
 	if err != nil {
-		if glog.V(2) {
+		if glog.V(conf.LOG_LV) {
 			glog.Error("[Exit] request json data unmarshal err = [", err, "]")
 		}
 
 		exit_response = makeExitResponse(exit_request.UserID, -40000, "request json data format error")
 	} else {
-		if glog.V(2) {
+		if glog.V(conf.LOG_LV) {
 			glog.Info(">>> [Exit] request json data = [", exit_request, "]")
 		}
 
 		s, exist := module.SessionTable[exit_request.UserID]
 		if !exist {
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Error("[Exit] User ", exit_request.UserID, " session not exist")
 			}
 
@@ -55,7 +55,7 @@ func Exit(c *gin.Context) {
 				delete(module.SessionTable, exit_request.UserID)
 			}
 
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Info(">>> [Exit] Session ", exit_request.UserID, " unserve and deleted")
 			}
 

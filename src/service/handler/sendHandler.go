@@ -3,11 +3,11 @@ package handler
 import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
-	"net/http"
-	"service/conf"
-	"service/common"
-	"service/module"
 	"github.com/golang/glog"
+	"net/http"
+	"service/common"
+	"service/conf"
+	"service/module"
 )
 
 func makeSendResponse(uid, code int, msg string) *common.Msg_Send_Response {
@@ -30,21 +30,25 @@ func SendMessage(c *gin.Context) {
 
 	err := json.Unmarshal(reqMsgBuf[:n], send_request)
 	if err != nil {
-		if glog.V(2) {
+		if glog.V(conf.LOG_LV) {
 			glog.Error("[SendMessage] request json data unmarshal err = [", err, "]")
 		}
 		send_response = makeSendResponse(send_request.UserID, -30000, "request json format error")
 	} else {
+		if glog.V(conf.LOG_LV) {
+			glog.Info(">>> [SendMessage] request json data = [", send_request, "]")
+		}
+
 		s, exist := module.SessionTable[send_request.UserID]
 		if !exist {
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Error("[SendMessage] request json data unmarshal err = [", err, "]")
 			}
 			send_response = makeSendResponse(send_request.UserID, -30001, "request json format error")
 		} else {
 			toUser := &common.User{
-				NickName:	"",
-				UserName:	"",
+				NickName: "",
+				UserName: "",
 			}
 
 			for _, u := range s.ContactMgr.ContactList {
@@ -55,7 +59,7 @@ func SendMessage(c *gin.Context) {
 			}
 
 			if toUser.UserName == "" {
-				if glog.V(2) {
+				if glog.V(conf.LOG_LV) {
 					glog.Error("[SendMessage] User ", send_request.UserID, " group ", send_request.Group, " not found")
 				}
 				send_response = makeSendResponse(send_request.UserID, -30002, "group not found")
@@ -64,37 +68,28 @@ func SendMessage(c *gin.Context) {
 				case conf.TEXT_MSG:
 					msgID, localID, err := s.SendText(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
 					if msgID != "" && localID != "" {
-						if glog.V(2) {
+						if glog.V(conf.LOG_LV) {
 							glog.Info(">>> [SendMessage] User ", send_request.UserID, " send text message success")
 						}
 						send_response = makeSendResponse(s.UserID, 200, "success")
 					} else {
-						if glog.V(2) {
+						if glog.V(conf.LOG_LV) {
 							glog.Error("[SendMessage] User ", send_request.UserID, " send text message failed, err = [", err, "]")
 						}
 						send_response = makeSendResponse(s.UserID, -30003, "send text message failed")
 					}
 				case conf.IMG_MSG:
-					//fileName, err := utils.LoadImage(send_request.Params.Content)
-					fileName := "./image/logo.png"
-					if err != nil {
-						if glog.V(2) {
-							glog.Error("[SendMessage] User ", send_request.UserID, " load image message failed, err = [", err, "]")
+					retcd, err := s.SendImage(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
+					if retcd == 0 {
+						if glog.V(conf.LOG_LV) {
+							glog.Info(">>> [SendMessage] User ", send_request.UserID, " send image message success")
 						}
-						send_response = makeSendResponse(s.UserID, -30004, "load image message failed")
-					} else {
-						retcd, err := s.SendImage(fileName, s.Bot.UserName, toUser.UserName)
-						if retcd == 0 {
-							if glog.V(2) {
-								glog.Info(">>> [SendMessage] User ", send_request.UserID, " send image message success")
-							}
-							send_response = makeSendResponse(s.UserID, 200, "success")
-						} else if err != nil {
-							if glog.V(2) {
-								glog.Error("[SendMessage] User ", send_request.UserID, " send image message failed, err = [", err, "]")
-							}
-							send_response = makeSendResponse(s.UserID, -30005, "send image message failed")
+						send_response = makeSendResponse(s.UserID, 200, "success")
+					} else if err != nil {
+						if glog.V(conf.LOG_LV) {
+							glog.Error("[SendMessage] User ", send_request.UserID, " send image message failed, err = [", err, "]")
 						}
+						send_response = makeSendResponse(s.UserID, -30005, "send image message failed")
 					}
 				}
 			}

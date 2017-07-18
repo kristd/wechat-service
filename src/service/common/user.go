@@ -1,8 +1,8 @@
 package common
 
 import (
-    "service/conf"
-    "reflect"
+	"reflect"
+	"service/conf"
 )
 
 // User: contact struct
@@ -50,16 +50,46 @@ type VerifyUser struct {
 }
 
 func GetUserInfoFromJc(jc *conf.JsonConfig) (*User, error) {
-    user, _ := jc.GetInterface("User")
-    u := &User{}
-    fields := reflect.ValueOf(u).Elem()
-    for k, v := range user.(map[string]interface{}) {
-        field := fields.FieldByName(k)
-        if vv, ok := v.(float64); ok {
-            field.Set(reflect.ValueOf(int(vv)))
-        } else {
-            field.Set(reflect.ValueOf(v))
-        }
-    }
-    return u, nil
+	user, _ := jc.GetInterface("User")
+	u := &User{}
+	fields := reflect.ValueOf(u).Elem()
+	for k, v := range user.(map[string]interface{}) {
+		field := fields.FieldByName(k)
+		if vv, ok := v.(float64); ok {
+			field.Set(reflect.ValueOf(int(vv)))
+		} else {
+			field.Set(reflect.ValueOf(v))
+		}
+	}
+	return u, nil
+}
+
+func GetSessionGroupFromJc(jc *conf.JsonConfig) ([]*User, error) {
+	contactList, err := jc.GetInterfaceSlice("ContactList")
+	if err != nil {
+		return nil, err
+	}
+	groupList := make([]*User, 0)
+
+	for _, contact := range contactList {
+		c := contact.(map[string]interface{})
+		group := &User{
+			UserName: c["UserName"].(string),
+			NickName: c["NickName"].(string),
+		}
+
+		//fields := reflect.ValueOf(group).Elem()
+		//for k, v := range contact.(map[string]interface{}) {
+		//	field := fields.FieldByName(k)
+		//	if vv, ok := v.(float64); ok {
+		//		field.Set(reflect.ValueOf(int(vv)))
+		//	} else {
+		//		field.Set(reflect.ValueOf(v))
+		//	}
+		//}
+
+		groupList = append(groupList, group)
+	}
+
+	return groupList, nil
 }

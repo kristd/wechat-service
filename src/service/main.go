@@ -6,6 +6,7 @@ import (
 	"github.com/golang/glog"
 	"service/handler"
 	"service/module"
+	"service/conf"
 )
 
 func main() {
@@ -13,7 +14,7 @@ func main() {
 
 	module.SessionTable = make(map[int]*module.Session)
 
-	if glog.V(2) {
+	if glog.V(conf.LOG_LV) {
 		glog.Info("wechat-service start")
 	}
 

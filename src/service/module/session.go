@@ -5,25 +5,27 @@ import (
 	"github.com/golang/glog"
 	"io/ioutil"
 	"net/http"
-	"strings"
-	"sync"
-	"service/wxapi"
-    "service/conf"
-    "service/common"
 	"net/url"
 	"regexp"
-	"github.com/go-playground/locales/ta"
+	"service/common"
+	"service/conf"
+	"service/utils"
+	"service/wxapi"
+	"strings"
+	"sync"
 )
 
-type keyWord struct {
+type KeyWord struct {
 	key   string
 	text  string
 	image string
 }
 
-type autoReplyConf struct {
-	groupName string
-	keyWords  []keyWord
+type AutoReplyConf struct {
+	groupNickName    string
+	wlmText  string
+	wlmImage string
+	keyWords []KeyWord
 }
 
 type Session struct {
@@ -43,7 +45,7 @@ type Session struct {
 	//user info
 	UserID          int
 	LoginStat       int
-	autoRepliesConf []autoReplyConf
+	autoRepliesConf []AutoReplyConf
 
 	RedirectUrl string
 
@@ -69,7 +71,11 @@ func (s *Session) SendText(msg, from, to string) (string, string, error) {
 	ret, _ := jc.GetInt("BaseResponse.Ret")
 	if ret != 0 {
 		errMsg, _ := jc.GetString("BaseResponse.ErrMsg")
-		return "", "", fmt.Errorf("WebWxSendMsg Ret=%d, ErrMsg=%s", ret, errMsg)
+		if glog.V(conf.LOG_LV) {
+			glog.Error("[SendText] WebWxSendMsg Ret = ", ret, "ErrMsg = ", errMsg)
+		}
+
+		return "", "", fmt.Errorf("[SendText] WebWxSendMsg Ret=%d, ErrMsg=%s", ret, errMsg)
 	}
 	msgID, _ := jc.GetString("MsgID")
 	localID, _ := jc.GetString("LocalID")
@@ -78,17 +84,36 @@ func (s *Session) SendText(msg, from, to string) (string, string, error) {
 
 // SendImage: send img, upload then send
 func (s *Session) SendImage(path, from, to string) (int, error) {
-	ss := strings.Split(path, "/")
-	b, err := ioutil.ReadFile(path)
+	fileName, err := utils.LoadImage(path)
 	if err != nil {
-		return -1, err
+		if glog.V(conf.LOG_LV) {
+			glog.Error("[SendImage] Download image failed, err = ", err)
+		}
+
+		return -1, fmt.Errorf("[SendImage] Download image failed, err = ", err)
 	}
+
+	ss := strings.Split(fileName, "/")
+	b, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		return -2, err
+	}
+
 	mediaId, err := s.WxApi.WebWxUploadMedia(s.WxWebCommon, s.WxWebXcg, s.cookies, ss[len(ss)-1], b)
 	if err != nil {
-		return -1, fmt.Errorf("Upload image failed")
+		if glog.V(conf.LOG_LV) {
+			glog.Error("[SendImage] Upload image failed")
+		}
+
+		return -3, fmt.Errorf("[SendImage] Upload image failed")
 	}
+
 	ret, err := s.WxApi.WebWxSendMsgImg(s.WxWebCommon, s.WxWebXcg, s.cookies, from, to, mediaId)
 	if err != nil || ret != 0 {
+		if glog.V(conf.LOG_LV) {
+			glog.Error("[SendImage] Send image failed, err = ", err)
+		}
+
 		return ret, err
 	} else {
 		return ret, nil
@@ -97,20 +122,35 @@ func (s *Session) SendImage(path, from, to string) (int, error) {
 
 func (s *Session) InitSession(request *common.Msg_Create_Request) {
 	if _, exist := SessionTable[s.UserID]; exist {
-		if glog.V(2) {
-            glog.Info(">>> [InitSession] Delete UserID ", s.UserID, "'s session")
-        }
+		if glog.V(conf.LOG_LV) {
+			glog.Info(">>> [InitSession] Delete UserID ", s.UserID, "'s session")
+		}
 		delete(SessionTable, s.UserID)
 	}
 
 	SessionTable[s.UserID] = s
-	s.autoRepliesConf = make([]autoReplyConf, len(request.Config))
+	s.autoRepliesConf = make([]AutoReplyConf, len(request.Config))
 
 	for i := 0; i < len(request.Config); i++ {
-		s.autoRepliesConf[i].groupName, _ = request.Config[i]["group"].(string)
+		s.autoRepliesConf[i].groupNickName, _ = request.Config[i]["group"].(string)
+
+		wlmText, exist := request.Config[i]["wlm_text"].(string)
+		if exist {
+			s.autoRepliesConf[i].wlmText = wlmText
+		} else {
+			s.autoRepliesConf[i].wlmText = ""
+		}
+
+		wlmImage, exist := request.Config[i]["wlm_image"].(string)
+		if exist {
+			s.autoRepliesConf[i].wlmImage = wlmImage
+		} else {
+			s.autoRepliesConf[i].wlmImage = ""
+		}
+
 		sections, exist := request.Config[i]["keywords"].([]interface{})
 		if exist {
-			s.autoRepliesConf[i].keyWords = make([]keyWord, len(sections))
+			s.autoRepliesConf[i].keyWords = make([]KeyWord, len(sections))
 
 			for j := 0; j < len(sections); j++ {
 				section, exist := sections[j].(map[string]interface{})
@@ -138,13 +178,13 @@ func (s *Session) InitSession(request *common.Msg_Create_Request) {
 				}
 			}
 
-            if glog.V(2) {
-                glog.Info(">>> [InitSession] Group [", s.autoRepliesConf[i].groupName, "] keyword configs = [", s.autoRepliesConf, "]")
-            }
+			if glog.V(conf.LOG_LV) {
+				glog.Info(">>> [InitSession] Group [", s.autoRepliesConf[i].groupNickName, "] keyword configs = [", s.autoRepliesConf, "]")
+			}
 		} else {
-            if glog.V(2) {
-			    glog.Info(">>> [InitSession] Group [", s.autoRepliesConf[i].groupName, "] has no keywords")
-            }
+			if glog.V(conf.LOG_LV) {
+				glog.Info(">>> [InitSession] Group [", s.autoRepliesConf[i].groupNickName, "] has no keywords")
+			}
 		}
 	}
 }
@@ -163,13 +203,13 @@ func (s *Session) UpdateLoginStat(stat int) {
 }
 
 func (s *Session) LoginPolling() int {
-    tryCount := 0
+	tryCount := 0
 	flag := conf.SCAN
 
 	for {
 		redirectUrl, err := s.WxApi.WebwxLogin(s.WxWebCommon, s.UuID, flag)
 		if err != nil {
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Error("[LoginPolling] sec1 WebwxLogin failed, uuid = ", s.UuID, " err = [", err, "]")
 			}
 		} else if redirectUrl == "201;" {
@@ -177,15 +217,15 @@ func (s *Session) LoginPolling() int {
 				flag = conf.CONFIRM
 			}
 
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Info(">>> [LoginPolling] sec1 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
 			}
 
 			redirectUrl, err = s.WxApi.WebwxLogin(s.WxWebCommon, s.UuID, flag)
 			if err != nil {
-                if glog.V(2) {
-                    glog.Error("[LoginPolling] sec2 WebwxLogin failed, uuid = ", s.UuID, ", err = [", err, "]")
-                }
+				if glog.V(conf.LOG_LV) {
+					glog.Error("[LoginPolling] sec2 WebwxLogin failed, uuid = ", s.UuID, ", err = [", err, "]")
+				}
 
 				s.UpdateLoginStat(-200)
 				return -200
@@ -193,9 +233,9 @@ func (s *Session) LoginPolling() int {
 				s.RedirectUrl = redirectUrl
 				s.UpdateLoginStat(conf.LOGIN_SUCC)
 
-                if glog.V(2) {
-                    glog.Info(">>> [LoginPolling] sec2 WebwxLogin success, uuid = ", s.UuID)
-                }
+				if glog.V(conf.LOG_LV) {
+					glog.Info(">>> [LoginPolling] sec2 WebwxLogin success, uuid = ", s.UuID)
+				}
 
 				return 200
 			}
@@ -205,7 +245,7 @@ func (s *Session) LoginPolling() int {
 				flag = conf.SCAN
 			}
 
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Info(">>> [LoginPolling] sec3 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
 			}
 
@@ -214,7 +254,7 @@ func (s *Session) LoginPolling() int {
 				s.UpdateLoginStat(-998)
 				return -998
 			} else {
-				if glog.V(2) {
+				if glog.V(conf.LOG_LV) {
 					glog.Info(">>> [LoginPolling] sec3 WebwxLogin uuid = ", s.UuID, " retry =", tryCount)
 				}
 			}
@@ -222,7 +262,7 @@ func (s *Session) LoginPolling() int {
 			s.RedirectUrl = redirectUrl
 			s.UpdateLoginStat(conf.LOGIN_SUCC)
 
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Info(">>> [LoginPolling] sec3 WebwxLogin success, uuid = ", s.UuID)
 			}
 
@@ -230,7 +270,7 @@ func (s *Session) LoginPolling() int {
 		} else {
 			s.UpdateLoginStat(-999)
 
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Error("[LoginPolling] sec4 WebwxLogin failed, uuid = ", s.UuID, ", redirectUrl = ", redirectUrl)
 			}
 
@@ -260,7 +300,7 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 
 	s.cookies, err = s.WxApi.WebNewLoginPage(s.WxWebCommon, s.WxWebXcg, redirectUrl)
 	if err != nil {
-		if glog.V(2) {
+		if glog.V(conf.LOG_LV) {
 			glog.Error("[InitUserCookies] WebNewLoginPage err = ", err)
 		}
 		return -1
@@ -268,13 +308,8 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 
 	//获取用户临时会话列表
 	session, err := s.WxApi.WebWxInit(s.WxWebCommon, s.WxWebXcg)
-
-
-	fmt.Println(">>> [InitUserCookies] Session = [", string(session), "]")
-
-
 	if err != nil {
-		if glog.V(2) {
+		if glog.V(conf.LOG_LV) {
 			glog.Error("[InitUserCookies] WebWxInit err = ", err)
 		}
 		return -2
@@ -285,7 +320,7 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 
 	s.synKeyList, err = common.GetSyncKeyListFromJc(jc)
 	if err != nil {
-		if glog.V(2) {
+		if glog.V(conf.LOG_LV) {
 			glog.Error("[InitUserCookies] GetSyncKeyListFromJc err = ", err)
 		}
 		return -3
@@ -293,7 +328,7 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 
 	s.Bot, err = common.GetUserInfoFromJc(jc)
 	if err != nil {
-		if glog.V(2) {
+		if glog.V(conf.LOG_LV) {
 			glog.Error("[InitUserCookies] GetUserInfoFromJc err = ", err)
 		}
 		return -4
@@ -302,7 +337,7 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 	var contacts []byte
 	contacts, err = s.WxApi.WebWxGetContact(s.WxWebCommon, s.WxWebXcg, s.cookies)
 	if err != nil {
-		if glog.V(2) {
+		if glog.V(conf.LOG_LV) {
 			glog.Error("[InitUserCookies] WebWxGetContact err = ", err)
 		}
 		return -5
@@ -310,7 +345,7 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 
 	s.ContactMgr, err = common.CreateContactManagerFromBytes(contacts)
 	if err != nil {
-		if glog.V(2) {
+		if glog.V(conf.LOG_LV) {
 			glog.Error("[InitUserCookies] CreateContactManagerFromBytes err = ", err)
 		}
 		return -6
@@ -320,7 +355,7 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 
 	groups, err := common.GetSessionGroupFromJc(jc)
 	if err != nil {
-		if glog.V(2) {
+		if glog.V(conf.LOG_LV) {
 			glog.Error("[InitUserCookies] GetSessionGroupFromJc err = ", err)
 		}
 		return -7
@@ -334,35 +369,35 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 }
 
 func (s *Session) Serve() {
-	if glog.V(2) {
+	if glog.V(conf.LOG_LV) {
 		glog.Info(">>> [Serve] Looping start userID = ", s.UserID)
 	}
 
-	for ; s.Loop; {
-        //Will be blocked here until wechat return response
+	for s.Loop {
+		//Will be blocked here until wechat return response
 		ret, selector, err := s.WxApi.SyncCheck(s.WxWebCommon, s.WxWebXcg, s.cookies, s.WxWebCommon.SyncSrv, s.synKeyList)
 		if err != nil {
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Error("[Serve] SyncCheck err = [", err, "] userID = ", s.UserID)
 			}
 			continue
 		}
 
 		if ret == 0 {
-			if glog.V(2) {
-				glog.Info(">>> [Serve] SyncCheck new message get, ret = ", ret, " && selector = ", selector, " userID = ", s.UserID)
-			}
+			//if glog.V(conf.LOG_LV) {
+			//	glog.Info(">>> [Serve] SyncCheck new message get, ret = ", ret, " && selector = ", selector, " userID = ", s.UserID)
+			//}
 
 			if selector == 2 {
 				msg, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.cookies, s.synKeyList)
 				if err != nil {
-					if glog.V(2) {
+					if glog.V(conf.LOG_LV) {
 						glog.Error("[Serve] WebWxSync err = [", err, "] userID = ", s.UserID)
 					}
 				} else {
 					jc, err := conf.LoadJsonConfigFromBytes(msg)
 					if err != nil {
-						if glog.V(2) {
+						if glog.V(conf.LOG_LV) {
 							glog.Error("[Serve] LoadJsonConfigFromBytes err = [", err, "] userID = ", s.UserID)
 						}
 						continue
@@ -370,16 +405,13 @@ func (s *Session) Serve() {
 
 					msgCount, _ := jc.GetInt("AddMsgCount")
 					if msgCount < 1 {
-						if glog.V(2) {
-							glog.Error("[Serve] MsgCount = 0, userID = ", s.UserID)
-						}
 						continue
 					}
 
 					msgis, _ := jc.GetInterfaceSlice("AddMsgList")
 					for _, v := range msgis {
 						rmsg := s.Analize(v.(map[string]interface{}))
-						if glog.V(2) {
+						if glog.V(conf.LOG_LV) {
 							glog.Info(">>> [Serve] FromUser = [", rmsg.FromUserName, "] Message Content = [", rmsg.Content, "] MessageType =[", rmsg.MsgType, "] UserID = [", s.UserID, "]")
 						}
 
@@ -392,31 +424,31 @@ func (s *Session) Serve() {
 					}
 				}
 			} else if selector != 0 && selector != 7 {
-				if glog.V(2) {
+				if glog.V(conf.LOG_LV) {
 					glog.Error("[Serve] Session down, selector = ", selector, ", userID = ", s.UserID)
 				}
 				break
 			}
 		} else if ret == 1101 || ret == 1100 {
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Error("[Serve] User logout error code = ", ret, ", userID = ", s.UserID)
 			}
 			break
 		} else if ret == 1205 {
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Error("[Serve] Api blocked, ret = ", 1205, ", userID = ", s.UserID)
 			}
 			break
 		} else {
-			if glog.V(2) {
+			if glog.V(conf.LOG_LV) {
 				glog.Error("[Serve] Unhandled exception ret = ", ret, ", userID = ", s.UserID)
 			}
 			break
 		}
 	}
 
-	if glog.V(2) {
-    	glog.Info(">>> [Serve] Looping stop userID = ", s.UserID)
+	if glog.V(conf.LOG_LV) {
+		glog.Info(">>> [Serve] Looping stop userID = ", s.UserID)
 	}
 	s.Quit <- true
 }
@@ -473,56 +505,49 @@ func (s *Session) Analize(msg map[string]interface{}) *common.ReceivedMessage {
 }
 
 func (s *Session) ReplyUserMessage(group, msg string) {
-	toUser := &common.User{}
-	match := false
-
-	for _, toUser = range s.ContactMgr.ContactList {
+	for _, toUser := range s.ContactMgr.ContactList {
 		if toUser.UserName == group {
-			match = true
-			break
-		}
-	}
-
-	if match {
-		for _, groupConf := range s.autoRepliesConf {
-			if groupConf.groupName == toUser.NickName {
-				for _, keyword := range groupConf.keyWords {
-					if strings.Contains(msg, keyword.key) {
-						if keyword.text != "" {
-							msgID, localID, err := s.SendText(keyword.text, s.Bot.UserName, toUser.UserName)
-							if err != nil {
-								fmt.Println("[ReplyUserMessage] text err =", err)
-							} else {
-								fmt.Println("[ReplyUserMessage] msgID & localID =", msgID, " || ", localID)
+			for _, groupConf := range s.autoRepliesConf {
+				if groupConf.groupNickName == toUser.NickName {
+					for _, keyword := range groupConf.keyWords {
+						if strings.Contains(msg, keyword.key) {
+							if keyword.text != "" {
+								go s.SendText(keyword.text, s.Bot.UserName, toUser.UserName)
 							}
-						}
 
-						if keyword.image != "" {
-							ret, err := s.SendImage("./image/logo.png", s.Bot.UserName, toUser.UserName)
-							if err != nil {
-								fmt.Println("[ReplyUserMessage] image err =", err)
-							} else {
-								fmt.Println("[ReplyUserMessage] retcd =", ret)
+							if keyword.image != "" {
+								go s.SendImage(keyword.image, s.Bot.UserName, toUser.UserName)
 							}
 						}
 					}
 				}
 			}
+			return
 		}
 	}
 }
 
-func (s *Session) ReplySysMessage(group, msg string) {
-	reg := regexp.MustCompile(conf.WELCOME_PATTERN)
+func (s *Session) ReplySysMessage(userName, msg string) {
+	reg := regexp.MustCompile(conf.NEW_JOINER_PATTERN)
 	mstr := reg.FindString(msg)
 	//welcome := fmt.Sprintf(conf.WELCOME_MESSAGE, strings.Replace(mstr, "\"", "", -1))
-	welcome := fmt.Sprintf(conf.WELCOME_MESSAGE, mstr)
 
-	msgID, localID, err := s.SendText(welcome, s.Bot.UserName, group)
-	if err != nil {
-		fmt.Println("[ReplySysMessage] text err =", err)
-	} else {
-		fmt.Println("[ReplySysMessage] msgID & localID =", msgID, " || ", localID)
+	for _, v := range s.ContactMgr.ContactList {
+		if v.UserName == userName {
+			for _, vv := range s.autoRepliesConf {
+				if vv.groupNickName == v.NickName {
+					if vv.wlmText != "" {
+						welcome := strings.Replace(vv.wlmText, conf.WELCOME_USER_PATTEN, mstr, -1)
+						//welcome := strings.Replace(vv.wlmText, conf.WELCOME_USER_PATTEN, strings.Replace(mstr, "\"", "", -1), -1)
+						go s.SendText(welcome, s.Bot.UserName, userName)
+					}
+
+					if vv.wlmImage != "" {
+						go s.SendImage(vv.wlmImage, s.Bot.UserName, userName)
+					}
+				}
+			}
+		}
 	}
 }
 

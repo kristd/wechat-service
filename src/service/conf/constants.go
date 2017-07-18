@@ -3,7 +3,7 @@ package conf
 const (
 	MAX_BUF_SIZE = 2048
 
-	IMG_PATH = "./image/"
+	IMG_SAVE_PATH = "./image/"
 
 	SCAN    = "1"
 	CONFIRM = "0"
@@ -38,11 +38,13 @@ const (
 	CLIENT_SEND   = 4
 	CLIENT_EXIT   = 5
 
-	TEXT_MSG 		= 1
-	IMG_MSG  		= 2
+	TEXT_MSG = 1
+	IMG_MSG  = 2
 
-	MAXTRY 			= 5
+	MAXTRY = 5
 
-	WELCOME_PATTERN = `\"(.*?)\"`
-	WELCOME_MESSAGE = "欢迎新人%s入群"
+	NEW_JOINER_PATTERN = `\"(.*?)\"`
+	WELCOME_USER_PATTEN = "${username}"
+
+	LOG_LV = 2
 )
