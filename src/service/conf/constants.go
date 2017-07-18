@@ -43,7 +43,7 @@ const (
 
 	MAXTRY = 5
 
-	NEW_JOINER_PATTERN = `\"(.*?)\"`
+	NEW_JOINER_PATTERN  = `\"(.*?)\"`
 	WELCOME_USER_PATTEN = "${username}"
 
 	LOG_LV = 2

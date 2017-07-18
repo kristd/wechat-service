@@ -2,26 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3cb0e5e-fd0e-41e0-92fb-1f364c1c0616" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/socket-test.go" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/websocket-test.go" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/service/common/syncKey.go" afterPath="$PROJECT_DIR$/src/service/common/synckey.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/service" afterPath="$PROJECT_DIR$/src/service/service" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/create" afterPath="$PROJECT_DIR$/src/test/create" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/sendimg" afterPath="$PROJECT_DIR$/src/test/sendimg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/common/message.go" afterPath="$PROJECT_DIR$/src/service/common/message.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/common/user.go" afterPath="$PROJECT_DIR$/src/service/common/user.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/conf/config.go" afterPath="$PROJECT_DIR$/src/service/conf/config.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/conf/constants.go" afterPath="$PROJECT_DIR$/src/service/conf/constants.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/handler/createHandler.go" afterPath="$PROJECT_DIR$/src/service/handler/createHandler.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/handler/exitHandler.go" afterPath="$PROJECT_DIR$/src/service/handler/exitHandler.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/handler/loginHandler.go" afterPath="$PROJECT_DIR$/src/service/handler/loginHandler.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/handler/sendHandler.go" afterPath="$PROJECT_DIR$/src/service/handler/sendHandler.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/main.go" afterPath="$PROJECT_DIR$/src/service/main.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/module/session.go" afterPath="$PROJECT_DIR$/src/service/module/session.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/utils/utils.go" afterPath="$PROJECT_DIR$/src/service/utils/utils.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/wxapi/webwxapi.go" afterPath="$PROJECT_DIR$/src/service/wxapi/webwxapi.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/create.go" afterPath="$PROJECT_DIR$/src/test/create.go" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,8 +29,8 @@
       <file leaf-file-name="session.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/module/session.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="535">
-              <caret line="537" column="51" lean-forward="true" selection-start-line="537" selection-start-column="51" selection-end-line="537" selection-end-column="51" />
+            <state relative-caret-position="8592">
+              <caret line="537" column="51" lean-forward="false" selection-start-line="537" selection-start-column="51" selection-end-line="537" selection-end-column="51" />
               <folding>
                 <element signature="e#16#192#0" expanded="true" />
               </folding>
@@ -59,7 +42,7 @@
         <entry file="file://$PROJECT_DIR$/src/service/handler/createHandler.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="497">
-              <caret line="47" column="47" lean-forward="true" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
+              <caret line="47" column="47" lean-forward="false" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
               <folding>
                 <element signature="e#17#187#0" expanded="true" />
               </folding>
@@ -77,21 +60,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="constants.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/service/conf/constants.go">
+      <file leaf-file-name="main.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/service/main.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="45" column="14" lean-forward="true" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
+            <state relative-caret-position="352">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="webwxapi.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="constants.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/service/conf/constants.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="45" column="14" lean-forward="false" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="webwxapi.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/wxapi/webwxapi.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="599">
-              <caret line="516" column="28" lean-forward="true" selection-start-line="516" selection-start-column="28" selection-end-line="516" selection-end-column="28" />
+            <state relative-caret-position="375">
+              <caret line="502" column="32" lean-forward="true" selection-start-line="502" selection-start-column="32" selection-end-line="502" selection-end-column="32" />
               <folding>
                 <marker date="1500383052000" expanded="false" signature="72:125" ph="..." />
                 <marker date="1500383052000" expanded="true" signature="12592:12607" ph="{...}" />
@@ -104,7 +97,7 @@
         <entry file="file://$PROJECT_DIR$/src/service/handler/loginHandler.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="405">
-              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,17 +107,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/create.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="384">
-              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sendtxt.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/sendtxt.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="10" column="151" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="151" />
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -134,7 +117,7 @@
         <entry file="file://$PROJECT_DIR$/src/test/exit.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="32">
-              <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+              <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -1181,14 +1164,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="22" column="47" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="22" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/service/handler/sendHandler.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1218,7 +1193,7 @@
     <entry file="file://$PROJECT_DIR$/src/test/sendtxt.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
-          <caret line="10" column="151" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="151" />
+          <caret line="10" column="151" lean-forward="false" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="151" />
           <folding />
         </state>
       </provider>
@@ -1226,7 +1201,7 @@
     <entry file="file://$PROJECT_DIR$/src/test/exit.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
-          <caret line="7" column="1" lean-forward="true" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <caret line="7" column="1" lean-forward="false" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -1242,15 +1217,7 @@
     <entry file="file://$PROJECT_DIR$/src/service/handler/loginHandler.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/conf/constants.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="45" column="14" lean-forward="true" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1266,19 +1233,9 @@
     <entry file="file://$PROJECT_DIR$/src/service/handler/createHandler.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="497">
-          <caret line="47" column="47" lean-forward="true" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
+          <caret line="47" column="47" lean-forward="false" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
           <folding>
             <element signature="e#17#187#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/module/session.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="535">
-          <caret line="537" column="51" lean-forward="true" selection-start-line="537" selection-start-column="51" selection-end-line="537" selection-end-column="51" />
-          <folding>
-            <element signature="e#16#192#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1286,19 +1243,45 @@
     <entry file="file://$PROJECT_DIR$/src/test/create.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="384">
-          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/service/wxapi/webwxapi.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="516" column="28" lean-forward="true" selection-start-line="516" selection-start-column="28" selection-end-line="516" selection-end-column="28" />
+        <state relative-caret-position="375">
+          <caret line="502" column="32" lean-forward="true" selection-start-line="502" selection-start-column="32" selection-end-line="502" selection-end-column="32" />
           <folding>
             <marker date="1500383052000" expanded="false" signature="72:125" ph="..." />
             <marker date="1500383052000" expanded="true" signature="12592:12607" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/main.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/module/session.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8592">
+          <caret line="537" column="51" lean-forward="false" selection-start-line="537" selection-start-column="51" selection-end-line="537" selection-end-column="51" />
+          <folding>
+            <element signature="e#16#192#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/conf/constants.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="45" column="14" lean-forward="false" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>

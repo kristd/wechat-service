@@ -22,10 +22,10 @@ type KeyWord struct {
 }
 
 type AutoReplyConf struct {
-	groupNickName    string
-	wlmText  string
-	wlmImage string
-	keyWords []KeyWord
+	groupNickName string
+	wlmText       string
+	wlmImage      string
+	keyWords      []KeyWord
 }
 
 type Session struct {

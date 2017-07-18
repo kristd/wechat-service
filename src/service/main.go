@@ -4,9 +4,9 @@ import (
 	"flag"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
+	"service/conf"
 	"service/handler"
 	"service/module"
-	"service/conf"
 )
 
 func main() {
