@@ -1,7 +1,3 @@
-/*
-   https://github.com/songtianyi/wechat-go
-*/
-
 package wxapi
 
 import (
@@ -27,6 +23,7 @@ import (
 )
 
 type WebwxApi struct {
+	Version string
 }
 
 func (wx *WebwxApi) WebwxGetUuid(common *common.Common) (uuid string, qrcode string) {
@@ -39,9 +36,7 @@ func (wx *WebwxApi) WebwxGetUuid(common *common.Common) (uuid string, qrcode str
 
 	req, err := http.NewRequest("GET", addrUrl, nil)
 	if err != nil {
-		if glog.V(conf.LOG_LV) {
-			glog.Error("[WebwxGetUuid] http.NewRequest err =[", err, "]")
-		}
+		glog.Error("[WebwxGetUuid] http.NewRequest err =[", err, "]")
 		return "", ""
 	}
 
@@ -50,17 +45,13 @@ func (wx *WebwxApi) WebwxGetUuid(common *common.Common) (uuid string, qrcode str
 	client := http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		if glog.V(conf.LOG_LV) {
-			glog.Error("[WebwxGetUuid] http.Client.Do err =[", err, "]")
-		}
+		glog.Error("[WebwxGetUuid] http.Client.Do err =[", err, "]")
 		return "", ""
 	}
 
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-	if glog.V(conf.LOG_LV) {
-		glog.Info(">>> [WebwxGetUuid] http response body = [", string(body), "]")
-	}
+	glog.Info(">>> [WebwxGetUuid] http response body = [", string(body), "]")
 
 	uuid = strings.Split(string(body), "\"")[1]
 	qrcode = common.LoginUrl + "/qrcode/" + uuid
@@ -84,9 +75,7 @@ func (wx *WebwxApi) WebwxLogin(common *common.Common, uuid string, tip string) (
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
 	strb := string(body)
-	if glog.V(conf.LOG_LV) {
-		glog.Info(">>> [WebwxLogin] http response body = [", string(body), "]")
-	}
+	glog.Info(">>> [WebwxLogin] http response body = [", string(body), "]")
 
 	if strings.Contains(strb, "window.code=200") && strings.Contains(strb, "window.redirect_uri") {
 		ss := strings.Split(strb, "\"")
@@ -119,9 +108,7 @@ func (wx *WebwxApi) WebNewLoginPage(common *common.Common, xc *conf.XmlConfig, u
 
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-	if glog.V(conf.LOG_LV) {
-		glog.Info(">>> [WebNewLoginPage] http response body = [", string(body), "]")
-	}
+	glog.Info(">>> [WebNewLoginPage] http response body = [", string(body), "]")
 
 	if err := xml.Unmarshal(body, xc); err != nil {
 		return nil, err
@@ -163,9 +150,7 @@ func (wx *WebwxApi) WebWxInit(c *common.Common, ce *conf.XmlConfig) ([]byte, err
 	}
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-	if glog.V(conf.LOG_LV) {
-		glog.Info(">>> [WebWxInit] http response body = [", string(body), "]")
-	}
+	//glog.Info(">>> [WebWxInit] http response body = [", string(body), "]")
 
 	return body, nil
 }
@@ -205,9 +190,7 @@ func (wx *WebwxApi) WebWxGetContact(c *common.Common, ce *conf.XmlConfig, cookie
 	}
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-	if glog.V(conf.LOG_LV) {
-		glog.Info(">>> [WebWxGetContact] http response body = [", string(body), "]")
-	}
+	//glog.Info(">>> [WebWxGetContact] http response body = [", string(body), "]")
 
 	return body, nil
 }
@@ -253,9 +236,7 @@ func (wx *WebwxApi) WebWxSendMsg(c *common.Common, ce *conf.XmlConfig, cookies [
 	}
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-	if glog.V(conf.LOG_LV) {
-		glog.Info(">>> [WebWxSendMsg] http response body = [", string(body), "]")
-	}
+	glog.Info(">>> [WebWxSendMsg] http response body = [", string(body), "]")
 
 	return body, nil
 }
@@ -348,11 +329,11 @@ func (wx *WebwxApi) WebWxUploadMedia(c *common.Common, ce *conf.XmlConfig, cooki
 	if err != nil {
 		return "", err
 	}
+
 	defer resp.Body.Close()
+
 	body, _ := ioutil.ReadAll(resp.Body)
-	if glog.V(conf.LOG_LV) {
-		glog.Info(">>> [WebWxUploadMedia] http response body = [", string(body), "]")
-	}
+	glog.Info(">>> [WebWxUploadMedia] http response body = [", string(body), "]")
 
 	jc, err := conf.LoadJsonConfigFromBytes(body)
 	if err != nil {
@@ -367,9 +348,7 @@ func (wx *WebwxApi) WebWxUploadMedia(c *common.Common, ce *conf.XmlConfig, cooki
 }
 
 // WebWxSendMsgImg: webwxsendmsgimg api
-func (wx *WebwxApi) WebWxSendMsgImg(c *common.Common, ce *conf.XmlConfig, cookies []*http.Cookie,
-	from, to, media string) (int, error) {
-
+func (wx *WebwxApi) WebWxSendMsgImg(c *common.Common, ce *conf.XmlConfig, cookies []*http.Cookie, from, to, media string) (int, error) {
 	km := url.Values{}
 	km.Add("pass_ticket", ce.PassTicket)
 	km.Add("fun", "async")
@@ -415,9 +394,7 @@ func (wx *WebwxApi) WebWxSendMsgImg(c *common.Common, ce *conf.XmlConfig, cookie
 	}
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-	if glog.V(conf.LOG_LV) {
-		glog.Info(">>> [WebWxSendMsgImg] http response body = [", string(body), "]")
-	}
+	glog.Info(">>> [WebWxSendMsgImg] http response body = [", string(body), "]")
 
 	jc, _ := conf.LoadJsonConfigFromBytes(body)
 	ret, _ := jc.GetInt("BaseResponse.Ret")
@@ -465,9 +442,8 @@ func (wx *WebwxApi) SyncCheck(c *common.Common, ce *conf.XmlConfig, cookies []*h
 
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-	if glog.V(conf.LOG_LV) {
-		//glog.Info(">>> [SyncCheck] http response body = [", string(body), "]")
-	}
+
+	//glog.Info(">>> [SyncCheck] http response body = [", string(body), "]")
 
 	strb := string(body)
 	reg := regexp.MustCompile("window.synccheck={retcode:\"(\\d+)\",selector:\"(\\d+)\"}")
@@ -479,7 +455,6 @@ func (wx *WebwxApi) SyncCheck(c *common.Common, ce *conf.XmlConfig, cookies []*h
 
 // WebWxSync: webwxsync api
 func (wx *WebwxApi) WebWxSync(c *common.Common, ce *conf.XmlConfig, cookies []*http.Cookie, skl *common.SyncKeyList) ([]byte, error) {
-
 	km := url.Values{}
 	km.Add("skey", ce.Skey)
 	km.Add("sid", ce.Wxsid)
@@ -514,9 +489,8 @@ func (wx *WebwxApi) WebWxSync(c *common.Common, ce *conf.XmlConfig, cookies []*h
 	}
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-	if glog.V(conf.LOG_LV) {
-		//glog.Info(">>> [WebWxSync] http response body = [", string(body), "]")
-	}
+
+	//glog.Info(">>> [WebWxSync] http response body = [", string(body), "]")
 
 	jc, err := conf.LoadJsonConfigFromBytes(body)
 	if err != nil {

@@ -30,35 +30,22 @@ func Exit(c *gin.Context) {
 
 	err := json.Unmarshal(reqMsgBuf[:n], exit_request)
 	if err != nil {
-		if glog.V(conf.LOG_LV) {
-			glog.Error("[Exit] request json data unmarshal err = [", err, "]")
-		}
-
+		glog.Error("[Exit] request json data unmarshal err = [", err, "]")
 		exit_response = makeExitResponse(exit_request.UserID, -40000, "request json data format error")
 	} else {
-		if glog.V(conf.LOG_LV) {
-			glog.Info(">>> [Exit] request json data = [", exit_request, "]")
-		}
-
+		glog.Info(">>> [Exit] request json data = [", exit_request, "]")
 		s, exist := module.SessionTable[exit_request.UserID]
 		if !exist {
-			if glog.V(conf.LOG_LV) {
-				glog.Error("[Exit] User ", exit_request.UserID, " session not exist")
-			}
-
+			glog.Error("[Exit] User ", exit_request.UserID, " session not exist")
 			exit_response = makeExitResponse(exit_request.UserID, -40001, "user session not exist")
 		} else {
-			go s.Stop()
-
-			select {
-			case <-s.Quit:
-				delete(module.SessionTable, exit_request.UserID)
-			}
-
-			if glog.V(conf.LOG_LV) {
-				glog.Info(">>> [Exit] Session ", exit_request.UserID, " unserve and deleted")
-			}
-
+			s.Stop()
+			delete(module.SessionTable, exit_request.UserID)
+			//select {
+			//case <-s.Quit:
+			//	delete(module.SessionTable, exit_request.UserID)
+			//}
+			glog.Info(">>> [Exit] Session ", exit_request.UserID, " unserve and deleted")
 			exit_response = makeExitResponse(exit_request.UserID, 200, "success")
 		}
 	}

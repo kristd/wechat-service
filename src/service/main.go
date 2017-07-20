@@ -3,7 +3,6 @@ package main
 import (
 	"flag"
 	"github.com/gin-gonic/gin"
-	"github.com/golang/glog"
 	"service/conf"
 	"service/handler"
 	"service/module"
@@ -11,19 +10,15 @@ import (
 
 func main() {
 	flag.Parse()
-
 	module.SessionTable = make(map[int]*module.Session)
 
-	if glog.V(conf.LOG_LV) {
-		glog.Info("wechat-service start")
-	}
-
+	gin.SetMode(gin.DebugMode)
 	route := gin.Default()
 
-	route.POST("/api/create", handler.SessionCreate)
-	route.POST("/api/login", handler.LoginScan)
-	route.POST("/api/send", handler.SendMessage)
-	route.POST("/api/exit", handler.Exit)
+	route.POST(conf.API_CREATE, handler.SessionCreate)
+	route.POST(conf.API_LOGIN, handler.LoginScan)
+	route.POST(conf.API_SEND, handler.SendMessage)
+	route.POST(conf.API_EXIT, handler.Exit)
 
-	route.Run(":8888")
+	route.Run(conf.PORT)
 }

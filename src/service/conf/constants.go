@@ -1,6 +1,13 @@
 package conf
 
 const (
+	PORT = ":8888"
+
+	API_CREATE = "/api/create"
+	API_LOGIN  = "/api/login"
+	API_SEND   = "/api/send"
+	API_EXIT   = "/api/exit"
+
 	MAX_BUF_SIZE = 2048
 
 	IMG_SAVE_PATH = "./image/"
@@ -48,3 +55,5 @@ const (
 
 	LOG_LV = 2
 )
+
+var WELCOME_MESSAGE_PATTERN = [...]string{"加入了群聊", "加入群聊", "joined the group", "to the group"}

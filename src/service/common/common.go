@@ -5,12 +5,14 @@ import (
 )
 
 type Common struct {
-	AppId       string
-	Fun         string
-	LoginUrl    string
-	Lang        string
-	DeviceID    string
-	UserAgent   string
+	AppId     string
+	Fun       string
+	LoginUrl  string
+	Lang      string
+	DeviceID  string
+	UserAgent string
+	//Diff version
+	Host        string
 	CgiUrl      string
 	CgiDomain   string
 	SyncSrv     string
