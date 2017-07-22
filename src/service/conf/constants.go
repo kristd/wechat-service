@@ -44,16 +44,41 @@ const (
 	CLIENT_BACK   = 3
 	CLIENT_SEND   = 4
 	CLIENT_EXIT   = 5
+	CLIENT_BEAT   = 6
 
 	TEXT_MSG = 1
 	IMG_MSG  = 2
 
 	MAXTRY = 5
 
-	NEW_JOINER_PATTERN  = `\"(.*?)\"`
+	NEW_JOINER_PATTERN  = `"(.*?)"`
 	WELCOME_USER_PATTEN = "${username}"
 
 	LOG_LV = 2
+
+	HEARTBEAT_INTERVAL = 60
+	HEARTBEAT_ADDR     = "http://120.92.234.2:7652/api/go/wechat/online"
+	HEARTBEAT_METHOD   = "POST"
+
+	USER_GROUP  = 101
+	USER_PERSON = 102
 )
 
-var WELCOME_MESSAGE_PATTERN = [...]string{"加入了群聊", "加入群聊", "joined the group", "to the group"}
+/*
+	*	扫码加入群/第三方拉入群/群主拉入群
+	*	英文/中文
+a
+	"李晓云"邀请"TJ"加入了群聊
+	"TJ" invited "李晓云" to the group chat
+b
+	"TJ"通过扫描你分享的二维码加入了群聊
+	"李晓云" joined the group chat via your shared QR Code
+c
+	"李晓云"通过扫描"TJ"分享的二维码加入了群聊
+	"李晓云" joined the group chat via the QR Code shared by "TJ"
+d
+	你邀请"李晓云"加入了群聊
+	You've invited "Oscar" to the group chat
+*/
+var WELCOME_MESSAGE_PATTERN = [...]string{`邀请(.+)加入了群聊`, `(.+)通过扫描`,
+	`invited (.+) to the`, `(.+) joined the group`}

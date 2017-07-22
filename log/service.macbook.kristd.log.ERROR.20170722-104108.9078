@@ -1,0 +1,8 @@
+Log file created at: 2017/07/22 10:41:08
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+E0722 10:41:08.733335    9078 session.go:285] [Serve] WebWxSync err = [Post https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxsync?lang=zh_CN&pass_ticket=TRb99tEKK33W9Epb%252BAic56%252BCewrfB24QG2fJzZoiECE1vvNRD78tOpfigcwvzLqM&sid=oPQp7sj9MmWHMDB9&skey=%40crypt_d1ec4fe2_9ff3e9446e8cd9b0e0f26a80fc0915c6: EOF] userID = 2
+E0722 10:46:15.645136    9078 session.go:270] [Serve] SyncCheck err = [Get https://webpush.wx.qq.com/cgi-bin/mmwebwx-bin/synccheck?_=1500691573000&deviceid=e556577183956057&r=1500691573000&sid=oPQp7sj9MmWHMDB9&skey=%40crypt_d1ec4fe2_9ff3e9446e8cd9b0e0f26a80fc0915c6&synckey=1_654025187%7C2_654026009%7C3_654026003%7C11_654025885%7C13_654020132%7C201_1500691572%7C1000_1500685561%7C1001_1500685592&uin=1836981980: malformed HTTP status code "0"] userID = 2
+E0722 10:46:16.174797    9078 session.go:270] [Serve] SyncCheck err = [Get https://webpush.wx.qq.com/cgi-bin/mmwebwx-bin/synccheck?_=1500691575000&deviceid=e556577183956057&r=1500691575000&sid=oPQp7sj9MmWHMDB9&skey=%40crypt_d1ec4fe2_9ff3e9446e8cd9b0e0f26a80fc0915c6&synckey=1_654025187%7C2_654026009%7C3_654026003%7C11_654025885%7C13_654020132%7C201_1500691572%7C1000_1500685561%7C1001_1500685592&uin=1836981980: malformed HTTP status code "0"] userID = 2
+E0722 10:48:39.461269    9078 sendHandler.go:64] [SendMessage] User 2 group [] not found

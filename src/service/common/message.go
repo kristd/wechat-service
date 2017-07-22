@@ -29,10 +29,11 @@ type Msg_Login_Response struct {
 }
 
 type Msg_Send_Request struct {
-	Action int    `json:"action"`
-	UserID int    `json:"id"`
-	Group  string `json:"group"`
-	Params struct {
+	Action   int    `json:"action"`
+	UserID   int    `json:"id"`
+	NickName string `json:"nickname"`
+	UserType int    `json:"type"`
+	Params   struct {
 		Type    int    `json:"type"`
 		Method  string `json:"method"`
 		Content string `json:"content"`
@@ -56,6 +57,16 @@ type Msg_Exit_Response struct {
 	UserID int    `json:"id"`
 	Code   int    `json:"code"`
 	Msg    string `json:"msg"`
+}
+
+type Msg_Heartbeat_Request struct {
+	Action  int   `json:"action"`
+	UserIDs []int `json:"uid"`
+}
+
+type Msg_Heartbeat_Response struct {
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
 }
 
 // BaseRequest: http request body BaseRequest

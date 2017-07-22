@@ -1,0 +1,340 @@
+Log file created at: 2017/07/21 21:08:25
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0721 21:08:25.772065    6548 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4201d4180} 0x127d360 21 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 21:08:25.918447    6548 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0721 21:08:30.833234    6548 createHandler.go:41] >>> [SessionCreate] Request JSON Data = [&{1 [map[wlm_text:欢迎新人${username}入群 wlm_image:http://weixin.xoyo.com/award/images/logo.png keywords:[map[keyword:麻将 text:http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe image:http://weixin.xoyo.com/award/images/logo.png] map[image: keyword:打牌 text:关键词2号]] nickname:测试 type:101] map[wlm_image:http://weixin.xoyo.com/award/images/logo.png keywords:[map[text:双人麻将 image:http://weixin.xoyo.com/award/images/logo.png keyword:麻将] map[image: keyword:打牌 text:关键词2号]] nickname: type:102 wlm_text:你好朋友]] 2}]
+I0721 21:08:31.096071    6548 webwxapi.go:54] >>> [WebwxGetUuid] http response body = [window.QRLogin.code = 200; window.QRLogin.uuid = "AfKwTB4Rwg==";]
+I0721 21:08:31.096133    6548 createHandler.go:56] >>> [SessionCreate] UserID 2's uuid = AfKwTB4Rwg== && qrcode = https://login.weixin.qq.com/qrcode/AfKwTB4Rwg==
+I0721 21:08:31.096178    6548 createHandler.go:136] >>> [InitSession] NickName [测试] , type = [101] keyword configs = [[{测试 101 欢迎新人${username}入群 http://weixin.xoyo.com/award/images/logo.png [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]} { 0   []}]]
+I0721 21:08:31.096281    6548 createHandler.go:136] >>> [InitSession] NickName [] , type = [102] keyword configs = [[{测试 101 欢迎新人${username}入群 http://weixin.xoyo.com/award/images/logo.png [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]} { 102 你好朋友 http://weixin.xoyo.com/award/images/logo.png [{麻将 双人麻将 http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]}]]
+I0721 21:08:51.959164    6548 loginHandler.go:37] >>> [LoginScan] Request JSON Data = [&{2 2}]
+I0721 21:08:52.108437    6548 webwxapi.go:78] >>> [WebwxLogin] http response body = [window.code=200;
+window.redirect_uri="https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxnewloginpage?ticket=AYSR5gk-Yu_ugqbAkasMsozO@qrticket_0&uuid=AfKwTB4Rwg==&lang=zh_CN&scan=1500642526";]
+I0721 21:08:52.108493    6548 session.go:170] >>> [LoginPolling] sec3 WebwxLogin success, uuid = AfKwTB4Rwg==
+I0721 21:08:52.339677    6548 webwxapi.go:111] >>> [WebNewLoginPage] http response body = [<error><ret>0</ret><message></message><skey>@crypt_d1ec4fe2_be93e86dc299d2aad52af55012f1f65f</skey><wxsid>Oh6WsbionB5k1MSI</wxsid><wxuin>1836981980</wxuin><pass_ticket>tx0eaQeWLFlBaceJ4j3lrTygiHvaRVt%2BzZZFlKSLACG%2F9m9DWToDXJpExfD0CILW</pass_ticket><isgrayscale>1</isgrayscale></error>]
+I0721 21:08:52.845908    6548 session.go:264] >>> [Serve] Serve start userID = 2
+I0721 21:09:18.526648    6548 session.go:317] >>> Selector = 4， msg = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"AddMsgCount": 0,
+"AddMsgList": [],
+"ModContactCount": 2,
+"ModContactList": [{
+"UserName": "@669688737ded435ae8dd7722657ae31e",
+"NickName": "TJ",
+"Sex": 1,
+"HeadImgUpdateFlag": 1,
+"ContactType": 0,
+"Alias": "",
+"ChatRoomOwner": "",
+"HeadImgUrl": "/cgi-bin/mmwebwx-bin/webwxgeticon?seq=631731053&username=@669688737ded435ae8dd7722657ae31e&skey=@crypt_d1ec4fe2_be93e86dc299d2aad52af55012f1f65f",
+"ContactFlag": 3,
+"MemberCount": 0,
+"MemberList": [],
+"HideInputBarFlag": 0,
+"Signature": "",
+"VerifyFlag": 0,
+"RemarkName": "",
+"Statues": 0,
+"AttrStatus": 230759,
+"Province": "广东",
+"City": "珠海",
+"SnsFlag": 1,
+"KeyWord": "Kri"
+}
+,{
+"UserName": "@@d81cf300a977bbd5bcae707cfb4e8afe79aa0f1daa9e10d4670e6eb1841c87e7",
+"NickName": "测试",
+"Sex": 0,
+"HeadImgUpdateFlag": 1,
+"ContactType": 0,
+"Alias": "",
+"ChatRoomOwner": "@ec5774e882cde72fd4b9c70907537ab1",
+"HeadImgUrl": "/cgi-bin/mmwebwx-bin/webwxgetheadimg?seq=0&username=@@d81cf300a977bbd5bcae707cfb4e8afe79aa0f1daa9e10d4670e6eb1841c87e7&skey=@crypt_d1ec4fe2_be93e86dc299d2aad52af55012f1f65f",
+"ContactFlag": 2,
+"MemberCount": 6,
+"MemberList": [{
+"Uin": 0,
+"UserName": "@ec5774e882cde72fd4b9c70907537ab1",
+"NickName": "M.t",
+"AttrStatus": 98339,
+"PYInitial": "",
+"PYQuanPin": "",
+"RemarkPYInitial": "",
+"RemarkPYQuanPin": "",
+"MemberStatus": 0,
+"DisplayName": "",
+"KeyWord": ""
+}
+,{
+"Uin": 0,
+"UserName": "@1477be1232c05dcb7b4c9a86996aa98a",
+"NickName": "blacKing",
+"AttrStatus": 233663,
+"PYInitial": "",
+"PYQuanPin": "",
+"RemarkPYInitial": "",
+"RemarkPYQuanPin": "",
+"MemberStatus": 0,
+"DisplayName": "",
+"KeyWord": ""
+}
+,{
+"Uin": 0,
+"UserName": "@74380e2a0ec2976887855b1da731cdef",
+"NickName": "elaine",
+"AttrStatus": 100287,
+"PYInitial": "",
+"PYQuanPin": "",
+"RemarkPYInitial": "",
+"RemarkPYQuanPin": "",
+"MemberStatus": 0,
+"DisplayName": "",
+"KeyWord": ""
+}
+,{
+"Uin": 0,
+"UserName": "@060f805ce6437664a70084d6f55bf828",
+"NickName": "Oscar",
+"AttrStatus": 98815,
+"PYInitial": "",
+"PYQuanPin": "",
+"RemarkPYInitial": "",
+"RemarkPYQuanPin": "",
+"MemberStatus": 0,
+"DisplayName": "",
+"KeyWord": ""
+}
+,{
+"Uin": 0,
+"UserName": "@669688737ded435ae8dd7722657ae31e",
+"NickName": "TJ",
+"AttrStatus": 230759,
+"PYInitial": "",
+"PYQuanPin": "",
+"RemarkPYInitial": "",
+"RemarkPYQuanPin": "",
+"MemberStatus": 0,
+"DisplayName": "",
+"KeyWord": ""
+}
+,{
+"Uin": 0,
+"UserName": "@61e6be7a7f6346343855ecfc863bfe6e2c0d83b358477384d4e86334bdae55cf",
+"NickName": "aven",
+"AttrStatus": 33755237,
+"PYInitial": "",
+"PYQuanPin": "",
+"RemarkPYInitial": "",
+"RemarkPYQuanPin": "",
+"MemberStatus": 0,
+"DisplayName": "",
+"KeyWord": ""
+}
+],
+"HideInputBarFlag": 0,
+"Signature": "",
+"VerifyFlag": 0,
+"RemarkName": "",
+"Statues": 1,
+"AttrStatus": 0,
+"Province": "",
+"City": "",
+"SnsFlag": 0,
+"KeyWord": ""
+}
+],
+"DelContactCount": 0,
+"DelContactList": [],
+"ModChatRoomMemberCount": 0,
+"ModChatRoomMemberList": [],
+"Profile": {
+"BitFlag": 0,
+"UserName": {
+"Buff": ""
+}
+,
+"NickName": {
+"Buff": ""
+}
+,
+"BindUin": 0,
+"BindEmail": {
+"Buff": ""
+}
+,
+"BindMobile": {
+"Buff": ""
+}
+,
+"Status": 0,
+"Sex": 0,
+"PersonalCard": 0,
+"Alias": "",
+"HeadImgUpdateFlag": 0,
+"HeadImgUrl": "",
+"Signature": ""
+}
+,
+"ContinueFlag": 0,
+"SyncKey": {
+"Count": 8,
+"List": [{
+"Key": 1,
+"Val": 654025187
+}
+,{
+"Key": 2,
+"Val": 654025849
+}
+,{
+"Key": 3,
+"Val": 654025850
+}
+,{
+"Key": 11,
+"Val": 654025824
+}
+,{
+"Key": 13,
+"Val": 654020132
+}
+,{
+"Key": 203,
+"Val": 1500621292
+}
+,{
+"Key": 1000,
+"Val": 1500631562
+}
+,{
+"Key": 1001,
+"Val": 1500631593
+}
+]
+}
+,
+"SKey": "",
+"SyncCheckKey": {
+"Count": 8,
+"List": [{
+"Key": 1,
+"Val": 654025187
+}
+,{
+"Key": 2,
+"Val": 654025849
+}
+,{
+"Key": 3,
+"Val": 654025850
+}
+,{
+"Key": 11,
+"Val": 654025824
+}
+,{
+"Key": 13,
+"Val": 654020132
+}
+,{
+"Key": 203,
+"Val": 1500621292
+}
+,{
+"Key": 1000,
+"Val": 1500631562
+}
+,{
+"Key": 1001,
+"Val": 1500631593
+}
+]
+}
+
+}
+]
+I0721 21:09:18.737861    6548 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "3206565633557626966",
+"LocalID": "15006425580000"
+}
+]
+I0721 21:09:18.737949    6548 session.go:437] >>> [SendWelComeMessage] Auto reply from [2] to [@669688737ded435ae8dd7722657ae31e] text = [你好朋友]
+I0721 21:09:18.741751    6548 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "388511101846145991",
+"LocalID": "15006425580000"
+}
+]
+I0721 21:09:18.741834    6548 session.go:437] >>> [SendWelComeMessage] Auto reply from [2] to [@@d81cf300a977bbd5bcae707cfb4e8afe79aa0f1daa9e10d4670e6eb1841c87e7] text = [你好朋友]
+I0721 21:09:19.349754    6548 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_fd43f36e_1466738c6c2e84125a5f602b2c2322e99d8a1d1de62bbf7783f9f9bfffe3a8d8f943e78341114af43d5b966fdc8b34bb44f33bf82c6fdf3db33b199b626771d6216c566816830dc86a08d25754e0afa50c666fc3b061e968a56ee6bfed7f4e3bb0da1987a928096ae6c6ec05b43b00331e1cb02eb1891c0ab52d88fee8af6c69ee18626ab46d109121f1ff9959b6e3f5bc42dda1e6882b56428abd773557356f7d29c6241dcb99d72a1f41d829d19699c9e12a2c3e8b764e1cf28c274128f72af505eacef21b2ee4f953c1481551324443cbcf9298dcb8ec692a05953fcfb162e4d8ef6257c28bfd5fae2ab4bb5ef008a2622aeeebbc5472493e7ea67e098605bedd2d1eee0953ae34e8aa15da632877d9e505396be694e3404d13ff4d0c147a58038583fcd2326f93c23e1a11d8650b045e46be9848721484a6f5035d9ec66e",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0721 21:09:19.397538    6548 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_fd43f36e_1466738c6c2e84125a5f602b2c2322e99d8a1d1de62bbf7783f9f9bfffe3a8d8f943e78341114af43d5b966fdc8b34bb44f33bf82c6fdf3db33b199b626771d6216c566816830dc86a08d25754e0afa50c666fc3b061e968a56ee6bfed7f4e3bb0da1987a928096ae6c6ec05b43b00331e1cb02eb1891c0ab52d88fee8af6c69ee18626ab46d109121f1ff9959b6e3f5bc42dda1e6882b56428abd773557356f7d29c6241dcb99d72a1f41d829d19699c9e12a2c3e8b764e1cf28c274128f72af505eacef21b2ee4f953c1481551324443cbcf9298dcb8ec692a05953fcfb162e4d8ef6257c28bfd5fae2ab4bb5ef008a2622aeeebbc5472493e7ea67e098605bedd2d1eee0953ae34e8aa15da632877d9e505396be694e3404d13ff4d0c147a58038583fcd2326f93c23e1a11d8650b045e46be9848721484a6f5035d9ec66e",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0721 21:09:19.637849    6548 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "4514390972979969832",
+"LocalID": "15006425590000"
+}
+]
+I0721 21:09:19.637933    6548 session.go:442] >>> [SendWelComeMessage] Auto reply from [2] to [@669688737ded435ae8dd7722657ae31e] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0721 21:09:19.652783    6548 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "3223229113932721167",
+"LocalID": "15006425590000"
+}
+]
+I0721 21:09:19.652864    6548 session.go:442] >>> [SendWelComeMessage] Auto reply from [2] to [@@d81cf300a977bbd5bcae707cfb4e8afe79aa0f1daa9e10d4670e6eb1841c87e7] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0721 21:09:25.918714    6548 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc420253350} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 21:09:26.066180    6548 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0721 21:09:35.800638    6548 session.go:301] >>> [Serve] FromUser = [@ec5774e882cde72fd4b9c70907537ab1] Message Content = [] MessageType =[51] UserID = [2]
+I0721 21:10:26.066640    6548 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc420330150} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 21:10:26.201406    6548 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0721 21:11:26.202468    6548 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4204551d0} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 21:11:26.330239    6548 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0721 21:12:26.331589    6548 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4204244e0} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 21:12:26.459571    6548 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0721 21:13:26.460397    6548 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc420252c00} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 21:13:26.586292    6548 heartbeat.go:42] >>> [StatNotify] Heartbeat End

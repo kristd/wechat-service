@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
 	"net/http"
@@ -37,7 +38,7 @@ func SessionCreate(c *gin.Context) {
 		glog.Error("[SessionCreate] request json data unmarshal err = [", err, "]")
 		create_response = makeCreateResponse(create_request.UserID, "", "", -10000, "request json format error")
 	} else {
-		glog.Info(">>> [SessionCreate] Request json data = [", create_request, "]")
+		glog.Info(">>> [SessionCreate] Request JSON Data = [", create_request, "]")
 
 		s := &module.Session{
 			UserID:      create_request.UserID,
@@ -80,7 +81,12 @@ func InitSession(s *module.Session, request *common.Msg_Create_Request) {
 	s.AutoRepliesConf = make([]module.AutoReplyConf, len(request.Config))
 
 	for i := 0; i < len(request.Config); i++ {
-		s.AutoRepliesConf[i].GroupNickName, _ = request.Config[i]["group"].(string)
+		s.AutoRepliesConf[i].NickName, _ = request.Config[i]["nickname"].(string)
+		s.AutoRepliesConf[i].UserType = int(request.Config[i]["type"].(float64))
+
+		fmt.Println("")
+		fmt.Println("s.AutoRepliesConf[i].UserType = ", s.AutoRepliesConf[i].UserType)
+		fmt.Println("")
 
 		wlmText, exist := request.Config[i]["wlm_text"].(string)
 		if exist {
@@ -125,9 +131,9 @@ func InitSession(s *module.Session, request *common.Msg_Create_Request) {
 					}
 				}
 			}
-			glog.Info(">>> [InitSession] Group [", s.AutoRepliesConf[i].GroupNickName, "] keyword configs = [", s.AutoRepliesConf, "]")
+			glog.Info(">>> [InitSession] NickName [", s.AutoRepliesConf[i].NickName, "] , type = [", s.AutoRepliesConf[i].UserType, "] keyword configs = [", s.AutoRepliesConf, "]")
 		} else {
-			glog.Info(">>> [InitSession] Group [", s.AutoRepliesConf[i].GroupNickName, "] has no keywords")
+			glog.Info(">>> [InitSession] NickName [", s.AutoRepliesConf[i].NickName, "], type = [", s.AutoRepliesConf[i].UserType, "] has no keywords")
 		}
 	}
 }

@@ -113,6 +113,16 @@ func (s *ContactManager) GetGroupContacts() []*User {
 	return clarray
 }
 
+func (s *ContactManager) GetPersonContacts() []*User {
+	clarray := make([]*User, 0)
+	for _, v := range s.ContactList {
+		if !strings.Contains(v.UserName, "@@") {
+			clarray = append(clarray, v)
+		}
+	}
+	return clarray
+}
+
 // GetStrangers: not group and not StarFriend
 func (s *ContactManager) GetStrangers() []*User {
 	clarray := make([]*User, 0)

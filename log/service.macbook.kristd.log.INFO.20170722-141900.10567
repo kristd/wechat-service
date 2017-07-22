@@ -1,0 +1,711 @@
+Log file created at: 2017/07/22 14:19:00
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0722 14:19:00.488331   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc42001a210} 0x127d360 21 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:19:00.625328   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:19:06.761845   10567 createHandler.go:41] >>> [SessionCreate] Request JSON Data = [&{1 [map[nickname:测试 type:101 wlm_text:欢迎${username}，我是何厚铧 wlm_image:http://weixin.xoyo.com/award/images/logo.png keywords:[map[keyword:麻将 text:http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe image:http://weixin.xoyo.com/award/images/logo.png] map[keyword:打牌 text:关键词2号 image:]]] map[wlm_image:http://weixin.xoyo.com/award/images/logo.png keywords:[map[keyword:麻将 text:双人麻将 image:http://weixin.xoyo.com/award/images/logo.png] map[keyword:打牌 text:关键词2号 image:]] nickname: type:102 wlm_text:欢迎${username}，我是何厚铧]] 2}]
+I0722 14:19:07.022168   10567 webwxapi.go:54] >>> [WebwxGetUuid] http response body = [window.QRLogin.code = 200; window.QRLogin.uuid = "wYJJw-v7WA==";]
+I0722 14:19:07.022215   10567 createHandler.go:56] >>> [SessionCreate] UserID 2's uuid = wYJJw-v7WA== && qrcode = https://login.weixin.qq.com/qrcode/wYJJw-v7WA==
+I0722 14:19:07.022265   10567 createHandler.go:136] >>> [InitSession] NickName [测试] , type = [101] keyword configs = [[{测试 101 欢迎${username}，我是何厚铧 http://weixin.xoyo.com/award/images/logo.png [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]} { 0   []}]]
+I0722 14:19:07.022325   10567 createHandler.go:136] >>> [InitSession] NickName [] , type = [102] keyword configs = [[{测试 101 欢迎${username}，我是何厚铧 http://weixin.xoyo.com/award/images/logo.png [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]} { 102 欢迎${username}，我是何厚铧 http://weixin.xoyo.com/award/images/logo.png [{麻将 双人麻将 http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]}]]
+I0722 14:19:28.098915   10567 loginHandler.go:37] >>> [LoginScan] Request JSON Data = [&{2 2}]
+I0722 14:19:28.236591   10567 webwxapi.go:78] >>> [WebwxLogin] http response body = [window.code=200;
+window.redirect_uri="https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxnewloginpage?ticket=AfdUKWelSYSz7mAkpuWrxJXj@qrticket_0&uuid=wYJJw-v7WA==&lang=zh_CN&scan=1500704361";]
+I0722 14:19:28.236647   10567 session.go:170] >>> [LoginPolling] sec3 WebwxLogin success, uuid = wYJJw-v7WA==
+I0722 14:19:28.499503   10567 webwxapi.go:111] >>> [WebNewLoginPage] http response body = [<error><ret>0</ret><message></message><skey>@crypt_d1ec4fe2_b74ebc66132884d57de78ade338ec814</skey><wxsid>8AR+sb+YQfo5j4A+</wxsid><wxuin>1836981980</wxuin><pass_ticket>d8ljLfmTPU3ezmKg78HMJ%2FO1wxALRABEtpyPXmP3aENjtDUon5ObfbtCtiHxa6Ao</pass_ticket><isgrayscale>1</isgrayscale></error>]
+I0722 14:19:29.067805   10567 session.go:264] >>> [Serve] Serve start userID = 2
+I0722 14:19:54.294879   10567 session.go:359] [Serve] Session selector = 0, userID = 2
+I0722 14:20:00.627815   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4202d9980} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:20:00.762172   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:20:19.438492   10567 session.go:359] [Serve] Session selector = 0, userID = 2
+I0722 14:20:40.133786   10567 session.go:304] >>> [Serve] FromUser = [fmessage] Message Content = [&lt;msg fromusername="Kristd" encryptusername="v1_9873e527c4c8e9807aa83b357ae4c2f437b28d72452b11d8da7c6627e67cffa7@stranger" fromnickname="TJ" content="I&amp;apos;m TJ"  shortpy="TJ" imagestatus="3" scene="30" country="CN" province="Guangdong" city="Zhuhai" sign="" percard="1" sex="1" alias="" weibo="" weibonickname="" albumflag="3" albumstyle="0" albumbgimgid="" snsflag="49" snsbgimgid="http://mmsns.qpic.cn/mmsns/0I4HOdQXxYxIn6sHv7viapialFzJjFjGEyRHbDa1siafT916lHXxbWdpg/0" snsbgobjectid="11493203140388392974" mhash="5de2ae1dbb2e591dd8807616216d42e3" mfullhash="5de2ae1dbb2e591dd8807616216d42e3" bigheadimgurl="http://wx.qlogo.cn/mmhead/ver_1/0HTM0ibOFQN5AoLzrFgxAiapdbHFysQkK0SeX2urGFlgPJebM1vFFyXsJkFlJUJG65bCP0uVvHvyJpzVHO4cY6VA/0" smallheadimgurl="http://wx.qlogo.cn/mmhead/ver_1/0HTM0ibOFQN5AoLzrFgxAiapdbHFysQkK0SeX2urGFlgPJebM1vFFyXsJkFlJUJG65bCP0uVvHvyJpzVHO4cY6VA/132" ticket="v2_21556743940fdc7201142c1defa281617162f4642d318ee08b1a0ceec891349df5723c766d38ad65411279d4ba6d1d26@stranger" opcode="2" googlecontact="" qrticket="" chatroomusername="" sourceusername="" sourcenickname=""&gt;&lt;brandlist count="0" ver="654025187"&gt;&lt;/brandlist&gt;&lt;/msg&gt;] MessageType =[37] UserID = [2]
+I0722 14:20:46.410653   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "835033335138758818",
+"LocalID": "15007044460000"
+}
+]
+I0722 14:20:46.410744   10567 session.go:460] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] text = [欢迎TJ，我是何厚铧]
+I0722 14:20:47.008124   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:20:47.251788   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "4476112843104283215",
+"LocalID": "15007044470000"
+}
+]
+I0722 14:20:47.251874   10567 session.go:465] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:21:00.763371   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4203d38c0} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:21:00.891802   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:21:22.959671   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "4084170129425390907",
+"LocalID": "15007044820000"
+}
+]
+I0722 14:21:22.959759   10567 session.go:460] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] text = [欢迎TJ，我是何厚铧]
+I0722 14:21:23.354088   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:21:23.592106   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "4453328014360258149",
+"LocalID": "15007044830000"
+}
+]
+I0722 14:21:23.592228   10567 session.go:465] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] image = [http://weixin.xoyo.com/award/images/logo.png]
+E0722 14:21:28.945642   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:29.225337   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:29.511251   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:29.810275   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:30.100169   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:30.405093   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:30.712986   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:31.034104   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:31.334236   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:31.615623   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:31.943099   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:32.315168   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:32.603354   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:32.895385   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:33.189983   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:33.473422   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:33.771299   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:34.079792   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:34.357354   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:34.640806   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:34.931261   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:35.236361   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:35.526337   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:35.815105   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:36.121581   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:36.403983   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:36.690353   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:36.992140   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:37.277119   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:37.589049   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:37.881337   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:38.168138   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:38.576206   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:38.874991   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:39.159199   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:39.458112   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:39.827943   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:40.122735   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:40.427132   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:40.722198   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:41.012991   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:41.363812   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:41.646009   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:41.925172   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:42.186879   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:42.472822   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:42.779431   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:43.259866   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:43.533907   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:43.828532   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:44.219817   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:44.524255   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:44.839961   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:45.217793   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:45.518491   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:45.809503   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:46.097173   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:46.379323   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:46.673688   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:46.971699   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:47.267750   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:47.651841   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:48.054536   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:48.338126   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:48.617774   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:48.912747   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:49.190824   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:49.483992   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:49.778763   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:50.062918   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:50.436838   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:50.744586   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:51.017070   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:51.288846   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:51.761931   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:52.038169   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:52.335686   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:52.630652   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:52.928824   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:53.213741   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:53.520621   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:53.815858   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:54.121035   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:54.404788   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:54.695677   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:54.992731   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:55.289991   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:55.568607   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:55.897865   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:56.200069   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:56.506675   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:56.791762   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:57.077704   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:57.361852   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:57.660798   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:57.957033   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:58.331554   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:58.645952   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:59.122496   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:59.396523   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:59.688462   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:21:59.981299   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:00.258689   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:00.538899   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:00.833898   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+I0722 14:22:00.892645   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4203ad380} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:22:01.026672   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+E0722 14:22:01.135865   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:01.421546   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:01.705585   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:02.099974   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:02.393594   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:02.786787   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:03.089110   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:03.355300   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:03.627565   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:03.921882   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:04.299957   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:04.696966   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:05.085089   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:05.365629   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:05.645668   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:05.940590   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:06.224548   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:06.513440   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:06.805461   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:07.103679   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:07.390433   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:07.706745   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:07.989482   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:08.299886   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:08.575504   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:08.974397   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:09.284020   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:09.643419   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:10.022770   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:10.412467   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:10.717823   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:11.036437   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:11.410660   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:11.762572   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:12.060375   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:12.356634   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:12.657237   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:12.929284   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:13.219452   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:13.592394   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:13.901470   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:14.389262   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:14.658379   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:14.970873   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:15.251728   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:15.628364   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:15.920741   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:16.211858   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:16.616203   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:16.914444   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:17.300148   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:17.651914   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:18.043176   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:18.641220   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+E0722 14:22:19.092193   10567 session.go:285] [Serve] WebWxSync err = [BaseResponse.Ret 3] userID = 2
+I0722 14:22:48.860767   10567 session.go:304] >>> [Serve] FromUser = [fmessage] Message Content = [&lt;msg fromusername="Kristd" encryptusername="v1_9873e527c4c8e9807aa83b357ae4c2f437b28d72452b11d8da7c6627e67cffa7@stranger" fromnickname="TJ" content="I&amp;apos;m TJ"  shortpy="TJ" imagestatus="3" scene="3" country="CN" province="Guangdong" city="Zhuhai" sign="" percard="1" sex="1" alias="" weibo="" weibonickname="" albumflag="3" albumstyle="0" albumbgimgid="" snsflag="49" snsbgimgid="http://mmsns.qpic.cn/mmsns/0I4HOdQXxYxIn6sHv7viapialFzJjFjGEyRHbDa1siafT916lHXxbWdpg/0" snsbgobjectid="11493203140388392974" mhash="5de2ae1dbb2e591dd8807616216d42e3" mfullhash="5de2ae1dbb2e591dd8807616216d42e3" bigheadimgurl="http://wx.qlogo.cn/mmhead/ver_1/0HTM0ibOFQN5AoLzrFgxAiapdbHFysQkK0SeX2urGFlgPJebM1vFFyXsJkFlJUJG65bCP0uVvHvyJpzVHO4cY6VA/0" smallheadimgurl="http://wx.qlogo.cn/mmhead/ver_1/0HTM0ibOFQN5AoLzrFgxAiapdbHFysQkK0SeX2urGFlgPJebM1vFFyXsJkFlJUJG65bCP0uVvHvyJpzVHO4cY6VA/132" ticket="v2_ac4b4ba9b1f1cf5d6de62ae2488126933363d15b073def6b8221f6a836527414b03374e8b0c58b138197f9f70c18e7c6@stranger" opcode="2" googlecontact="" qrticket="" chatroomusername="" sourceusername="" sourcenickname=""&gt;&lt;brandlist count="0" ver="654025187"&gt;&lt;/brandlist&gt;&lt;/msg&gt;] MessageType =[37] UserID = [2]
+I0722 14:22:50.728147   10567 session.go:304] >>> [Serve] FromUser = [@935af77c0f13841e7ec69dfe0a1edf87] Message Content = [] MessageType =[51] UserID = [2]
+I0722 14:22:58.417740   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "2779071688074440786",
+"LocalID": "15007045780000"
+}
+]
+I0722 14:22:58.417826   10567 session.go:460] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] text = [欢迎TJ，我是何厚铧]
+I0722 14:22:59.001638   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:22:59.233754   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "7122486613346461917",
+"LocalID": "15007045790000"
+}
+]
+I0722 14:22:59.233841   10567 session.go:465] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:23:01.027121   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc420389a40} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:23:01.177819   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:23:32.462836   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "5558594339838300940",
+"LocalID": "15007046120000"
+}
+]
+I0722 14:23:32.462922   10567 session.go:460] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] text = [欢迎TJ，我是何厚铧]
+I0722 14:23:32.913828   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:23:33.139929   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "7955475105055549330",
+"LocalID": "15007046120000"
+}
+]
+I0722 14:23:33.140017   10567 session.go:465] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:23:55.069715   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "7750206001970447236",
+"LocalID": "15007046340000"
+}
+]
+I0722 14:23:55.069805   10567 session.go:460] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] text = [欢迎TJ，我是何厚铧]
+I0722 14:23:55.479826   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:23:55.709395   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "3821519926434372784",
+"LocalID": "15007046350000"
+}
+]
+I0722 14:23:55.709480   10567 session.go:465] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:24:01.181662   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc420074ff0} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:24:01.308623   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:25:01.309163   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc420388420} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:25:01.435331   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:25:57.909313   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "9135610335367378705",
+"LocalID": "15007047570000"
+}
+]
+I0722 14:25:57.909453   10567 session.go:460] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] text = [欢迎TJ，我是何厚铧]
+I0722 14:25:58.484787   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:25:58.712945   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "1134003005543271294",
+"LocalID": "15007047580000"
+}
+]
+I0722 14:25:58.713030   10567 session.go:465] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:26:01.438931   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4202d81e0} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:26:01.578015   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:26:31.971440   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "785987657708619125",
+"LocalID": "15007047910000"
+}
+]
+I0722 14:26:31.971525   10567 session.go:460] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] text = [欢迎TJ，我是何厚铧]
+I0722 14:26:32.395441   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:26:32.647807   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "7509009811598451324",
+"LocalID": "15007047920000"
+}
+]
+I0722 14:26:32.647891   10567 session.go:465] >>> [SendWelComeMessage] Auto reply from [2] to [TJ] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:27:01.581437   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4203d2540} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:27:01.712313   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:27:28.819079   10567 session.go:304] >>> [Serve] FromUser = [@935af77c0f13841e7ec69dfe0a1edf87] Message Content = [] MessageType =[51] UserID = [2]
+I0722 14:27:36.776411   10567 session.go:304] >>> [Serve] FromUser = [@@e70fda353403523a4e7aa8c6af48a8d34d63358ee343b3e024d75ad907c31148] Message Content = ["TJ"通过扫描你分享的二维码加入群聊] MessageType =[10000] UserID = [2]
+I0722 14:27:36.980443   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "7002610064699820161",
+"LocalID": "15007048560000"
+}
+]
+I0722 14:27:36.980526   10567 session.go:551] >>> [WelcomeNewJoiner] Auto reply from [2] to [测试] text = [欢迎"TJ"，我是何厚铧]
+I0722 14:27:37.462379   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:27:37.526651   10567 session.go:359] [Serve] Session selector = 0, userID = 2
+I0722 14:27:37.674181   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "1536780047439618347",
+"LocalID": "15007048570000"
+}
+]
+I0722 14:27:37.674258   10567 session.go:556] >>> [WelcomeNewJoiner] Auto reply from [2] to [测试] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:27:51.855252   10567 session.go:304] >>> [Serve] FromUser = [@@e70fda353403523a4e7aa8c6af48a8d34d63358ee343b3e024d75ad907c31148] Message Content = [你邀请"TJ"加入了群聊] MessageType =[10000] UserID = [2]
+I0722 14:27:52.050480   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "2636371170781447855",
+"LocalID": "15007048710000"
+}
+]
+I0722 14:27:52.050566   10567 session.go:551] >>> [WelcomeNewJoiner] Auto reply from [2] to [测试] text = [欢迎"TJ"，我是何厚铧]
+I0722 14:27:52.435970   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:27:52.537348   10567 session.go:359] [Serve] Session selector = 0, userID = 2
+I0722 14:27:52.630041   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "7565424896229163032",
+"LocalID": "15007048720000"
+}
+]
+I0722 14:27:52.630128   10567 session.go:556] >>> [WelcomeNewJoiner] Auto reply from [2] to [测试] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:28:01.712532   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc420692c00} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:28:01.833672   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:28:35.413402   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "3148301145686070438",
+"LocalID": "15007049150000"
+}
+]
+I0722 14:28:35.413493   10567 session.go:460] >>> [SendWelComeMessage] Auto reply from [2] to [刘斯科菲尔德] text = [欢迎刘斯科菲尔德，我是何厚铧]
+I0722 14:28:35.852412   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:28:36.078482   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "6718089382969821593",
+"LocalID": "15007049150000"
+}
+]
+I0722 14:28:36.078563   10567 session.go:465] >>> [SendWelComeMessage] Auto reply from [2] to [刘斯科菲尔德] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:28:53.106755   10567 session.go:304] >>> [Serve] FromUser = [@935af77c0f13841e7ec69dfe0a1edf87] Message Content = [] MessageType =[51] UserID = [2]
+I0722 14:29:01.834018   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc42018c7e0} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:29:01.956150   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:29:07.762254   10567 session.go:304] >>> [Serve] FromUser = [fmessage] Message Content = [&lt;msg fromusername="wxid_kmfu00nljaje22" encryptusername="v1_272b7ea426a1e5c21df40be89f95f5c6141b0d07c2f2ae2dc0d73496335500c77e8f2472899c0662020946a78194d17a@stranger" fromnickname="刘斯科菲尔德" content="我是刘斯科菲尔德"  shortpy="LSKFED" imagestatus="3" scene="30" country="" province="" city="" sign="" percard="1" sex="0" alias="" weibo="" weibonickname="" albumflag="0" albumstyle="0" albumbgimgid="" snsflag="1" snsbgimgid="" snsbgobjectid="0" mhash="acc525625ab22f5ffb1350907e1c2b80" mfullhash="acc525625ab22f5ffb1350907e1c2b80" bigheadimgurl="http://wx.qlogo.cn/mmhead/ver_1/UOXMdDI0KtBvHXQ7ueSrWBictjD4QJ80FVJcR5E1rvZkD5qgZjcna6EL5H7MtagR8YDGQajCbsEk8GDhHW4SVN5A1RoSjKyKVgxVukNXRG7g/0" smallheadimgurl="http://wx.qlogo.cn/mmhead/ver_1/UOXMdDI0KtBvHXQ7ueSrWBictjD4QJ80FVJcR5E1rvZkD5qgZjcna6EL5H7MtagR8YDGQajCbsEk8GDhHW4SVN5A1RoSjKyKVgxVukNXRG7g/96" ticket="v2_71426e3b1dd6625a3351f1dcc0c3ee1d71f932427053ab17a1532423cf13614aa91e6d6257a0a94c498b972015dd38a79534b01ab3a12af35e88435c968531c0@stranger" opcode="2" googlecontact="" qrticket="" chatroomusername="" sourceusername="" sourcenickname=""&gt;&lt;brandlist count="0" ver="654025187"&gt;&lt;/brandlist&gt;&lt;/msg&gt;] MessageType =[37] UserID = [2]
+I0722 14:29:10.389501   10567 session.go:304] >>> [Serve] FromUser = [@935af77c0f13841e7ec69dfe0a1edf87] Message Content = [] MessageType =[51] UserID = [2]
+I0722 14:29:13.740817   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "3994557189112413647",
+"LocalID": "15007049530000"
+}
+]
+I0722 14:29:13.740895   10567 session.go:460] >>> [SendWelComeMessage] Auto reply from [2] to [刘斯科菲尔德] text = [欢迎刘斯科菲尔德，我是何厚铧]
+I0722 14:29:14.164079   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:29:14.382801   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "9195131628552074693",
+"LocalID": "15007049540000"
+}
+]
+I0722 14:29:14.382879   10567 session.go:465] >>> [SendWelComeMessage] Auto reply from [2] to [刘斯科菲尔德] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:29:44.506187   10567 session.go:304] >>> [Serve] FromUser = [@3fb40fe423619b2bb0604e3dd5dc2dc3] Message Content = [麻将] MessageType =[1] UserID = [2]
+I0722 14:29:44.506260   10567 session.go:503] >>> [ReplyUserMessage] UserName match = [@3fb40fe423619b2bb0604e3dd5dc2dc3]
+I0722 14:29:44.506282   10567 session.go:515] >>> [ReplyUserMessage] KeyWord match = [麻将]
+I0722 14:29:44.800063   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "8744239464164794394",
+"LocalID": "15007049840000"
+}
+]
+I0722 14:29:44.800153   10567 session.go:519] >>> [ReplyUserMessage] Auto reply from [2] to [TJ] text = [双人麻将]
+I0722 14:29:45.216800   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:29:45.438028   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "1001523131743762025",
+"LocalID": "15007049850000"
+}
+]
+I0722 14:29:45.438137   10567 session.go:524] >>> [ReplyUserMessage] Auto reply from [2] to [TJ] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:29:47.504933   10567 session.go:304] >>> [Serve] FromUser = [@3fb40fe423619b2bb0604e3dd5dc2dc3] Message Content = [打牌] MessageType =[1] UserID = [2]
+I0722 14:29:47.505007   10567 session.go:503] >>> [ReplyUserMessage] UserName match = [@3fb40fe423619b2bb0604e3dd5dc2dc3]
+I0722 14:29:47.505026   10567 session.go:515] >>> [ReplyUserMessage] KeyWord match = [打牌]
+I0722 14:29:47.754598   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "287848088609157715",
+"LocalID": "15007049870000"
+}
+]
+I0722 14:29:47.754685   10567 session.go:519] >>> [ReplyUserMessage] Auto reply from [2] to [TJ] text = [关键词2号]
+I0722 14:29:47.867838   10567 session.go:304] >>> [Serve] FromUser = [@3fb40fe423619b2bb0604e3dd5dc2dc3] Message Content = [打牌] MessageType =[1] UserID = [2]
+I0722 14:29:47.867914   10567 session.go:503] >>> [ReplyUserMessage] UserName match = [@3fb40fe423619b2bb0604e3dd5dc2dc3]
+I0722 14:29:47.867932   10567 session.go:515] >>> [ReplyUserMessage] KeyWord match = [打牌]
+I0722 14:29:48.089272   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "287848088609157715",
+"LocalID": "15007049870000"
+}
+]
+I0722 14:29:48.089402   10567 session.go:519] >>> [ReplyUserMessage] Auto reply from [2] to [TJ] text = [关键词2号]
+I0722 14:29:57.692087   10567 session.go:304] >>> [Serve] FromUser = [@@e70fda353403523a4e7aa8c6af48a8d34d63358ee343b3e024d75ad907c31148] Message Content = [打牌] MessageType =[1] UserID = [2]
+I0722 14:29:57.692157   10567 session.go:485] >>> [ReplyUserMessage] UserName match = [@@e70fda353403523a4e7aa8c6af48a8d34d63358ee343b3e024d75ad907c31148]
+I0722 14:29:57.692229   10567 session.go:489] >>> [ReplyUserMessage] NickName match = [测试]
+I0722 14:29:57.692243   10567 session.go:515] >>> [ReplyUserMessage] KeyWord match = [打牌]
+I0722 14:29:58.009008   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "3783511325519508741",
+"LocalID": "15007049970000"
+}
+]
+I0722 14:29:58.009088   10567 session.go:519] >>> [ReplyUserMessage] Auto reply from [2] to [测试] text = [关键词2号]
+I0722 14:30:00.850064   10567 session.go:304] >>> [Serve] FromUser = [@@e70fda353403523a4e7aa8c6af48a8d34d63358ee343b3e024d75ad907c31148] Message Content = [麻将] MessageType =[1] UserID = [2]
+I0722 14:30:00.850125   10567 session.go:485] >>> [ReplyUserMessage] UserName match = [@@e70fda353403523a4e7aa8c6af48a8d34d63358ee343b3e024d75ad907c31148]
+I0722 14:30:00.850225   10567 session.go:489] >>> [ReplyUserMessage] NickName match = [测试]
+I0722 14:30:00.850236   10567 session.go:515] >>> [ReplyUserMessage] KeyWord match = [麻将]
+I0722 14:30:01.082821   10567 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "4101698115004550717",
+"LocalID": "15007050000000"
+}
+]
+I0722 14:30:01.082913   10567 session.go:519] >>> [ReplyUserMessage] Auto reply from [2] to [测试] text = [http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe]
+I0722 14:30:01.511027   10567 webwxapi.go:336] >>> [WebWxUploadMedia] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MediaId": "@crypt_59f4ed29_0efb2b3806892d8669c2eceafda58ecfb9ff01e5d5402ae9b76555a524dd2994623d65c24ad12a0fec36a575f424ae46e773500fe63c5bc1951317404852780d476c65eeedfb4a15b75bebf5500a54293fa64654e22b889efc28c8f8430e9407147b4af5b00841408a76fc0374bc6011def543ee1bafcdf98d645787b2a6ec06ab81a8986b6d071c88e4873aedec63deed3db56a566111401340aa58287f387e432349a49f0306ab72104dcf5fa458b49f8d6ee9a1566ae0780360a2e075e40ec34b5fba6c736a3adb6218edfbba095d8042d79c9178b0e45fa7b305b6bd1b8d53f30bad74ea5e1587f19620e097827e60976ea40d02bbf1abe737f72eee97783e1c6afde126ad24b61f9372b9adc11120f13bb302c9c88e622a0342ad4308f81406b79a439677013c73fd7fc7643e5e68572adce37c596374ba15e06bd1a33d",
+"StartPos": 115267,
+"CDNThumbImgHeight": 56,
+"CDNThumbImgWidth": 100
+}
+]
+I0722 14:30:01.749555   10567 webwxapi.go:397] >>> [WebWxSendMsgImg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "5117424298857388880",
+"LocalID": "15007050010000"
+}
+]
+I0722 14:30:01.749619   10567 session.go:524] >>> [ReplyUserMessage] Auto reply from [2] to [测试] image = [http://weixin.xoyo.com/award/images/logo.png]
+I0722 14:30:01.958086   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4204d6000} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:30:02.093509   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:30:39.573098   10567 session.go:304] >>> [Serve] FromUser = [@935af77c0f13841e7ec69dfe0a1edf87] Message Content = [] MessageType =[51] UserID = [2]
+I0722 14:30:42.186960   10567 session.go:304] >>> [Serve] FromUser = [@935af77c0f13841e7ec69dfe0a1edf87] Message Content = [] MessageType =[51] UserID = [2]
+I0722 14:31:02.096980   10567 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc420306270} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0722 14:31:02.239548   10567 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0722 14:31:07.323747   10567 session.go:359] [Serve] Session selector = 0, userID = 2
+I0722 14:31:08.944182   10567 exitHandler.go:36] >>> [Exit] Request JSON Data = [&{5 2}]
+I0722 14:31:08.944210   10567 exitHandler.go:48] >>> [Exit] Session 2 unserve and deleted

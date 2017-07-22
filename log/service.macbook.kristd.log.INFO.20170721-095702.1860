@@ -1,0 +1,21 @@
+Log file created at: 2017/07/21 09:57:02
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0721 09:57:02.019842    1860 createHandler.go:40] >>> [SessionCreate] Request json data = [&{1 [map[keywords:[map[keyword:麻将 text:http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe image:http://weixin.xoyo.com/award/images/logo.png] map[keyword:打牌 text:关键词2号 image:]] group:测试 wlm_text:欢迎新人${username}入群 wlm_image:http://weixin.xoyo.com/award/images/logo.png]] 2}]
+I0721 09:57:02.575681    1860 webwxapi.go:54] >>> [WebwxGetUuid] http response body = [window.QRLogin.code = 200; window.QRLogin.uuid = "oZsnBYpo6Q==";]
+I0721 09:57:02.575725    1860 createHandler.go:55] >>> [SessionCreate] UserID 2's uuid = oZsnBYpo6Q== && qrcode = https://login.weixin.qq.com/qrcode/oZsnBYpo6Q==
+I0721 09:57:02.575847    1860 createHandler.go:129] >>> [InitSession] Group [测试] keyword configs = [[{测试 欢迎新人${username}入群 http://weixin.xoyo.com/award/images/logo.png [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]}]]
+I0721 09:57:24.940244    1860 loginHandler.go:37] >>> [LoginScan] request json data = [&{2 2}]
+I0721 09:57:25.087083    1860 webwxapi.go:78] >>> [WebwxLogin] http response body = [window.code=200;
+window.redirect_uri="https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxnewloginpage?ticket=AYL4yBXLAfvH7C03Aur56VQI@qrticket_0&uuid=oZsnBYpo6Q==&lang=zh_CN&scan=1500602237";]
+I0721 09:57:25.087273    1860 session.go:171] >>> [LoginPolling] sec3 WebwxLogin success, uuid = oZsnBYpo6Q==
+I0721 09:57:25.318328    1860 webwxapi.go:111] >>> [WebNewLoginPage] http response body = [<error><ret>0</ret><message></message><skey>@crypt_d1ec4fe2_4ad811f216c908c26067163ef3517437</skey><wxsid>1vLAibKpCEZrimxJ</wxsid><wxuin>1836981980</wxuin><pass_ticket>zr7X6UacNzkua11StyR2tCJe9PDqsSvoQtU7rNJhlUPDVfBJR6RpOugwmxsaLlsz</pass_ticket><isgrayscale>1</isgrayscale></error>]
+I0721 09:57:25.867435    1860 session.go:264] >>> [Serve] Looping start userID = 2
+I0721 09:58:33.279637    1860 session.go:301] >>> [Serve] FromUser = [@6d8dc1f2ae5e5fddf93e8ca7ad7c1704] Message Content = [123] MessageType =[1] UserID = [2]
+I0721 09:58:33.279664    1860 session.go:387] >>> [ReplyUserMessage] UserName match = [@6d8dc1f2ae5e5fddf93e8ca7ad7c1704]
+I0721 10:01:50.772515    1860 session.go:301] >>> [Serve] FromUser = [@c87690427a28a1f0da36c1a3fbfd425b] Message Content = [] MessageType =[51] UserID = [2]
+I0721 10:02:02.820554    1860 session.go:301] >>> [Serve] FromUser = [@c87690427a28a1f0da36c1a3fbfd425b] Message Content = [] MessageType =[51] UserID = [2]
+I0721 10:02:07.283806    1860 session.go:301] >>> [Serve] FromUser = [@6d8dc1f2ae5e5fddf93e8ca7ad7c1704] Message Content = [TJ开启了朋友验证，你还不是他（她）朋友。请先发送朋友验证请求，对方验证通过后，才能聊天。&lt;a href="weixin://findfriend/verifycontact"&gt;发送朋友验证&lt;/a&gt;] MessageType =[10000] UserID = [2]
+E0721 10:02:57.775504    1860 session.go:312] [Serve] Session down, selector = 4, userID = 2
+I0721 10:02:57.776664    1860 session.go:329] >>> [Serve] Looping stop userID = 2

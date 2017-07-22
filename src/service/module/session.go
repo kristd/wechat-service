@@ -6,7 +6,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"regexp"
 	"service/common"
 	"service/conf"
 	"service/utils"
@@ -22,10 +21,11 @@ type KeyWord struct {
 }
 
 type AutoReplyConf struct {
-	GroupNickName string
-	WlmText       string
-	WlmImage      string
-	KeyWords      []KeyWord
+	NickName string
+	UserType int
+	WlmText  string
+	WlmImage string
+	KeyWords []KeyWord
 }
 
 type Session struct {
@@ -260,8 +260,8 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 }
 
 func (s *Session) Serve() {
-	glog.Info(">>> [Serve] Looping start userID = ", s.UserID)
-	s.Loop = true
+	s.UpdateSrvStatus(true)
+	glog.Info(">>> [Serve] Serve start userID = ", s.UserID)
 
 	for s.Loop {
 		//will be blocked here until wechat return response
@@ -269,14 +269,12 @@ func (s *Session) Serve() {
 		if err != nil {
 			glog.Error("[Serve] SyncCheck err = [", err, "] userID = ", s.UserID)
 			continue
+		} else if selector != 0 {
+			//glog.Info(">>> [Serve] SyncCheck return = [", ret, "] selector = [", selector, "]")
 		}
 
 		if ret == 0 {
-			/*
-			*	2 - new message;
-			*	4 - contact update;
-			*	7 - action in device
-			 */
+			//2: new message; 4: session update; 6: contact update; 7: action in device
 			if selector == 2 {
 				msg, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.cookies, s.synKeyList)
 				if err != nil {
@@ -300,18 +298,64 @@ func (s *Session) Serve() {
 
 						switch int(rmsg.MsgType) {
 						case int(conf.MSG_TEXT):
-							go s.ReplyUserMessage(rmsg.FromUserName, rmsg.Content)
+							go s.SendReplyUserMessage(rmsg.FromUserName, rmsg.Content)
 						case int(conf.MSG_SYS):
-							go s.ReplySysMessage(rmsg.FromUserName, rmsg.Content)
+							go s.SendReplySysMessage(rmsg.FromUserName, rmsg.Content)
 						}
 					}
 				}
-			} else if selector != 0 && selector != 7 {
-				glog.Error("[Serve] Session down, selector = ", selector, ", userID = ", s.UserID)
-				break
+			} else if selector == 6 {
+				//contact update
+				msg, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.cookies, s.synKeyList)
+				if err != nil {
+					glog.Error("[Serve] WebWxSync err = [", err, "] userID = ", s.UserID)
+				} else {
+					jc, err := conf.LoadJsonConfigFromBytes(msg)
+					if err != nil {
+						glog.Error("[Serve] LoadJsonConfigFromBytes err = [", err, "] userID = ", s.UserID)
+						continue
+					}
+
+					count, _ := jc.GetInt("ModContactCount")
+					if count < 1 {
+						continue
+					}
+
+					newFriendList, _ := jc.GetInterfaceSlice("ModContactList")
+					for _, newUser := range newFriendList {
+						n := newUser.(map[string]interface{})
+						u := &common.User{
+							UserName: n["UserName"].(string),
+							NickName: n["NickName"].(string),
+						}
+
+						exist := false
+						for _, v := range s.ContactMgr.ContactList {
+							if v.UserName == u.UserName {
+								exist = true
+								break
+							}
+						}
+
+						if !exist {
+							s.ContactMgr.AddContactFromUser(u)
+						}
+
+						go s.SendWelComeMessage(u.UserName)
+					}
+				}
+			} else if selector == 4 {
+				//session change?
+				_, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.cookies, s.synKeyList)
+				if err != nil {
+					glog.Error("[Serve] WebWxSync err = [", err, "] userID = ", s.UserID)
+				} else {
+					//TODO
+				}
+			} else {
+				glog.Info("[Serve] Session selector = ", selector, ", userID = ", s.UserID)
 			}
-			//1100 - logout from client
-			//1101 - login another webpage
+			//1100: logout from client; 1101: login another webpage
 		} else if ret == 1101 || ret == 1100 {
 			glog.Error("[Serve] User logout error code = ", ret, ", userID = ", s.UserID)
 			break
@@ -324,8 +368,24 @@ func (s *Session) Serve() {
 		}
 	}
 
-	glog.Info(">>> [Serve] Looping stop userID = ", s.UserID)
-	//s.Quit <- true
+	glog.Info(">>> [Serve] Serve stop userID = ", s.UserID)
+}
+
+func (s *Session) Stop() {
+	s.UpdateSrvStatus(false)
+}
+
+func (s *Session) UpdateSrvStatus(run bool) {
+	s.serveLock.Lock()
+	s.Loop = run
+	s.serveLock.Unlock()
+}
+
+func (s *Session) GetSrvStatus() bool {
+	s.serveLock.Lock()
+	loop := s.Loop
+	s.serveLock.Unlock()
+	return loop
 }
 
 func (s *Session) Analize(msg map[string]interface{}) *common.ReceivedMessage {
@@ -379,45 +439,27 @@ func (s *Session) Analize(msg map[string]interface{}) *common.ReceivedMessage {
 	return rmsg
 }
 
-func (s *Session) ReplyUserMessage(group, msg string) {
-	for _, toUser := range s.ContactMgr.ContactList {
-		if toUser.UserName == group {
-			glog.Info(">>> [ReplyUserMessage] UserName match = [", group, "]")
-			for _, groupConf := range s.AutoRepliesConf {
-				if groupConf.GroupNickName == toUser.NickName {
-					glog.Info(">>> [ReplyUserMessage] NickName match = [", toUser.NickName, "]")
-					for _, keyword := range groupConf.KeyWords {
-						if strings.Contains(msg, keyword.Key) {
-							glog.Info(">>> [ReplyUserMessage] KeyWord match = [", keyword.Key, "]")
-							if keyword.Text != "" {
-								s.SendText(keyword.Text, s.Bot.UserName, toUser.UserName)
-								glog.Info(">>> [ReplyUserMessage] Auto reply from [", s.UserID, "] to [", toUser.NickName, "] text = [", keyword.Text, "]")
-							}
-
-							if keyword.Image != "" {
-								s.SendImage(keyword.Image, s.Bot.UserName, toUser.UserName)
-								glog.Info(">>> [ReplyUserMessage] Auto reply from [", s.UserID, "] to [", toUser.NickName, "] image = [", keyword.Image, "]")
-							}
-						}
-					}
-				}
-			}
-
-			return
-		}
-	}
-}
-
-func (s *Session) ReplySysMessage(userName, message string) {
-	reg := regexp.MustCompile(conf.NEW_JOINER_PATTERN)
-	joiner := reg.FindString(message)
-
+func (s *Session) SendWelComeMessage(userName string) {
 Loop:
-	for _, user := range s.ContactMgr.ContactList {
-		if user.UserName == userName {
-			for _, p := range conf.WELCOME_MESSAGE_PATTERN {
-				if strings.Contains(message, p) {
-					s.WelcomeNewJoiner(user, joiner)
+	for _, userConf := range s.AutoRepliesConf {
+		if userConf.UserType == conf.USER_PERSON {
+			for _, user := range s.ContactMgr.GetPersonContacts() {
+				if user.UserName == userName {
+					if userConf.WlmText != "" {
+						var textMsg string
+						if strings.Contains(userConf.WlmText, conf.WELCOME_USER_PATTEN) {
+							textMsg = strings.Replace(userConf.WlmText, conf.WELCOME_USER_PATTEN, user.NickName, -1)
+						} else {
+							textMsg = userConf.WlmText
+						}
+						s.SendText(textMsg, s.Bot.UserName, userName)
+						glog.Info(">>> [SendWelComeMessage] Auto reply from [", s.UserID, "] to [", user.NickName, "] text = [", textMsg, "]")
+					}
+
+					if userConf.WlmImage != "" {
+						s.SendImage(userConf.WlmImage, s.Bot.UserName, userName)
+						glog.Info(">>> [SendWelComeMessage] Auto reply from [", s.UserID, "] to [", user.NickName, "] image = [", userConf.WlmImage, "]")
+					}
 					break Loop
 				}
 			}
@@ -425,24 +467,90 @@ Loop:
 	}
 }
 
-func (s *Session) WelcomeNewJoiner(user *common.User, joiner string) {
-	for _, vv := range s.AutoRepliesConf {
-		if vv.GroupNickName == user.NickName {
-			if vv.WlmText != "" {
-				welcome := strings.Replace(vv.WlmText, conf.WELCOME_USER_PATTEN, joiner, -1)
-				//welcome := strings.Replace(vv.WlmText, conf.WELCOME_USER_PATTEN, strings.Replace(mstr, "\"", "", -1), -1)
-				s.SendText(welcome, s.Bot.UserName, user.UserName)
-				glog.Info(">>> [WelcomeNewJoiner] Auto reply from [", s.UserID, "] to [", user.NickName, "] text = [", vv.WlmText, "]")
-			}
+func (s *Session) SendReplyUserMessage(userName, msg string) {
+	var userConf AutoReplyConf
+	var toUser *common.User
+	var contacts []*common.User
+	match := false
 
-			if vv.WlmImage != "" {
-				s.SendImage(vv.WlmImage, s.Bot.UserName, user.UserName)
-				glog.Info(">>> [WelcomeNewJoiner] Auto reply from [", s.UserID, "] to [", user.NickName, "] image = [", vv.WlmImage, "]")
+	if strings.Contains(userName, "@@") {
+		contacts = s.ContactMgr.GetGroupContacts()
+	Loop1:
+		for _, toUser = range contacts {
+			if toUser.UserName == userName {
+				glog.Info(">>> [ReplyUserMessage] UserName match = [", userName, "]")
+
+				for _, userConf = range s.AutoRepliesConf {
+					if userConf.NickName == toUser.NickName {
+						glog.Info(">>> [ReplyUserMessage] NickName match = [", toUser.NickName, "]")
+						match = true
+						break Loop1
+					}
+				}
+			}
+		}
+	} else {
+		contacts = s.ContactMgr.GetPersonContacts()
+	Loop2:
+		for _, userConf = range s.AutoRepliesConf {
+			if userConf.UserType == conf.USER_PERSON {
+				for _, toUser = range contacts {
+					if toUser.UserName == userName {
+						glog.Info(">>> [ReplyUserMessage] UserName match = [", userName, "]")
+						match = true
+						break Loop2
+					}
+				}
+			}
+		}
+	}
+
+	if match {
+		for _, keyword := range userConf.KeyWords {
+			if strings.Contains(msg, keyword.Key) {
+				glog.Info(">>> [ReplyUserMessage] KeyWord match = [", keyword.Key, "]")
+
+				if keyword.Text != "" {
+					s.SendText(keyword.Text, s.Bot.UserName, userName)
+					glog.Info(">>> [ReplyUserMessage] Auto reply from [", s.UserID, "] to [", toUser.NickName, "] text = [", keyword.Text, "]")
+				}
+
+				if keyword.Image != "" {
+					s.SendImage(keyword.Image, s.Bot.UserName, userName)
+					glog.Info(">>> [ReplyUserMessage] Auto reply from [", s.UserID, "] to [", toUser.NickName, "] image = [", keyword.Image, "]")
+				}
 			}
 		}
 	}
 }
 
-func (s *Session) Stop() {
-	s.Loop = false
+func (s *Session) SendReplySysMessage(userName, message string) {
+	for _, user := range s.ContactMgr.ContactList {
+		if user.UserName == userName {
+			newJoiner, err := utils.FindNewJoinerName(message)
+			if err != nil {
+				glog.Error("[ReplySysMessage] Get new joiner from system message failed, err = ", err)
+			} else {
+				go s.NewJoiner(user, newJoiner)
+			}
+			break
+		}
+	}
+}
+
+func (s *Session) NewJoiner(user *common.User, newJoiner string) {
+	for _, vv := range s.AutoRepliesConf {
+		if vv.NickName == user.NickName {
+			if vv.WlmText != "" {
+				welcome := strings.Replace(vv.WlmText, conf.WELCOME_USER_PATTEN, newJoiner, -1)
+				s.SendText(welcome, s.Bot.UserName, user.UserName)
+				glog.Info(">>> [NewJoiner] Auto reply from [", s.UserID, "] to [", user.NickName, "] text = [", welcome, "]")
+			}
+
+			if vv.WlmImage != "" {
+				s.SendImage(vv.WlmImage, s.Bot.UserName, user.UserName)
+				glog.Info(">>> [NewJoiner] Auto reply from [", s.UserID, "] to [", user.NickName, "] image = [", vv.WlmImage, "]")
+			}
+		}
+	}
 }

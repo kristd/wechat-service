@@ -1,0 +1,7 @@
+Log file created at: 2017/07/22 11:43:57
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+E0722 11:43:57.823559    9868 session.go:533] [ReplySysMessage] Get new joiner from system message failed, err = [FindNewJoinerName] New joiner name empty
+E0722 11:43:58.432673    9868 session.go:105] [SendImage] Send image failed, err = <nil>
+E0722 11:43:58.744794    9868 session.go:533] [ReplySysMessage] Get new joiner from system message failed, err = [FindNewJoinerName] New joiner name empty

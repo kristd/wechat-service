@@ -20,5 +20,7 @@ func main() {
 	route.POST(conf.API_SEND, handler.SendMessage)
 	route.POST(conf.API_EXIT, handler.Exit)
 
+	go module.StatNotify()
+
 	route.Run(conf.PORT)
 }

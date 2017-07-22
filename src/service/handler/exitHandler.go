@@ -33,7 +33,7 @@ func Exit(c *gin.Context) {
 		glog.Error("[Exit] request json data unmarshal err = [", err, "]")
 		exit_response = makeExitResponse(exit_request.UserID, -40000, "request json data format error")
 	} else {
-		glog.Info(">>> [Exit] request json data = [", exit_request, "]")
+		glog.Info(">>> [Exit] Request JSON Data = [", exit_request, "]")
 		s, exist := module.SessionTable[exit_request.UserID]
 		if !exist {
 			glog.Error("[Exit] User ", exit_request.UserID, " session not exist")

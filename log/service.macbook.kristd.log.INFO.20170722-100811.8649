@@ -1,0 +1,29 @@
+Log file created at: 2017/07/22 10:08:11
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0722 10:08:11.190688    8649 createHandler.go:41] >>> [SessionCreate] Request JSON Data = [&{1 [map[nickname:测试 type:101 wlm_text:欢迎新人${username}入群 wlm_image:http://weixin.xoyo.com/award/images/logo.png keywords:[map[text:http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe image:http://weixin.xoyo.com/award/images/logo.png keyword:麻将] map[image: keyword:打牌 text:关键词2号]]] map[keywords:[map[keyword:麻将 text:双人麻将 image:http://weixin.xoyo.com/award/images/logo.png] map[keyword:打牌 text:关键词2号 image:]] nickname: type:102 wlm_text:你好朋友 wlm_image:http://weixin.xoyo.com/award/images/logo.png]] 2}]
+I0722 10:08:11.458366    8649 webwxapi.go:54] >>> [WebwxGetUuid] http response body = [window.QRLogin.code = 200; window.QRLogin.uuid = "4eyX-PQJZQ==";]
+I0722 10:08:11.458413    8649 createHandler.go:56] >>> [SessionCreate] UserID 2's uuid = 4eyX-PQJZQ== && qrcode = https://login.weixin.qq.com/qrcode/4eyX-PQJZQ==
+I0722 10:08:11.458702    8649 createHandler.go:136] >>> [InitSession] NickName [测试] , type = [101] keyword configs = [[{测试 101 欢迎新人${username}入群 http://weixin.xoyo.com/award/images/logo.png [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]} { 0   []}]]
+I0722 10:08:11.458782    8649 createHandler.go:136] >>> [InitSession] NickName [] , type = [102] keyword configs = [[{测试 101 欢迎新人${username}入群 http://weixin.xoyo.com/award/images/logo.png [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]} { 102 你好朋友 http://weixin.xoyo.com/award/images/logo.png [{麻将 双人麻将 http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]}]]
+I0722 10:08:31.357931    8649 loginHandler.go:37] >>> [LoginScan] Request JSON Data = [&{2 2}]
+I0722 10:08:31.520825    8649 webwxapi.go:78] >>> [WebwxLogin] http response body = [window.code=200;
+window.redirect_uri="https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxnewloginpage?ticket=AVH0VCFeKcQ-sNVBIpsWxESR@qrticket_0&uuid=4eyX-PQJZQ==&lang=zh_CN&scan=1500689304";]
+I0722 10:08:31.520976    8649 session.go:170] >>> [LoginPolling] sec3 WebwxLogin success, uuid = 4eyX-PQJZQ==
+I0722 10:08:31.756679    8649 webwxapi.go:111] >>> [WebNewLoginPage] http response body = [<error><ret>0</ret><message></message><skey>@crypt_d1ec4fe2_501f954f06ac0827a8c5f7ddf3647ed9</skey><wxsid>+ohx/3Fu5+aPwqKX</wxsid><wxuin>1836981980</wxuin><pass_ticket>CMXQLd1jBfKrnLJRTin%2BOzsM6wh7QVlG2y1MXtYWxYLViDz8rof69mzLRZfun%2FG3</pass_ticket><isgrayscale>1</isgrayscale></error>]
+I0722 10:08:32.268003    8649 session.go:264] >>> [Serve] Serve start userID = 2
+I0722 10:08:38.487041    8649 session.go:304] >>> [Serve] FromUser = [@54442379b156c0d20245307c2e1083db] Message Content = [打牌] MessageType =[1] UserID = [2]
+I0722 10:08:38.487216    8649 session.go:493] >>> [ReplyUserMessage] UserName match = [@54442379b156c0d20245307c2e1083db]
+I0722 10:08:38.487235    8649 session.go:505] >>> [ReplyUserMessage] KeyWord match = [打牌]
+I0722 10:08:38.723642    8649 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "1617274731724768006",
+"LocalID": "15006893180000"
+}
+]
+I0722 10:08:38.723731    8649 session.go:509] >>> [ReplyUserMessage] Auto reply from [2] to [TJ] text = [关键词2号]

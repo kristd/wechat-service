@@ -2,11 +2,13 @@ package utils
 
 import (
 	"bytes"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"math/rand"
 	"net/http"
 	"os"
+	"regexp"
 	"service/conf"
 	"strconv"
 	"strings"
@@ -58,4 +60,42 @@ func LoadImage(url string) (fileName string, err error) {
 	}
 
 	return fileName, nil
+}
+
+func FindNewJoinerName(message string) (string, error) {
+	newJoiner := ""
+	for k, v := range conf.WELCOME_MESSAGE_PATTERN {
+		r, err := regexp.Compile(v)
+		if err != nil {
+			return "", err
+		}
+
+		fmt.Println(">>> k =", k, " v = ", v, " msg = ", message)
+
+		newJoiner = r.FindString(message)
+		if len(newJoiner) != 0 {
+
+			fmt.Println(">>> newJoiner = ", newJoiner)
+
+			switch k {
+			case 0:
+				newJoiner = strings.Replace(strings.Replace(newJoiner, "邀请", "", -1), "加入了群聊", "", -1)
+			case 1:
+				newJoiner = strings.Replace(newJoiner, "通过扫描", "", -1)
+			case 2:
+				newJoiner = strings.Replace(strings.Replace(newJoiner, "invited ", "", -1), " to the", "", -1)
+			case 3:
+				newJoiner = strings.Replace(newJoiner, " joined the group", "", -1)
+			}
+			break
+		}
+	}
+
+	fmt.Println(">>> newJoiner = ", newJoiner)
+
+	if len(newJoiner) == 0 {
+		return "", fmt.Errorf("[FindNewJoinerName] New joiner name empty")
+	} else {
+		return newJoiner, nil
+	}
 }

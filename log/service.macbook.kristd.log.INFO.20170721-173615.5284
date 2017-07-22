@@ -1,0 +1,21 @@
+Log file created at: 2017/07/21 17:36:15
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0721 17:36:15.168248    5284 heartbeat.go:35] >>> [StatNotify] Heartbeat Request = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4201d2180} 0x127d360 21 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 17:36:15.307847    5284 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0721 17:36:32.047357    5284 createHandler.go:40] >>> [SessionCreate] Request JSON Data = [&{1 [map[wlm_text:欢迎新人${username}入群 wlm_image:http://weixin.xoyo.com/award/images/logo.png keywords:[map[keyword:麻将 text:http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe image:http://weixin.xoyo.com/award/images/logo.png] map[keyword:打牌 text:关键词2号 image:]] nickname:测试 type:101] map[keywords:[map[keyword:麻将 text:双人麻将 image:http://weixin.xoyo.com/award/images/logo.png] map[keyword:打牌 text:关键词2号 image:]] nickname: type:102 wlm_text:你好朋友 wlm_image:http://weixin.xoyo.com/award/images/logo.png]] 2}]
+I0721 17:36:32.319433    5284 webwxapi.go:54] >>> [WebwxGetUuid] http response body = [window.QRLogin.code = 200; window.QRLogin.uuid = "4boXUPWc3g==";]
+I0721 17:36:32.319479    5284 createHandler.go:55] >>> [SessionCreate] UserID 2's uuid = 4boXUPWc3g== && qrcode = https://login.weixin.qq.com/qrcode/4boXUPWc3g==
+I0721 17:36:32.319529    5284 createHandler.go:129] >>> [InitSession] NickName [测试] , type = [0keyword configs = [[{测试 0 欢迎新人${username}入群 http://weixin.xoyo.com/award/images/logo.png [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]} { 0   []}]]
+I0721 17:36:32.319604    5284 createHandler.go:129] >>> [InitSession] NickName [] , type = [0keyword configs = [[{测试 0 欢迎新人${username}入群 http://weixin.xoyo.com/award/images/logo.png [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]} { 0 你好朋友 http://weixin.xoyo.com/award/images/logo.png [{麻将 双人麻将 http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]}]]
+I0721 17:36:55.001075    5284 loginHandler.go:37] >>> [LoginScan] Request JSON Data = [&{2 2}]
+I0721 17:36:55.152347    5284 webwxapi.go:78] >>> [WebwxLogin] http response body = [window.code=200;
+window.redirect_uri="https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxnewloginpage?ticket=ARDel44uKz8TY8VCWzw576pY@qrticket_0&uuid=4boXUPWc3g==&lang=zh_CN&scan=1500629807";]
+I0721 17:36:55.152395    5284 session.go:170] >>> [LoginPolling] sec3 WebwxLogin success, uuid = 4boXUPWc3g==
+I0721 17:36:55.478165    5284 webwxapi.go:111] >>> [WebNewLoginPage] http response body = [<error><ret>0</ret><message></message><skey>@crypt_d1ec4fe2_b6462036f79345ca9f4890fd396c4566</skey><wxsid>fnQOp4SRTewWDfSA</wxsid><wxuin>1836981980</wxuin><pass_ticket>VjHMS%2B1PXiQFUMh1fqq96JmjYnSBQOloOoePjD44QOMcMimuP%2BfUBU4U4tAkyJ8L</pass_ticket><isgrayscale>1</isgrayscale></error>]
+I0721 17:36:55.993503    5284 session.go:264] >>> [Serve] Serve start userID = 2
+I0721 17:37:15.309678    5284 heartbeat.go:35] >>> [StatNotify] Heartbeat Request = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc420309050} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 17:37:15.433796    5284 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0721 17:38:15.435607    5284 heartbeat.go:35] >>> [StatNotify] Heartbeat Request = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc42017d290} 0x127d360 24 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 17:38:15.569357    5284 heartbeat.go:42] >>> [StatNotify] Heartbeat End

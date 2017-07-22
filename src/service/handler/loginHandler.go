@@ -34,7 +34,7 @@ func LoginScan(c *gin.Context) {
 		glog.Error("[LoginScan] request json data unmarshal err = [", err, "]")
 		login_response = makeLoginResponse(login_request.UserID, 0, -20000, "request json format error")
 	} else {
-		glog.Info(">>> [LoginScan] request json data = [", login_request, "]")
+		glog.Info(">>> [LoginScan] Request JSON Data = [", login_request, "]")
 		s, exist := module.SessionTable[login_request.UserID]
 		if !exist {
 			glog.Error("[LoginScan] User ", login_request.UserID, " session not exist")

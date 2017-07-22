@@ -33,7 +33,7 @@ func SendMessage(c *gin.Context) {
 		glog.Error("[SendMessage] request json data unmarshal err = [", err, "]")
 		send_response = makeSendResponse(send_request.UserID, -30000, "request json format error")
 	} else {
-		glog.Info(">>> [SendMessage] request json data = [", send_request, "]")
+		glog.Info(">>> [SendMessage] Request JSON Data = [", send_request, "]")
 		s, exist := module.SessionTable[send_request.UserID]
 		if !exist {
 			glog.Error("[SendMessage] UserID = ", send_request.UserID, " session not exist")
@@ -44,15 +44,24 @@ func SendMessage(c *gin.Context) {
 				UserName: "",
 			}
 
-			for _, u := range s.ContactMgr.ContactList {
-				if u.NickName == send_request.Group {
-					toUser = u
-					break
+			if send_request.UserType == conf.USER_GROUP {
+				for _, u := range s.ContactMgr.GetGroupContacts() {
+					if u.NickName == send_request.NickName {
+						toUser = u
+						break
+					}
+				}
+			} else {
+				for _, u := range s.ContactMgr.GetPersonContacts() {
+					if u.NickName == send_request.NickName {
+						toUser = u
+						break
+					}
 				}
 			}
 
 			if toUser.UserName == "" {
-				glog.Error("[SendMessage] User ", send_request.UserID, " group [", send_request.Group, "] not found")
+				glog.Error("[SendMessage] User ", send_request.UserID, " group [", send_request.NickName, "] not found")
 				send_response = makeSendResponse(send_request.UserID, -30002, "group not found")
 			} else {
 				switch send_request.Params.Type {

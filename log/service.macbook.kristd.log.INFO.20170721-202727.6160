@@ -1,0 +1,22 @@
+Log file created at: 2017/07/21 20:27:27
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0721 20:27:27.295176    6160 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4201d2180} 0x127d360 21 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 20:27:27.428338    6160 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0721 20:27:32.477384    6160 createHandler.go:40] >>> [SessionCreate] Request JSON Data = [&{1 [map[nickname:测试 type:101 wlm_text:欢迎新人${username}入群 wlm_image:http://weixin.xoyo.com/award/images/logo.png keywords:[map[text:http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe image:http://weixin.xoyo.com/award/images/logo.png keyword:麻将] map[image: keyword:打牌 text:关键词2号]]] map[wlm_image:http://weixin.xoyo.com/award/images/logo.png keywords:[map[keyword:麻将 text:双人麻将 image:http://weixin.xoyo.com/award/images/logo.png] map[keyword:打牌 text:关键词2号 image:]] nickname: type:102 wlm_text:你好朋友]] 2}]
+I0721 20:27:32.770499    6160 webwxapi.go:54] >>> [WebwxGetUuid] http response body = [window.QRLogin.code = 200; window.QRLogin.uuid = "4fgUsCFOgg==";]
+I0721 20:27:32.770548    6160 createHandler.go:55] >>> [SessionCreate] UserID 2's uuid = 4fgUsCFOgg== && qrcode = https://login.weixin.qq.com/qrcode/4fgUsCFOgg==
+I0721 20:27:32.770604    6160 createHandler.go:129] >>> [InitSession] NickName [测试] , type = [0keyword configs = [[{测试 0 欢迎新人${username}入群 http://weixin.xoyo.com/award/images/logo.png [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]} { 0   []}]]
+I0721 20:27:32.770678    6160 createHandler.go:129] >>> [InitSession] NickName [] , type = [0keyword configs = [[{测试 0 欢迎新人${username}入群 http://weixin.xoyo.com/award/images/logo.png [{麻将 http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]} { 0 你好朋友 http://weixin.xoyo.com/award/images/logo.png [{麻将 双人麻将 http://weixin.xoyo.com/award/images/logo.png} {打牌 关键词2号 }]}]]
+I0721 20:27:55.700509    6160 loginHandler.go:37] >>> [LoginScan] Request JSON Data = [&{2 2}]
+I0721 20:27:55.845515    6160 webwxapi.go:78] >>> [WebwxLogin] http response body = [window.code=200;
+window.redirect_uri="https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxnewloginpage?ticket=ARdKEkCulRicssnszL7lHnkP@qrticket_0&uuid=4fgUsCFOgg==&lang=zh_CN&scan=1500640068";]
+I0721 20:27:55.845582    6160 session.go:170] >>> [LoginPolling] sec3 WebwxLogin success, uuid = 4fgUsCFOgg==
+I0721 20:27:56.095024    6160 webwxapi.go:111] >>> [WebNewLoginPage] http response body = [<error><ret>0</ret><message></message><skey>@crypt_d1ec4fe2_f27a1337976fb5053085b8f1233cf2b2</skey><wxsid>LJHtU5ibOzszxTsv</wxsid><wxuin>1836981980</wxuin><pass_ticket>2biHyRC07JYumGPu7Qwoo4F9iq3VgPFRymlWqRWJLh2Z6PvGJS2VmZfnmMK9QwBU</pass_ticket><isgrayscale>1</isgrayscale></error>]
+I0721 20:27:56.618349    6160 session.go:264] >>> [Serve] Serve start userID = 2
+I0721 20:28:05.011118    6160 session.go:301] >>> [Serve] FromUser = [@4c440182a299dbd1482f4ae822a88d8a] Message Content = [麻将] MessageType =[1] UserID = [2]
+I0721 20:28:27.431552    6160 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc420379b60} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 20:28:27.560797    6160 heartbeat.go:42] >>> [StatNotify] Heartbeat End
+I0721 20:29:27.565160    6160 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.234.2:7652/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc420354840} 0x127d360 22 [] false 120.92.234.2:7652 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0721 20:29:27.695440    6160 heartbeat.go:42] >>> [StatNotify] Heartbeat End
