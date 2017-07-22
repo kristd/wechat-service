@@ -1,9 +1,0 @@
-Log file created at: 2017/07/22 09:30:18
-Running on machine: macbook
-Binary: Built with gc go1.8.1 for darwin/amd64
-Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
-E0722 09:30:18.713633    8260 session.go:513] [ReplySysMessage] Get new joiner from system message failed, err = [FindNewJoinerName] New joiner name empty
-E0722 09:31:21.300974    8260 session.go:270] [Serve] SyncCheck err = [Get https://webpush.wx.qq.com/cgi-bin/mmwebwx-bin/synccheck?_=1500687079000&deviceid=e982135014608769&r=1500687079000&sid=DEOLyftJRNUgtvCk&skey=%40crypt_d1ec4fe2_a27ab422588433a333e19a483955fb01&synckey=1_654025187%7C2_654025887%7C3_654025858%7C11_654025885%7C13_654020132%7C201_1500687078%7C203_1500687065%7C1000_1500685561%7C1001_1500685592&uin=1836981980: malformed HTTP status code "0"] userID = 2
-E0722 09:31:21.510005    8260 session.go:270] [Serve] SyncCheck err = [Get https://webpush.wx.qq.com/cgi-bin/mmwebwx-bin/synccheck?_=1500687081000&deviceid=e982135014608769&r=1500687081000&sid=DEOLyftJRNUgtvCk&skey=%40crypt_d1ec4fe2_a27ab422588433a333e19a483955fb01&synckey=1_654025187%7C2_654025887%7C3_654025858%7C11_654025885%7C13_654020132%7C201_1500687078%7C203_1500687065%7C1000_1500685561%7C1001_1500685592&uin=1836981980: malformed HTTP status code "0"] userID = 2
-E0722 09:31:52.083017    8260 session.go:341] [Serve] Session down, selector = 6, userID = 2
-E0722 09:36:15.602232    8260 session.go:341] [Serve] Session down, selector = 6, userID = 2

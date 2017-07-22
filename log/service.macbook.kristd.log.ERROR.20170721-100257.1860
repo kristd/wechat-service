@@ -1,5 +1,0 @@
-Log file created at: 2017/07/21 10:02:57
-Running on machine: macbook
-Binary: Built with gc go1.8.1 for darwin/amd64
-Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
-E0721 10:02:57.775504    1860 session.go:312] [Serve] Session down, selector = 4, userID = 2

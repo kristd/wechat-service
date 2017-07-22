@@ -1,6 +1,0 @@
-Log file created at: 2017/07/21 20:40:28
-Running on machine: macbook
-Binary: Built with gc go1.8.1 for darwin/amd64
-Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
-E0721 20:40:28.848289    6382 session.go:75] [SendText] WebWxSendMsg Ret = 1204ErrMsg = 
-E0721 20:40:29.448870    6382 session.go:105] [SendImage] Send image failed, err = <nil>
