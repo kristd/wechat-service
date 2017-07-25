@@ -1,16 +1,12 @@
 package conf
 
 const (
-	PORT = ":8888"
-
 	API_CREATE = "/api/create"
 	API_LOGIN  = "/api/login"
 	API_SEND   = "/api/send"
 	API_EXIT   = "/api/exit"
 
-	MAX_BUF_SIZE = 2048
-
-	IMG_SAVE_PATH = "./image/"
+	MAX_BUF_SIZE = 204800
 
 	SCAN    = "1"
 	CONFIRM = "0"
@@ -57,28 +53,31 @@ const (
 	LOG_LV = 2
 
 	HEARTBEAT_INTERVAL = 60
-	HEARTBEAT_ADDR     = "http://120.92.234.2:7652/api/go/wechat/online"
-	HEARTBEAT_METHOD   = "POST"
 
 	USER_GROUP  = 101
 	USER_PERSON = 102
+
+	INTERVAL          = 60
+	WECHAT_FILEHELPER = "filehelper"
 )
 
-/*
-	*	扫码加入群/第三方拉入群/群主拉入群
-	*	英文/中文
-a
-	"李晓云"邀请"TJ"加入了群聊
-	"TJ" invited "李晓云" to the group chat
-b
-	"TJ"通过扫描你分享的二维码加入了群聊
-	"李晓云" joined the group chat via your shared QR Code
-c
-	"李晓云"通过扫描"TJ"分享的二维码加入了群聊
-	"李晓云" joined the group chat via the QR Code shared by "TJ"
-d
-	你邀请"李晓云"加入了群聊
-	You've invited "Oscar" to the group chat
-*/
-var WELCOME_MESSAGE_PATTERN = [...]string{`邀请(.+)加入了群聊`, `(.+)通过扫描`,
-	`invited (.+) to the`, `(.+) joined the group`}
+var (
+	/*
+			*	扫码加入群/第三方拉入群/群主拉入群
+			*	英文/中文
+		a
+			"李晓云"邀请"TJ"加入了群聊
+			"TJ" invited "李晓云" to the group chat
+		b
+			"TJ"通过扫描你分享的二维码加入了群聊
+			"李晓云" joined the group chat via your shared QR Code
+		c
+			"李晓云"通过扫描"TJ"分享的二维码加入了群聊
+			"李晓云" joined the group chat via the QR Code shared by "TJ"
+		d
+			你邀请"李晓云"加入了群聊
+			You've invited "Oscar" to the group chat
+	*/
+	WELCOME_MESSAGE_PATTERN = [...]string{`邀请(.+)加入了群聊`, `(.+)通过扫描`,
+		`invited (.+) to the`, `(.+) joined the group`}
+)

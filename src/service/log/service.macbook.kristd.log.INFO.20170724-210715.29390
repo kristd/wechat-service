@@ -1,0 +1,8 @@
+Log file created at: 2017/07/24 21:07:15
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0724 21:07:15.297589   29390 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.52.210:9502/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4201d2180} 0x127c220 21 [] false 120.92.52.210:9502 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0724 21:07:15.747627   29390 heartbeat.go:41] >>> [StatNotify] Heartbeat End
+I0724 21:08:15.749324   29390 heartbeat.go:35] >>> [StatNotify] Heartbeat Start = [&{POST http://120.92.52.210:9502/api/go/wechat/online HTTP/1.1 1 1 map[Content-Type:[application/json; charset=utf-8]] {0xc4201d2540} 0x127c220 21 [] false 120.92.52.210:9502 map[] map[] <nil> map[]   <nil> <nil> <nil> <nil>}]
+I0724 21:08:16.042511   29390 heartbeat.go:41] >>> [StatNotify] Heartbeat End

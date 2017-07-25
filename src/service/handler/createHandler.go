@@ -2,13 +2,14 @@ package handler
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
+	"io"
 	"net/http"
 	"service/common"
 	"service/conf"
 	"service/module"
+	"service/utils"
 	"service/wxapi"
 	"time"
 )
@@ -30,8 +31,8 @@ func SessionCreate(c *gin.Context) {
 	create_response := &common.Msg_Create_Response{}
 
 	reqMsgBuf := make([]byte, conf.MAX_BUF_SIZE)
-
-	n, _ := c.Request.Body.Read(reqMsgBuf)
+	//n, _ := c.Request.Body.Read(reqMsgBuf)		--error
+	n, _ := io.ReadFull(c.Request.Body, reqMsgBuf)
 
 	err := json.Unmarshal(reqMsgBuf[:n], create_request)
 	if err != nil {
@@ -41,14 +42,22 @@ func SessionCreate(c *gin.Context) {
 		glog.Info(">>> [SessionCreate] Request JSON Data = [", create_request, "]")
 
 		s := &module.Session{
-			UserID:      create_request.UserID,
-			WxWebCommon: common.DefaultCommon,
-			WxWebXcg:    &conf.XmlConfig{},
-			WxApi:       &wxapi.WebwxApi{},
-			CreateTime:  time.Now().Unix(),
-			LoginStat:   0,
-			Loop:        false,
-			Quit:        make(chan bool),
+			UserID: create_request.UserID,
+			WxWebCommon: &common.Common{
+				AppId:      common.DefaultCommon.AppId,
+				Fun:        common.DefaultCommon.Fun,
+				LoginUrl:   common.DefaultCommon.LoginUrl,
+				Lang:       common.DefaultCommon.Lang,
+				DeviceID:   "e" + utils.GetRandomStringFromNum(15),
+				UserAgent:  common.DefaultCommon.UserAgent,
+				MediaCount: common.DefaultCommon.MediaCount,
+			},
+			WxWebXcg:   &conf.XmlConfig{},
+			WxApi:      &wxapi.WebwxApi{},
+			CreateTime: time.Now().Unix(),
+			LoginStat:  0,
+			Loop:       false,
+			Quit:       make(chan bool),
 		}
 
 		s.UuID, s.QRcode = s.WxApi.WebwxGetUuid(s.WxWebCommon)
@@ -83,10 +92,6 @@ func InitSession(s *module.Session, request *common.Msg_Create_Request) {
 	for i := 0; i < len(request.Config); i++ {
 		s.AutoRepliesConf[i].NickName, _ = request.Config[i]["nickname"].(string)
 		s.AutoRepliesConf[i].UserType = int(request.Config[i]["type"].(float64))
-
-		fmt.Println("")
-		fmt.Println("s.AutoRepliesConf[i].UserType = ", s.AutoRepliesConf[i].UserType)
-		fmt.Println("")
 
 		wlmText, exist := request.Config[i]["wlm_text"].(string)
 		if exist {

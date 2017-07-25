@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
+	"io"
 	"net/http"
 	"service/common"
 	"service/conf"
@@ -26,8 +27,8 @@ func LoginScan(c *gin.Context) {
 	login_response := &common.Msg_Login_Response{}
 
 	reqMsgBuf := make([]byte, conf.MAX_BUF_SIZE)
-
-	n, _ := c.Request.Body.Read(reqMsgBuf)
+	//n, _ := c.Request.Body.Read(reqMsgBuf)
+	n, _ := io.ReadFull(c.Request.Body, reqMsgBuf)
 
 	err := json.Unmarshal(reqMsgBuf[:n], login_request)
 	if err != nil {
@@ -42,8 +43,8 @@ func LoginScan(c *gin.Context) {
 		} else {
 			stat := s.LoginPolling()
 			if stat == 200 {
-				s.AnalizeVersion(s.RedirectUrl)
-				ret := s.InitUserCookies(s.RedirectUrl)
+				s.AnalizeVersion()
+				ret := s.InitUserCookies()
 				if ret == 0 {
 					go s.Serve()
 					login_response = makeLoginResponse(login_request.UserID, 300, stat, "success")

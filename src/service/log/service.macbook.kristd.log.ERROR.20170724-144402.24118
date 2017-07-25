@@ -1,0 +1,12 @@
+Log file created at: 2017/07/24 14:44:02
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+E0724 14:44:02.304792   24118 createHandler.go:37] [SessionCreate] request json data unmarshal err = [unexpected end of JSON input]
+E0724 15:09:35.322024   24118 loginHandler.go:40] [LoginScan] User 2 session not exist
+E0724 15:11:12.486628   24118 session.go:532] [ReplySysMessage] Get new joiner from system message failed, err = [FindNewJoinerName] New joiner name empty
+E0724 15:15:00.477011   24118 createHandler.go:37] [SessionCreate] request json data unmarshal err = [unexpected end of JSON input]
+E0724 15:15:58.878676   24118 createHandler.go:37] [SessionCreate] request json data unmarshal err = [unexpected end of JSON input]
+E0724 15:25:12.901994   24118 session.go:132] [LoginPolling] sec1 WebwxLogin failed, uuid = Yap-Uma2Nw== err = [invalid response, window.code=400;]
+E0724 15:25:12.902013   24118 loginHandler.go:55] [LoginScan] User2 login failed, status =-997
+E0724 15:25:16.046605   24118 createHandler.go:37] [SessionCreate] request json data unmarshal err = [unexpected end of JSON input]

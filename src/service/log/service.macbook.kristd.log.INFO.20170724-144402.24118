@@ -1,0 +1,138 @@
+Log file created at: 2017/07/24 14:44:02
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+E0724 14:44:02.304792   24118 createHandler.go:37] [SessionCreate] request json data unmarshal err = [unexpected end of JSON input]
+I0724 15:08:54.230529   24118 createHandler.go:40] >>> [SessionCreate] Request JSON Data = [&{1 [map[nickname:测试1 type:101 keywords:[map[text:游戏下载：http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe keyword:下载] map[keyword:游戏 text:游戏下载：http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe] map[keyword:管理员 text:现在有事，私聊我，等下回复你！😘] map[keyword:结算 text:私聊我，我来处理😘😘😘]] wlm_text:🌷🌷🌷欢迎新人${username}加入我们麻友大家庭👉【游戏下载】http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe👉【加入圈子】广麻2元群圈子🆔16107👉【约牌群规】📣本群是专打2元1分（账单分数*2结算）广东推倒胡麻将（白板癞子），4码8局一圈一结算，每圈大赢家支付房费5元（发红包标注房费，10元以下免收）📣新人进群请将“群呢称”、“游戏呢称”设一致，打牌请联系管理员切换广东推倒胡，加入圈子号“16107”📣结账采用扫微信支付码方式，大赢家分享游戏账单，输家统一支付大赢家，大赢家支付小赢家。📣打牌心平气和，勿在群内争吵，投诉戳→管理员]] 6}]
+I0724 15:08:54.517226   24118 webwxapi.go:54] >>> [WebwxGetUuid] http response body = [window.QRLogin.code = 200; window.QRLogin.uuid = "oZKlQ2p7GQ==";]
+I0724 15:08:54.517273   24118 createHandler.go:55] >>> [SessionCreate] UserID 6's uuid = oZKlQ2p7GQ== && qrcode = https://login.weixin.qq.com/qrcode/oZKlQ2p7GQ==
+I0724 15:08:54.517315   24118 createHandler.go:129] >>> [InitSession] NickName [测试1] , type = [101] keyword configs = [[{测试1 101 🌷🌷🌷欢迎新人${username}加入我们麻友大家庭👉【游戏下载】http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe👉【加入圈子】广麻2元群圈子🆔16107👉【约牌群规】📣本群是专打2元1分（账单分数*2结算）广东推倒胡麻将（白板癞子），4码8局一圈一结算，每圈大赢家支付房费5元（发红包标注房费，10元以下免收）📣新人进群请将“群呢称”、“游戏呢称”设一致，打牌请联系管理员切换广东推倒胡，加入圈子号“16107”📣结账采用扫微信支付码方式，大赢家分享游戏账单，输家统一支付大赢家，大赢家支付小赢家。📣打牌心平气和，勿在群内争吵，投诉戳→管理员  [{下载 游戏下载：http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe } {游戏 游戏下载：http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe } {管理员 现在有事，私聊我，等下回复你！😘 } {结算 私聊我，我来处理😘😘😘 }]}]]
+I0724 15:09:35.321976   24118 loginHandler.go:37] >>> [LoginScan] Request JSON Data = [&{2 2}]
+E0724 15:09:35.322024   24118 loginHandler.go:40] [LoginScan] User 2 session not exist
+I0724 15:10:16.108896   24118 createHandler.go:40] >>> [SessionCreate] Request JSON Data = [&{1 [map[nickname:测试1 type:101 keywords:[map[keyword:下载 text:游戏下载：http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe] map[keyword:游戏 text:游戏下载：http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe] map[keyword:管理员 text:现在有事，私聊我，等下回复你！😘] map[keyword:结算 text:私聊我，我来处理😘😘😘]] wlm_text:🌷🌷🌷欢迎新人${username}加入我们麻友大家庭👉【游戏下载】http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe👉【加入圈子】广麻2元群圈子🆔16107👉【约牌群规】📣本群是专打2元1分（账单分数*2结算）广东推倒胡麻将（白板癞子），4码8局一圈一结算，每圈大赢家支付房费5元（发红包标注房费，10元以下免收）📣新人进群请将“群呢称”、“游戏呢称”设一致，打牌请联系管理员切换广东推倒胡，加入圈子号“16107”📣结账采用扫微信支付码方式，大赢家分享游戏账单，输家统一支付大赢家，大赢家支付小赢家。📣打牌心平气和，勿在群内争吵，投诉戳→管理员]] 2}]
+I0724 15:10:16.341165   24118 webwxapi.go:54] >>> [WebwxGetUuid] http response body = [window.QRLogin.code = 200; window.QRLogin.uuid = "Yap-Uma2Nw==";]
+I0724 15:10:16.341220   24118 createHandler.go:55] >>> [SessionCreate] UserID 2's uuid = Yap-Uma2Nw== && qrcode = https://login.weixin.qq.com/qrcode/Yap-Uma2Nw==
+I0724 15:10:16.341247   24118 createHandler.go:129] >>> [InitSession] NickName [测试1] , type = [101] keyword configs = [[{测试1 101 🌷🌷🌷欢迎新人${username}加入我们麻友大家庭👉【游戏下载】http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe👉【加入圈子】广麻2元群圈子🆔16107👉【约牌群规】📣本群是专打2元1分（账单分数*2结算）广东推倒胡麻将（白板癞子），4码8局一圈一结算，每圈大赢家支付房费5元（发红包标注房费，10元以下免收）📣新人进群请将“群呢称”、“游戏呢称”设一致，打牌请联系管理员切换广东推倒胡，加入圈子号“16107”📣结账采用扫微信支付码方式，大赢家分享游戏账单，输家统一支付大赢家，大赢家支付小赢家。📣打牌心平气和，勿在群内争吵，投诉戳→管理员  [{下载 游戏下载：http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe } {游戏 游戏下载：http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe } {管理员 现在有事，私聊我，等下回复你！😘 } {结算 私聊我，我来处理😘😘😘 }]}]]
+I0724 15:10:37.346617   24118 loginHandler.go:37] >>> [LoginScan] Request JSON Data = [&{2 2}]
+I0724 15:10:37.528473   24118 webwxapi.go:78] >>> [WebwxLogin] http response body = [window.code=200;
+window.redirect_uri="https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxnewloginpage?ticket=Aa5unL-vczKy9kQmcRBR1uSV@qrticket_0&uuid=Yap-Uma2Nw==&lang=zh_CN&scan=1500880231";]
+I0724 15:10:37.528544   24118 session.go:170] >>> [LoginPolling] sec3 WebwxLogin success, uuid = Yap-Uma2Nw==
+I0724 15:10:38.000641   24118 webwxapi.go:111] >>> [WebNewLoginPage] http response body = [<error><ret>0</ret><message></message><skey>@crypt_d1ec4fe2_12f125eaea7636fc23a8b364eec5457f</skey><wxsid>6V3V0FaXmqVrag4W</wxsid><wxuin>1836981980</wxuin><pass_ticket>%2FWNvbWhBAGCg1kFqe4Q5P8YURPDYNIDtLLNOF9zyqfJ90xGeC7X6cX9KLZjqYEYR</pass_ticket><isgrayscale>1</isgrayscale></error>]
+I0724 15:10:38.726402   24118 session.go:264] >>> [Serve] Serve start userID = 2
+I0724 15:11:04.144612   24118 session.go:297] >>> [Serve] FromUser = [@6d15188799e18e40747bfe57b8a21da2] Message Content = [] MessageType =[51] UserID = [2]
+I0724 15:11:12.486259   24118 session.go:297] >>> [Serve] FromUser = [@@a8c8cd711ef2a4c805b2c88af6afa98b6241ce7e016caae089138f4efe28efb8] Message Content = [你将"TJ"移出了群聊] MessageType =[10000] UserID = [2]
+E0724 15:11:12.486628   24118 session.go:532] [ReplySysMessage] Get new joiner from system message failed, err = [FindNewJoinerName] New joiner name empty
+I0724 15:11:13.286105   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:11:38.585231   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:11:59.589706   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:12:00.636052   24118 session.go:297] >>> [Serve] FromUser = [@@a8c8cd711ef2a4c805b2c88af6afa98b6241ce7e016caae089138f4efe28efb8] Message Content = [你邀请"TJ"加入了群聊] MessageType =[10000] UserID = [2]
+I0724 15:12:00.995206   24118 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "1034626485119438092",
+"LocalID": "15008803200000"
+}
+]
+I0724 15:12:00.995296   24118 session.go:547] >>> [NewJoiner] Auto reply from [2] to [测试1] text = [🌷🌷🌷欢迎新人"TJ"加入我们麻友大家庭👉【游戏下载】http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe👉【加入圈子】广麻2元群圈子🆔16107👉【约牌群规】📣本群是专打2元1分（账单分数*2结算）广东推倒胡麻将（白板癞子），4码8局一圈一结算，每圈大赢家支付房费5元（发红包标注房费，10元以下免收）📣新人进群请将“群呢称”、“游戏呢称”设一致，打牌请联系管理员切换广东推倒胡，加入圈子号“16107”📣结账采用扫微信支付码方式，大赢家分享游戏账单，输家统一支付大赢家，大赢家支付小赢家。📣打牌心平气和，勿在群内争吵，投诉戳→管理员]
+I0724 15:12:28.092830   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:12:44.509070   24118 session.go:297] >>> [Serve] FromUser = [@@a8c8cd711ef2a4c805b2c88af6afa98b6241ce7e016caae089138f4efe28efb8] Message Content = [下载] MessageType =[1] UserID = [2]
+I0724 15:12:44.509176   24118 session.go:481] >>> [ReplyUserMessage] UserName match = [@@a8c8cd711ef2a4c805b2c88af6afa98b6241ce7e016caae089138f4efe28efb8]
+I0724 15:12:44.509199   24118 session.go:485] >>> [ReplyUserMessage] NickName match = [测试1]
+I0724 15:12:44.509209   24118 session.go:511] >>> [ReplyUserMessage] KeyWord match = [下载]
+I0724 15:12:44.768364   24118 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "5297175637058491478",
+"LocalID": "15008803640000"
+}
+]
+I0724 15:12:44.768451   24118 session.go:515] >>> [ReplyUserMessage] Auto reply from [2] to [测试1] text = [游戏下载：http://qyq.xoyo.com/h5/download/?app_id=XYd0ogCwfB4wYCqdikYooVe]
+I0724 15:12:49.716018   24118 session.go:297] >>> [Serve] FromUser = [@@a8c8cd711ef2a4c805b2c88af6afa98b6241ce7e016caae089138f4efe28efb8] Message Content = [结算] MessageType =[1] UserID = [2]
+I0724 15:12:49.716110   24118 session.go:481] >>> [ReplyUserMessage] UserName match = [@@a8c8cd711ef2a4c805b2c88af6afa98b6241ce7e016caae089138f4efe28efb8]
+I0724 15:12:49.716128   24118 session.go:485] >>> [ReplyUserMessage] NickName match = [测试1]
+I0724 15:12:49.716138   24118 session.go:511] >>> [ReplyUserMessage] KeyWord match = [结算]
+I0724 15:12:49.991365   24118 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "8686345808751573721",
+"LocalID": "15008803690000"
+}
+]
+I0724 15:12:49.991460   24118 session.go:515] >>> [ReplyUserMessage] Auto reply from [2] to [测试1] text = [私聊我，我来处理😘😘😘]
+I0724 15:12:56.150395   24118 session.go:297] >>> [Serve] FromUser = [@@a8c8cd711ef2a4c805b2c88af6afa98b6241ce7e016caae089138f4efe28efb8] Message Content = [我想结算] MessageType =[1] UserID = [2]
+I0724 15:12:56.150830   24118 session.go:481] >>> [ReplyUserMessage] UserName match = [@@a8c8cd711ef2a4c805b2c88af6afa98b6241ce7e016caae089138f4efe28efb8]
+I0724 15:12:56.150861   24118 session.go:485] >>> [ReplyUserMessage] NickName match = [测试1]
+I0724 15:12:56.150875   24118 session.go:511] >>> [ReplyUserMessage] KeyWord match = [结算]
+I0724 15:12:56.443673   24118 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "4787653670949606325",
+"LocalID": "15008803760000"
+}
+]
+I0724 15:12:56.443757   24118 session.go:515] >>> [ReplyUserMessage] Auto reply from [2] to [测试1] text = [私聊我，我来处理😘😘😘]
+I0724 15:13:06.372062   24118 session.go:297] >>> [Serve] FromUser = [@@a8c8cd711ef2a4c805b2c88af6afa98b6241ce7e016caae089138f4efe28efb8] Message Content = [管理员呢] MessageType =[1] UserID = [2]
+I0724 15:13:06.372203   24118 session.go:481] >>> [ReplyUserMessage] UserName match = [@@a8c8cd711ef2a4c805b2c88af6afa98b6241ce7e016caae089138f4efe28efb8]
+I0724 15:13:06.372224   24118 session.go:485] >>> [ReplyUserMessage] NickName match = [测试1]
+I0724 15:13:06.372233   24118 session.go:511] >>> [ReplyUserMessage] KeyWord match = [管理员]
+I0724 15:13:06.645616   24118 webwxapi.go:239] >>> [WebWxSendMsg] http response body = [{
+"BaseResponse": {
+"Ret": 0,
+"ErrMsg": ""
+}
+,
+"MsgID": "8886768660344629550",
+"LocalID": "15008803860000"
+}
+]
+I0724 15:13:06.645719   24118 session.go:515] >>> [ReplyUserMessage] Auto reply from [2] to [测试1] text = [现在有事，私聊我，等下回复你！😘]
+I0724 15:13:32.094072   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:13:57.299609   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:14:22.549775   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:14:47.768200   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+E0724 15:15:00.477011   24118 createHandler.go:37] [SessionCreate] request json data unmarshal err = [unexpected end of JSON input]
+I0724 15:15:12.922243   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:15:38.084747   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+E0724 15:15:58.878676   24118 createHandler.go:37] [SessionCreate] request json data unmarshal err = [unexpected end of JSON input]
+I0724 15:16:03.303132   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:16:28.467185   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:16:53.662724   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:17:18.816221   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:17:43.988854   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:18:09.157782   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:18:34.363683   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:18:59.523447   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:19:24.848148   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:19:53.707784   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:20:18.875529   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:20:44.029050   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:21:09.213776   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:21:34.381543   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:21:59.550878   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:22:24.754581   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:22:49.917820   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:23:15.620143   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:23:40.872332   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:24:06.087547   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:24:31.281322   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:24:56.550747   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:25:12.752433   24118 loginHandler.go:37] >>> [LoginScan] Request JSON Data = [&{2 2}]
+I0724 15:25:12.901949   24118 webwxapi.go:78] >>> [WebwxLogin] http response body = [window.code=400;]
+E0724 15:25:12.901994   24118 session.go:132] [LoginPolling] sec1 WebwxLogin failed, uuid = Yap-Uma2Nw== err = [invalid response, window.code=400;]
+E0724 15:25:12.902013   24118 loginHandler.go:55] [LoginScan] User2 login failed, status =-997
+E0724 15:25:16.046605   24118 createHandler.go:37] [SessionCreate] request json data unmarshal err = [unexpected end of JSON input]
+I0724 15:25:21.705806   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:25:46.840204   24118 session.go:356] [Serve] Session selector = 0, userID = 2
+I0724 15:26:12.022702   24118 session.go:356] [Serve] Session selector = 0, userID = 2

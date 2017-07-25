@@ -36,7 +36,7 @@ func LoadImage(url string) (fileName string, err error) {
 		fileName = path[len(path)-1]
 	}
 
-	fileName = conf.IMG_SAVE_PATH + fileName
+	fileName = conf.Config.IMAGE_PATH + fileName
 	out, err := os.Create(fileName)
 	if err != nil {
 		return "", err

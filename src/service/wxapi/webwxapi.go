@@ -423,6 +423,8 @@ func (wx *WebwxApi) SyncCheck(c *common.Common, ce *conf.XmlConfig, cookies []*h
 	}
 
 	b, _ := json.Marshal(js)
+	glog.Info(">>> [SyncCheck] common.InitReqBody = [", string(b), "]")
+
 	jar, _ := cookiejar.New(nil)
 	u, _ := url.Parse(uri)
 	jar.SetCookies(u, cookies)
@@ -442,8 +444,6 @@ func (wx *WebwxApi) SyncCheck(c *common.Common, ce *conf.XmlConfig, cookies []*h
 
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-
-	//glog.Info(">>> [SyncCheck] http response body = [", string(body), "]")
 
 	strb := string(body)
 	reg := regexp.MustCompile("window.synccheck={retcode:\"(\\d+)\",selector:\"(\\d+)\"}")
@@ -489,8 +489,6 @@ func (wx *WebwxApi) WebWxSync(c *common.Common, ce *conf.XmlConfig, cookies []*h
 	}
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
-
-	//glog.Info(">>> [WebWxSync] http response body = [", string(body), "]")
 
 	jc, err := conf.LoadJsonConfigFromBytes(body)
 	if err != nil {

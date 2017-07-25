@@ -5,10 +5,17 @@ import (
 	"encoding/json"
 	"encoding/xml"
 	"fmt"
+	"github.com/golang/glog"
 	"io/ioutil"
 	"reflect"
 	"strings"
 )
+
+type GlobalConfig struct {
+	PORT        string `json:"port"`
+	IMAGE_PATH  string `json:"image_path"`
+	NOTIFY_ADDR string `json:"notify_addr"`
+}
 
 type JsonConfig struct {
 	m  map[string]interface{}
@@ -25,6 +32,28 @@ type XmlConfig struct {
 	Wxuin       string   `xml:"wxuin"`
 	PassTicket  string   `xml:"pass_ticket"`
 	IsGrayscale int      `xml:"isgrayscale"`
+}
+
+var (
+	Config *GlobalConfig
+)
+
+func LoadConfig(f string) bool {
+	b, err := ioutil.ReadFile(f)
+	if err != nil {
+		glog.Error("[LoadConfig] Read config file failed f:", f, " err:", err)
+		return false
+	}
+
+	Config = &GlobalConfig{}
+	err = json.Unmarshal(b, Config)
+	if err != nil {
+		glog.Error("[LoadConfig] Unmarshal config file failed err:", err, " content:", string(b))
+		return false
+	}
+
+	glog.Infof(">>> [LoadConfig] Read config file [%v] ok!\n\n%#v\n\n", f, Config)
+	return true
 }
 
 func LoadJsonConfigFromFile(path string) (*JsonConfig, error) {

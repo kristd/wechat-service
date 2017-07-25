@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
 	"github.com/golang/glog"
+	"io"
 	"net/http"
 	"service/common"
 	"service/conf"
@@ -25,8 +26,8 @@ func SendMessage(c *gin.Context) {
 	send_response := &common.Msg_Send_Response{}
 
 	reqMsgBuf := make([]byte, conf.MAX_BUF_SIZE)
-
-	n, _ := c.Request.Body.Read(reqMsgBuf)
+	//n, _ := c.Request.Body.Read(reqMsgBuf)
+	n, _ := io.ReadFull(c.Request.Body, reqMsgBuf)
 
 	err := json.Unmarshal(reqMsgBuf[:n], send_request)
 	if err != nil {

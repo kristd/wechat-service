@@ -31,8 +31,8 @@ type AutoReplyConf struct {
 type Session struct {
 	WxWebCommon *common.Common
 	WxWebXcg    *conf.XmlConfig
-	cookies     []*http.Cookie
-	synKeyList  *common.SyncKeyList
+	Cookies     []*http.Cookie
+	SynKeyList  *common.SyncKeyList
 	Bot         *common.User
 	ContactMgr  *common.ContactManager
 	QRcode      string
@@ -60,11 +60,13 @@ type Session struct {
 	Loop bool
 }
 
-var SessionTable map[int]*Session
+var (
+	SessionTable map[int]*Session
+)
 
 // SendText: send text msg type 1
 func (s *Session) SendText(msg, from, to string) (string, string, error) {
-	b, err := s.WxApi.WebWxSendMsg(s.WxWebCommon, s.WxWebXcg, s.cookies, from, to, msg)
+	b, err := s.WxApi.WebWxSendMsg(s.WxWebCommon, s.WxWebXcg, s.Cookies, from, to, msg)
 	if err != nil {
 		return "", "", err
 	}
@@ -72,7 +74,7 @@ func (s *Session) SendText(msg, from, to string) (string, string, error) {
 	ret, _ := jc.GetInt("BaseResponse.Ret")
 	if ret != 0 {
 		errMsg, _ := jc.GetString("BaseResponse.ErrMsg")
-		glog.Error("[SendText] WebWxSendMsg Ret = ", ret, "ErrMsg = ", errMsg)
+		glog.Error("[SendText] WebWxSendMsg Ret = ", ret, " ErrMsg = ", errMsg)
 		return "", "", fmt.Errorf("[SendText] WebWxSendMsg Ret=%d, ErrMsg=%s", ret, errMsg)
 	}
 	msgID, _ := jc.GetString("MsgID")
@@ -94,13 +96,13 @@ func (s *Session) SendImage(path, from, to string) (int, error) {
 		return -2, err
 	}
 
-	mediaId, err := s.WxApi.WebWxUploadMedia(s.WxWebCommon, s.WxWebXcg, s.cookies, ss[len(ss)-1], b)
+	mediaId, err := s.WxApi.WebWxUploadMedia(s.WxWebCommon, s.WxWebXcg, s.Cookies, ss[len(ss)-1], b)
 	if err != nil {
 		glog.Error("[SendImage] Upload image failed, err = ", err)
 		return -3, fmt.Errorf("[SendImage] Upload image failed, err = ", err)
 	}
 
-	ret, err := s.WxApi.WebWxSendMsgImg(s.WxWebCommon, s.WxWebXcg, s.cookies, from, to, mediaId)
+	ret, err := s.WxApi.WebWxSendMsgImg(s.WxWebCommon, s.WxWebXcg, s.Cookies, from, to, mediaId)
 	if err != nil || ret != 0 {
 		glog.Error("[SendImage] Send image failed, err = ", err)
 		return ret, err
@@ -178,8 +180,8 @@ func (s *Session) LoginPolling() int {
 	}
 }
 
-func (s *Session) AnalizeVersion(uri string) {
-	u, _ := url.Parse(uri)
+func (s *Session) AnalizeVersion() {
+	u, _ := url.Parse(s.RedirectUrl)
 
 	// version may change
 	s.WxWebCommon.Host = u.Host
@@ -200,10 +202,10 @@ func (s *Session) AnalizeVersion(uri string) {
 	}
 }
 
-func (s *Session) InitUserCookies(redirectUrl string) int {
+func (s *Session) InitUserCookies() int {
 	var err error
 
-	s.cookies, err = s.WxApi.WebNewLoginPage(s.WxWebCommon, s.WxWebXcg, redirectUrl)
+	s.Cookies, err = s.WxApi.WebNewLoginPage(s.WxWebCommon, s.WxWebXcg, s.RedirectUrl)
 	if err != nil {
 		glog.Error("[InitUserCookies] WebNewLoginPage err = ", err)
 		return -1
@@ -219,7 +221,7 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 	jc := &conf.JsonConfig{}
 	jc, _ = conf.LoadJsonConfigFromBytes(session)
 
-	s.synKeyList, err = common.GetSyncKeyListFromJc(jc)
+	s.SynKeyList, err = common.GetSyncKeyListFromJc(jc)
 	if err != nil {
 		glog.Error("[InitUserCookies] GetSyncKeyListFromJc err = ", err)
 		return -3
@@ -232,7 +234,7 @@ func (s *Session) InitUserCookies(redirectUrl string) int {
 	}
 
 	var contacts []byte
-	contacts, err = s.WxApi.WebWxGetContact(s.WxWebCommon, s.WxWebXcg, s.cookies)
+	contacts, err = s.WxApi.WebWxGetContact(s.WxWebCommon, s.WxWebXcg, s.Cookies)
 	if err != nil {
 		glog.Error("[InitUserCookies] WebWxGetContact err = ", err)
 		return -5
@@ -265,18 +267,17 @@ func (s *Session) Serve() {
 
 	for s.Loop {
 		//will be blocked here until wechat return response
-		ret, selector, err := s.WxApi.SyncCheck(s.WxWebCommon, s.WxWebXcg, s.cookies, s.WxWebCommon.SyncSrv, s.synKeyList)
+		ret, selector, err := s.WxApi.SyncCheck(s.WxWebCommon, s.WxWebXcg, s.Cookies, s.WxWebCommon.SyncSrv, s.SynKeyList)
 		if err != nil {
 			glog.Error("[Serve] SyncCheck err = [", err, "] userID = ", s.UserID)
 			continue
-		} else if selector != 0 {
-			//glog.Info(">>> [Serve] SyncCheck return = [", ret, "] selector = [", selector, "]")
 		}
 
 		if ret == 0 {
-			//2: new message; 4: session update; 6: contact update; 7: action in device
-			if selector == 2 {
-				msg, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.cookies, s.synKeyList)
+			switch selector {
+			case 2:
+				//new message
+				msg, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.Cookies, s.SynKeyList)
 				if err != nil {
 					glog.Error("[Serve] WebWxSync err = [", err, "] userID = ", s.UserID)
 				} else {
@@ -291,8 +292,8 @@ func (s *Session) Serve() {
 						continue
 					}
 
-					msgis, _ := jc.GetInterfaceSlice("AddMsgList")
-					for _, v := range msgis {
+					msgList, _ := jc.GetInterfaceSlice("AddMsgList")
+					for _, v := range msgList {
 						rmsg := s.Analize(v.(map[string]interface{}))
 						glog.Info(">>> [Serve] FromUser = [", rmsg.FromUserName, "] Message Content = [", rmsg.Content, "] MessageType =[", rmsg.MsgType, "] UserID = [", s.UserID, "]")
 
@@ -304,9 +305,17 @@ func (s *Session) Serve() {
 						}
 					}
 				}
-			} else if selector == 6 {
+			case 4:
+				//session update
+				_, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.Cookies, s.SynKeyList)
+				if err != nil {
+					glog.Error("[Serve] WebWxSync err = [", err, "] userID = ", s.UserID)
+				} else {
+					glog.Info(">>> [Serve] Session selector = ", selector, ", userID = ", s.UserID)
+				}
+			case 6:
 				//contact update
-				msg, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.cookies, s.synKeyList)
+				msg, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.Cookies, s.SynKeyList)
 				if err != nil {
 					glog.Error("[Serve] WebWxSync err = [", err, "] userID = ", s.UserID)
 				} else {
@@ -344,30 +353,26 @@ func (s *Session) Serve() {
 						go s.SendWelComeMessage(u.UserName)
 					}
 				}
-			} else if selector == 4 {
-				//session change?
-				_, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.cookies, s.synKeyList)
+			case 7:
+				//session update
+				_, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.Cookies, s.SynKeyList)
 				if err != nil {
 					glog.Error("[Serve] WebWxSync err = [", err, "] userID = ", s.UserID)
 				} else {
-					//TODO
+					glog.Info(">>> [Serve] Session selector = ", selector, ", userID = ", s.UserID)
 				}
-			} else {
-				glog.Info("[Serve] Session selector = ", selector, ", userID = ", s.UserID)
+			default:
+				glog.Info(">>> [Serve] Session selector = ", selector, ", userID = ", s.UserID)
 			}
-			//1100: logout from client; 1101: login another webpage
-		} else if ret == 1101 || ret == 1100 {
-			glog.Error("[Serve] User logout error code = ", ret, ", userID = ", s.UserID)
-			break
-		} else if ret == 1205 {
-			glog.Error("[Serve] Api blocked, ret = ", 1205, ", userID = ", s.UserID)
-			break
 		} else {
-			glog.Error("[Serve] Unhandled exception ret = ", ret, ", userID = ", s.UserID)
+			// 1100: logout from client
+			// 1101: login another webpage
+			glog.Error("[Serve] Exception ret = ", ret, ", userID = ", s.UserID)
 			break
 		}
 	}
 
+	s.UpdateSrvStatus(false)
 	glog.Info(">>> [Serve] Serve stop userID = ", s.UserID)
 }
 
