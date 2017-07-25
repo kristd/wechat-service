@@ -1,5 +1,0 @@
-Log file created at: 2017/07/24 15:56:54
-Running on machine: macbook
-Binary: Built with gc go1.8.1 for darwin/amd64
-Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
-E0724 15:56:54.568807   25610 createHandler.go:45] [SessionCreate] request json data unmarshal err = [unexpected end of JSON input]

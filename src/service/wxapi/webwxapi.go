@@ -423,7 +423,7 @@ func (wx *WebwxApi) SyncCheck(c *common.Common, ce *conf.XmlConfig, cookies []*h
 	}
 
 	b, _ := json.Marshal(js)
-	glog.Info(">>> [SyncCheck] common.InitReqBody = [", string(b), "]")
+	//glog.Info(">>> [SyncCheck] common.InitReqBody = [", string(b), "]")
 
 	jar, _ := cookiejar.New(nil)
 	u, _ := url.Parse(uri)

@@ -72,7 +72,9 @@ func main() {
 	route.POST(conf.API_SEND, handler.SendMessage)
 	route.POST(conf.API_EXIT, handler.Exit)
 
-	go StatNotify()
+	if conf.Config.NOTIFY_ON {
+		go StatNotify()
+	}
 
 	route.Run(conf.Config.PORT)
 }

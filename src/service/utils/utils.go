@@ -70,13 +70,8 @@ func FindNewJoinerName(message string) (string, error) {
 			return "", err
 		}
 
-		fmt.Println(">>> k =", k, " v = ", v, " msg = ", message)
-
 		newJoiner = r.FindString(message)
 		if len(newJoiner) != 0 {
-
-			fmt.Println(">>> newJoiner = ", newJoiner)
-
 			switch k {
 			case 0:
 				newJoiner = strings.Replace(strings.Replace(newJoiner, "邀请", "", -1), "加入了群聊", "", -1)

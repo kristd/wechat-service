@@ -14,6 +14,7 @@ import (
 type GlobalConfig struct {
 	PORT        string `json:"port"`
 	IMAGE_PATH  string `json:"image_path"`
+	NOTIFY_ON   bool   `json:"notify_on"`
 	NOTIFY_ADDR string `json:"notify_addr"`
 }
 
@@ -52,7 +53,6 @@ func LoadConfig(f string) bool {
 		return false
 	}
 
-	glog.Infof(">>> [LoadConfig] Read config file [%v] ok!\n\n%#v\n\n", f, Config)
 	return true
 }
 
