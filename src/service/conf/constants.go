@@ -70,5 +70,5 @@ var (
 			你邀请"李晓云"加入了群聊 || You've invited "Oscar" to the group chat
 			李晓云通过游戏中心加入群聊
 	*/
-	WELCOME_MESSAGE_PATTERN = [...]string{`邀请(.+)加入了群聊`, `(.+)通过扫描`, `invited (.+) to the`, `(.+) joined the group`}
+	WELCOME_MESSAGE_PATTERN = [...]string{`邀请(.+)加入了群聊`, `(.+)通过扫描`, `invited (.+) to the`, `(.+) joined the group`, `(.+)通过游戏中心加入群聊`}
 )

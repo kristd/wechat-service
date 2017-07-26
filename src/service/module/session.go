@@ -364,7 +364,16 @@ func (s *Session) Serve() {
 					glog.Info(">>> [Serve] Session selector = ", selector, ", userID = ", s.UserID)
 				}
 			default:
-				glog.Info(">>> [Serve] Session selector = ", selector, ", userID = ", s.UserID)
+				if selector == 0 {
+					continue
+				}
+
+				_, err := s.WxApi.WebWxSync(s.WxWebCommon, s.WxWebXcg, s.Cookies, s.SynKeyList)
+				if err != nil {
+					glog.Error("[Serve] WebWxSync err = [", err, "] userID = ", s.UserID)
+				} else {
+					glog.Info(">>> [Serve] Session selector = ", selector, ", userID = ", s.UserID)
+				}
 			}
 		} else {
 			// 1100: logout from client

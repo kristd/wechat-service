@@ -81,12 +81,12 @@ func FindNewJoinerName(message string) (string, error) {
 				newJoiner = strings.Replace(strings.Replace(newJoiner, "invited ", "", -1), " to the", "", -1)
 			case 3:
 				newJoiner = strings.Replace(newJoiner, " joined the group", "", -1)
+			case 4:
+				newJoiner = strings.Replace(newJoiner, "通过游戏中心加入群聊", "", -1)
 			}
 			break
 		}
 	}
-
-	fmt.Println(">>> newJoiner = ", newJoiner)
 
 	if len(newJoiner) == 0 {
 		return "", fmt.Errorf("[FindNewJoinerName] New joiner name empty")

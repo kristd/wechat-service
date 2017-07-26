@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	data := "{\"action\":5,\"id\":2}"
+	data := "{\"action\":5,\"id\":4}"
 
 	body := strings.NewReader(data)
 	req, err := http.NewRequest("POST", "http://localhost:8888/api/exit", body)
