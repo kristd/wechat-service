@@ -2,79 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a3cb0e5e-fd0e-41e0-92fb-1f364c1c0616" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.ERROR" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.INFO" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.WARNING" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-143948.24012" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-143959.24024" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-144002.24034" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-144402.24118" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-152831.24670" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-153137.24821" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-153322.25023" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-153547.25088" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-153636.25157" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-153853.25226" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-153938.25293" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-154412.25453" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-154727.25531" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-155654.25610" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-155751.25704" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-160642.25822" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-162442.26060" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170724-202745.29085" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.ERROR.20170725-094249.34584" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-143948.24012" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-143959.24024" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-144002.24034" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-144402.24118" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-152831.24670" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-153137.24821" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-153322.25023" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-153547.25088" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-153636.25157" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-153853.25226" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-153938.25293" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-154412.25453" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-154727.25531" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-155654.25610" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-155751.25704" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-160642.25822" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-160725.25882" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-161126.25982" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-162202.26060" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-182025.26977" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-202745.29085" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170724-210715.29390" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170725-094111.34584" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.INFO.20170725-102425.35150" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-143948.24012" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-143959.24024" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-144002.24034" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-144402.24118" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-152831.24670" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-153137.24821" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-153322.25023" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-153547.25088" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-153636.25157" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-153853.25226" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-153938.25293" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-154412.25453" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-154727.25531" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-155654.25610" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-155751.25704" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-160642.25822" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-162442.26060" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170724-202745.29085" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/service/log/service.macbook.kristd.log.WARNING.20170725-094249.34584" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/service" afterPath="$PROJECT_DIR$/src/service/service" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/cfg.json" afterPath="$PROJECT_DIR$/src/service/cfg.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/conf/config.go" afterPath="$PROJECT_DIR$/src/service/conf/config.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/conf/constants.go" afterPath="$PROJECT_DIR$/src/service/conf/constants.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/main.go" afterPath="$PROJECT_DIR$/src/service/main.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/utils/utils.go" afterPath="$PROJECT_DIR$/src/service/utils/utils.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/wxapi/webwxapi.go" afterPath="$PROJECT_DIR$/src/service/wxapi/webwxapi.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/handler/sendHandler.go" afterPath="$PROJECT_DIR$/src/service/handler/sendHandler.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/service/module/session.go" afterPath="$PROJECT_DIR$/src/service/module/session.go" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -103,8 +34,8 @@
       <file leaf-file-name="session.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/module/session.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2427">
-              <caret line="95" column="22" lean-forward="true" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
+            <state relative-caret-position="-5238">
+              <caret line="201" column="22" lean-forward="false" selection-start-line="201" selection-start-column="22" selection-end-line="201" selection-end-column="22" />
               <folding>
                 <element signature="e#16#182#0" expanded="true" />
               </folding>
@@ -116,7 +47,7 @@
         <entry file="file://$PROJECT_DIR$/src/service/main.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="338">
-              <caret line="49" column="60" lean-forward="true" selection-start-line="49" selection-start-column="60" selection-end-line="49" selection-end-column="60" />
+              <caret line="49" column="60" lean-forward="false" selection-start-line="49" selection-start-column="60" selection-end-line="49" selection-end-column="60" />
               <folding>
                 <element signature="e#14#203#0" expanded="true" />
               </folding>
@@ -128,7 +59,7 @@
         <entry file="file://$PROJECT_DIR$/src/service/utils/utils.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="482">
-              <caret line="74" column="22" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
+              <caret line="74" column="22" lean-forward="false" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
               <folding>
                 <element signature="e#15#147#0" expanded="true" />
               </folding>
@@ -136,13 +67,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="constants.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="constants.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/service/conf/constants.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="802">
-              <caret line="82" column="115" lean-forward="false" selection-start-line="82" selection-start-column="115" selection-end-line="82" selection-end-column="115" />
+            <state relative-caret-position="1040">
+              <caret line="65" column="8" lean-forward="false" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
               <folding>
-                <marker date="1500983938000" expanded="true" signature="20:1363" ph="(...)" />
+                <marker date="1501001006000" expanded="true" signature="20:1363" ph="(...)" />
               </folding>
             </state>
           </provider>
@@ -152,7 +83,7 @@
         <entry file="file://$PROJECT_DIR$/src/service/conf/config.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="38" column="24" lean-forward="true" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
+              <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
               <folding>
                 <element signature="e#14#134#0" expanded="true" />
               </folding>
@@ -164,17 +95,17 @@
         <entry file="file://$PROJECT_DIR$/src/service/wxapi/webwxapi.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="271">
-              <caret line="465" column="29" lean-forward="true" selection-start-line="465" selection-start-column="29" selection-end-line="465" selection-end-column="29" />
+              <caret line="465" column="29" lean-forward="false" selection-start-line="465" selection-start-column="29" selection-end-line="465" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="exitHandler.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="exitHandler.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/service/handler/exitHandler.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="28" column="44" lean-forward="true" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+            <state relative-caret-position="106">
+              <caret line="28" column="44" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -184,7 +115,29 @@
         <entry file="file://$PROJECT_DIR$/src/service/handler/loginHandler.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="816">
-              <caret line="51" column="97" lean-forward="true" selection-start-line="51" selection-start-column="97" selection-end-line="51" selection-end-column="97" />
+              <caret line="51" column="97" lean-forward="false" selection-start-line="51" selection-start-column="97" selection-end-line="51" selection-end-column="97" />
+              <folding>
+                <element signature="e#17#168#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createHandler.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/service/handler/createHandler.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-759">
+              <caret line="33" column="59" lean-forward="true" selection-start-line="33" selection-start-column="59" selection-end-line="33" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sendHandler.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/service/handler/sendHandler.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1104">
+              <caret line="69" column="95" lean-forward="false" selection-start-line="69" selection-start-column="95" selection-end-line="69" selection-end-column="95" />
               <folding>
                 <element signature="e#17#168#0" expanded="true" />
               </folding>
@@ -285,17 +238,17 @@
         <option value="$PROJECT_DIR$/src/service/handler/createHandler.go" />
         <option value="$PROJECT_DIR$/src/service/handler/exitHandler.go" />
         <option value="$PROJECT_DIR$/src/service/handler/loginHandler.go" />
-        <option value="$PROJECT_DIR$/src/service/handler/sendHandler.go" />
         <option value="$PROJECT_DIR$/src/test/http-test.go" />
         <option value="$PROJECT_DIR$/src/service/backend.sh" />
         <option value="$PROJECT_DIR$/src/service/frontend.sh" />
         <option value="$PROJECT_DIR$/src/service/wxapi/webwxapi.go" />
         <option value="$PROJECT_DIR$/src/service/utils/utils.go" />
-        <option value="$PROJECT_DIR$/src/service/conf/constants.go" />
-        <option value="$PROJECT_DIR$/src/service/module/session.go" />
         <option value="$PROJECT_DIR$/src/service/main.go" />
         <option value="$PROJECT_DIR$/src/service/cfg.json" />
         <option value="$PROJECT_DIR$/src/service/conf/config.go" />
+        <option value="$PROJECT_DIR$/src/service/handler/sendHandler.go" />
+        <option value="$PROJECT_DIR$/src/service/module/session.go" />
+        <option value="$PROJECT_DIR$/src/service/conf/constants.go" />
       </list>
     </option>
   </component>
@@ -317,10 +270,10 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
-    <option name="width" value="1280" />
-    <option name="height" value="773" />
+    <option name="width" value="1920" />
+    <option name="height" value="1053" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -785,7 +738,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="773" extended-state="1" />
+    <frame x="0" y="23" width="1920" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -794,7 +747,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32776618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32892805" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22374798" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14749734" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.3295796" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.3295796" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22132471" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1070,20 +1023,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/handler/createHandler.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="33" column="59" lean-forward="true" selection-start-line="33" selection-start-column="59" selection-end-line="33" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/handler/sendHandler.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="8" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/github.com/golang/glog/glog.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2793">
@@ -1098,20 +1037,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/module/session.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2427">
-          <caret line="95" column="22" lean-forward="true" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
-          <folding>
-            <element signature="e#16#182#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/service/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
-          <caret line="49" column="60" lean-forward="true" selection-start-line="49" selection-start-column="60" selection-end-line="49" selection-end-column="60" />
+          <caret line="49" column="60" lean-forward="false" selection-start-line="49" selection-start-column="60" selection-end-line="49" selection-end-column="60" />
           <folding>
             <element signature="e#14#203#0" expanded="true" />
           </folding>
@@ -1121,19 +1050,9 @@
     <entry file="file://$PROJECT_DIR$/src/service/utils/utils.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="482">
-          <caret line="74" column="22" lean-forward="true" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
+          <caret line="74" column="22" lean-forward="false" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
           <folding>
             <element signature="e#15#147#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/conf/constants.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="802">
-          <caret line="82" column="115" lean-forward="false" selection-start-line="82" selection-start-column="115" selection-end-line="82" selection-end-column="115" />
-          <folding>
-            <marker date="1500983938000" expanded="true" signature="20:1363" ph="(...)" />
           </folding>
         </state>
       </provider>
@@ -1141,19 +1060,9 @@
     <entry file="file://$PROJECT_DIR$/src/service/conf/config.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="38" column="24" lean-forward="true" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
+          <caret line="38" column="24" lean-forward="false" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
           <folding>
             <element signature="e#14#134#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/handler/loginHandler.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="51" column="97" lean-forward="true" selection-start-line="51" selection-start-column="97" selection-end-line="51" selection-end-column="97" />
-          <folding>
-            <element signature="e#17#168#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1162,14 +1071,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="3" column="90" lean-forward="true" selection-start-line="3" selection-start-column="90" selection-end-line="3" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/service/wxapi/webwxapi.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="465" column="29" lean-forward="true" selection-start-line="465" selection-start-column="29" selection-end-line="465" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -1184,9 +1085,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/service/handler/exitHandler.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="28" column="44" lean-forward="true" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
+        <state relative-caret-position="106">
+          <caret line="28" column="44" lean-forward="false" selection-start-line="28" selection-start-column="44" selection-end-line="28" selection-end-column="44" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/handler/loginHandler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="51" column="97" lean-forward="false" selection-start-line="51" selection-start-column="97" selection-end-line="51" selection-end-column="97" />
+          <folding>
+            <element signature="e#17#168#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/handler/createHandler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-759">
+          <caret line="33" column="59" lean-forward="true" selection-start-line="33" selection-start-column="59" selection-end-line="33" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/handler/sendHandler.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1104">
+          <caret line="69" column="95" lean-forward="false" selection-start-line="69" selection-start-column="95" selection-end-line="69" selection-end-column="95" />
+          <folding>
+            <element signature="e#17#168#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/wxapi/webwxapi.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="465" column="29" lean-forward="false" selection-start-line="465" selection-start-column="29" selection-end-line="465" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/module/session.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5238">
+          <caret line="201" column="22" lean-forward="false" selection-start-line="201" selection-start-column="22" selection-end-line="201" selection-end-column="22" />
+          <folding>
+            <element signature="e#16#182#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/service/conf/constants.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1040">
+          <caret line="65" column="8" lean-forward="false" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
+          <folding>
+            <marker date="1501001006000" expanded="true" signature="20:1363" ph="(...)" />
+          </folding>
         </state>
       </provider>
     </entry>

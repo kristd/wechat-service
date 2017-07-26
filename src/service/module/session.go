@@ -79,6 +79,7 @@ func (s *Session) SendText(msg, from, to string) (string, string, error) {
 	}
 	msgID, _ := jc.GetString("MsgID")
 	localID, _ := jc.GetString("LocalID")
+	glog.Info(">>> [SendText] Send text success, msgID = ", msgID, ", localID = ", localID)
 	return msgID, localID, nil
 }
 
@@ -100,6 +101,8 @@ func (s *Session) SendImage(path, from, to string) (int, error) {
 	if err != nil {
 		glog.Error("[SendImage] Upload image failed, err = ", err)
 		return -3, fmt.Errorf("[SendImage] Upload image failed, err = ", err)
+	} else {
+		glog.Info(">>> [SendImage] Upload image success, mediaID = ", mediaId)
 	}
 
 	ret, err := s.WxApi.WebWxSendMsgImg(s.WxWebCommon, s.WxWebXcg, s.Cookies, from, to, mediaId)
@@ -107,6 +110,7 @@ func (s *Session) SendImage(path, from, to string) (int, error) {
 		glog.Error("[SendImage] Send image failed, err = ", err)
 		return ret, err
 	} else {
+		glog.Info(">>> [SendImage] Send image success, ret = ", ret)
 		return ret, nil
 	}
 }
@@ -138,17 +142,17 @@ func (s *Session) LoginPolling() int {
 				flag = conf.CONFIRM
 			}
 
-			glog.Info(">>> [LoginPolling] sec1 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
+			glog.Info(">>> [LoginPolling] sec-1 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
 			redirectUrl, err = s.WxApi.WebwxLogin(s.WxWebCommon, s.UuID, flag)
 			if err != nil {
-				glog.Error("[LoginPolling] sec2 WebwxLogin failed, uuid = ", s.UuID, ", err = [", err, "]")
+				glog.Error("[LoginPolling] sec-2 WebwxLogin failed, uuid = ", s.UuID, ", err = [", err, "]")
 				s.UpdateLoginStat(-200)
 				return -200
 			} else if strings.Contains(redirectUrl, "http") {
 				s.RedirectUrl = redirectUrl
 				s.UpdateLoginStat(conf.LOGIN_SUCC)
 
-				glog.Info(">>> [LoginPolling] sec2 WebwxLogin success, uuid = ", s.UuID)
+				glog.Info(">>> [LoginPolling] sec-2 WebwxLogin success, uuid = ", s.UuID)
 				return 200
 			}
 		} else if redirectUrl == "408;" {
@@ -157,24 +161,24 @@ func (s *Session) LoginPolling() int {
 				flag = conf.SCAN
 			}
 
-			glog.Info(">>> [LoginPolling] sec3 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
+			glog.Info(">>> [LoginPolling] sec-3 WebwxLogin uuid = ", s.UuID, " redirectUrl = ", redirectUrl)
 			tryCount++
 			if tryCount >= conf.MAXTRY {
 				s.UpdateLoginStat(-998)
 				return -998
 			} else {
-				glog.Info(">>> [LoginPolling] sec3 WebwxLogin uuid = ", s.UuID, " retry =", tryCount)
+				glog.Info(">>> [LoginPolling] sec-3 WebwxLogin uuid = ", s.UuID, " retry =", tryCount)
 			}
 		} else if strings.Contains(redirectUrl, "http") {
 			s.RedirectUrl = redirectUrl
 			s.UpdateLoginStat(conf.LOGIN_SUCC)
 
-			glog.Info(">>> [LoginPolling] sec3 WebwxLogin success, uuid = ", s.UuID)
+			glog.Info(">>> [LoginPolling] sec-3 WebwxLogin success, uuid = ", s.UuID)
 			return 200
 		} else {
 			s.UpdateLoginStat(-999)
 
-			glog.Error("[LoginPolling] sec4 WebwxLogin failed, uuid = ", s.UuID, ", redirectUrl = ", redirectUrl)
+			glog.Error("[LoginPolling] sec-4 WebwxLogin failed, uuid = ", s.UuID, ", redirectUrl = ", redirectUrl)
 			return -999
 		}
 	}
@@ -193,11 +197,9 @@ func (s *Session) AnalizeVersion() {
 
 	if strings.Contains(u.Host, "wx2") {
 		// new version
-		//s.WxWebCommon.SyncSrv = "webpush.wx2.qq.com"
 		s.WxApi.Version = "wx2"
 	} else {
 		// old version
-		//s.WxWebCommon.SyncSrv = "webpush.wx.qq.com"
 		s.WxApi.Version = "wx"
 	}
 }

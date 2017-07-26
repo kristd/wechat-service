@@ -67,24 +67,11 @@ func SendMessage(c *gin.Context) {
 			} else {
 				switch send_request.Params.Type {
 				case conf.TEXT_MSG:
-					msgID, localID, err := s.SendText(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
-					if msgID != "" && localID != "" {
-						glog.Info(">>> [SendMessage] User [", send_request.UserID, "] send text message success")
-						send_response = makeSendResponse(s.UserID, 200, "success")
-					} else {
-						glog.Error("[SendMessage] User ", send_request.UserID, " send text message failed, err = [", err, "]")
-						send_response = makeSendResponse(s.UserID, -30003, "send text message failed")
-					}
+					go s.SendText(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
 				case conf.IMG_MSG:
-					retcd, err := s.SendImage(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
-					if retcd == 0 {
-						glog.Info(">>> [SendMessage] User ", send_request.UserID, " send image message success")
-						send_response = makeSendResponse(s.UserID, 200, "success")
-					} else if err != nil {
-						glog.Error("[SendMessage] User ", send_request.UserID, " send image message failed, err = [", err, "]")
-						send_response = makeSendResponse(s.UserID, -30005, "send image message failed")
-					}
+					go s.SendImage(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
 				}
+				send_response = makeSendResponse(s.UserID, 200, "success")
 			}
 		}
 	}

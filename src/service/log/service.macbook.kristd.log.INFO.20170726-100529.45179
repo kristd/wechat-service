@@ -1,0 +1,140 @@
+Log file created at: 2017/07/26 10:05:29
+Running on machine: macbook
+Binary: Built with gc go1.8.1 for darwin/amd64
+Log line format: [IWEF]mmdd hh:mm:ss.uuuuuu threadid file:line] msg
+I0726 10:05:29.604798   45179 createHandler.go:42] >>> [SessionCreate] Request JSON Data = [&{1 [map[nickname:测试1 type:101 keywords:[map[text:大家好，我是妮可，想打麻将的自己进入房间，在群里喊人就好啦，群里打麻将的非常非常多，耐心等待，就有人来啦！ keyword:妮可] map[keyword:开房 text:群内只允许在圈内打牌，目前圈内的4人房间有28129  三人房有74259 19695 62137 36456 31040 52552 14667] map[keyword:群规 text:在“牌友圈”搜索ID“18774”申请加入，另：
+1.本群为牌乐门小额押金群，只打一毛一分白板麻将，群内打其他金额发生跑单现象概不退款。每8局结算，概不赊账。赊账者扣除押金T群处理。补齐欠款才可进群游戏。
+2.任何形式打“兄弟牌”，一经发现将踢群扣除押金.输钱后乱说别人作弊打通牌的不发图和证据并私自在群里乱说一通捣乱的一经发现立刻踢群扣除押金。
+3.请将“群昵称”和“游戏昵称”设为一致，方便识别，造成收付款出错后果自负。
+4.结账采用扫码支付，输家都统一扫给大赢家，大赢家支付5毛房费，大赢家扫给小赢家。群内禁止红包结算！
+5.不要私下同意任何人的欠帐。被跑单请第一时间发图说，我会负责。私下欠帐造成的损失，自行承担。
+6.游戏结束后，继续玩的请别退房间，不玩的请第一时间退出房间让别人进来。
+7.任何人中途挂机5分钟以上或者需中途退出，其他三家投票结算游戏，按最终系统结算的截图结算。
+8.群内再发其他圈外房间和其他游戏的，一次警告二次T群扣除押金
+9.群内只允许在圈内打牌，目前圈内的4人房间有28129 82181 三人房有74259 19695 62137 36456] map[keyword:打牌 text:本群为牌乐门广东麻将诚信群【圈子18774】 ，欢迎大家来约牌
+【玩法】正宗推倒胡1底分6个码1分一毛，每8把按照输赢分数结算^O^
+【押金】新人进群交押金5元，退群退押金
+【结算】所有输家转账给大赢家，大赢家转账给其他赢家。全部扫码支付
+【房费】每局结束大赢家支付5毛房费，2元以下免收（含）
+下载地址：http://dwz.mn/AU] map[keyword:房费 text:请大赢家扫描上面的二维码自觉交房费给群主！ image:http://120.92.52.210:8000/storage/app/upload/1f5/2c1/ce9/李婕收款二维码.jpg]] wlm_text:欢迎新人${username}入群。 wlm_image:false] map[nickname: type:102 keywords:[map[text:大家好，我是妮可，想打麻将的自己进入房间，在群里喊人就好啦，群里打麻将的非常非常多，耐心等待，就有人来啦！ keyword:妮可] map[keyword:开房 text:群内只允许在圈内打牌，目前圈内的4人房间有28129  三人房有74259 19695 62137 36456 31040 52552 14667] map[keyword:群规 text:在“牌友圈”搜索ID“18774”申请加入，另：
+1.本群为牌乐门小额押金群，只打一毛一分白板麻将，群内打其他金额发生跑单现象概不退款。每8局结算，概不赊账。赊账者扣除押金T群处理。补齐欠款才可进群游戏。
+2.任何形式打“兄弟牌”，一经发现将踢群扣除押金.输钱后乱说别人作弊打通牌的不发图和证据并私自在群里乱说一通捣乱的一经发现立刻踢群扣除押金。
+3.请将“群昵称”和“游戏昵称”设为一致，方便识别，造成收付款出错后果自负。
+4.结账采用扫码支付，输家都统一扫给大赢家，大赢家支付5毛房费，大赢家扫给小赢家。群内禁止红包结算！
+5.不要私下同意任何人的欠帐。被跑单请第一时间发图说，我会负责。私下欠帐造成的损失，自行承担。
+6.游戏结束后，继续玩的请别退房间，不玩的请第一时间退出房间让别人进来。
+7.任何人中途挂机5分钟以上或者需中途退出，其他三家投票结算游戏，按最终系统结算的截图结算。
+8.群内再发其他圈外房间和其他游戏的，一次警告二次T群扣除押金
+9.群内只允许在圈内打牌，目前圈内的4人房间有28129 82181 三人房有74259 19695 62137 36456] map[keyword:打牌 text:本群为牌乐门广东麻将诚信群【圈子18774】 ，欢迎大家来约牌
+【玩法】正宗推倒胡1底分6个码1分一毛，每8把按照输赢分数结算^O^
+【押金】新人进群交押金5元，退群退押金
+【结算】所有输家转账给大赢家，大赢家转账给其他赢家。全部扫码支付
+【房费】每局结束大赢家支付5毛房费，2元以下免收（含）
+下载地址：http://dwz.mn/AU] map[keyword:房费 text:请大赢家扫描上面的二维码自觉交房费给群主！ image:http://120.92.52.210:8000/storage/app/upload/1f5/2c1/ce9/李婕收款二维码.jpg]]]] 2}]
+I0726 10:05:29.890244   45179 webwxapi.go:54] >>> [WebwxGetUuid] http response body = [window.QRLogin.code = 200; window.QRLogin.uuid = "oeRF6SIzaA==";]
+I0726 10:05:29.890340   45179 createHandler.go:65] >>> [SessionCreate] UserID 2's uuid = oeRF6SIzaA== && qrcode = https://login.weixin.qq.com/qrcode/oeRF6SIzaA==
+I0726 10:05:29.890462   45179 createHandler.go:139] >>> [InitSession] NickName [测试1] , type = [101] keyword configs = [[{测试1 101 欢迎新人${username}入群。  [{妮可 大家好，我是妮可，想打麻将的自己进入房间，在群里喊人就好啦，群里打麻将的非常非常多，耐心等待，就有人来啦！ } {开房 群内只允许在圈内打牌，目前圈内的4人房间有28129  三人房有74259 19695 62137 36456 31040 52552 14667 } {群规 在“牌友圈”搜索ID“18774”申请加入，另：
+1.本群为牌乐门小额押金群，只打一毛一分白板麻将，群内打其他金额发生跑单现象概不退款。每8局结算，概不赊账。赊账者扣除押金T群处理。补齐欠款才可进群游戏。
+2.任何形式打“兄弟牌”，一经发现将踢群扣除押金.输钱后乱说别人作弊打通牌的不发图和证据并私自在群里乱说一通捣乱的一经发现立刻踢群扣除押金。
+3.请将“群昵称”和“游戏昵称”设为一致，方便识别，造成收付款出错后果自负。
+4.结账采用扫码支付，输家都统一扫给大赢家，大赢家支付5毛房费，大赢家扫给小赢家。群内禁止红包结算！
+5.不要私下同意任何人的欠帐。被跑单请第一时间发图说，我会负责。私下欠帐造成的损失，自行承担。
+6.游戏结束后，继续玩的请别退房间，不玩的请第一时间退出房间让别人进来。
+7.任何人中途挂机5分钟以上或者需中途退出，其他三家投票结算游戏，按最终系统结算的截图结算。
+8.群内再发其他圈外房间和其他游戏的，一次警告二次T群扣除押金
+9.群内只允许在圈内打牌，目前圈内的4人房间有28129 82181 三人房有74259 19695 62137 36456 } {打牌 本群为牌乐门广东麻将诚信群【圈子18774】 ，欢迎大家来约牌
+【玩法】正宗推倒胡1底分6个码1分一毛，每8把按照输赢分数结算^O^
+【押金】新人进群交押金5元，退群退押金
+【结算】所有输家转账给大赢家，大赢家转账给其他赢家。全部扫码支付
+【房费】每局结束大赢家支付5毛房费，2元以下免收（含）
+下载地址：http://dwz.mn/AU } {房费 请大赢家扫描上面的二维码自觉交房费给群主！ http://120.92.52.210:8000/storage/app/upload/1f5/2c1/ce9/李婕收款二维码.jpg}]} { 0   []}]]
+I0726 10:05:29.895234   45179 createHandler.go:139] >>> [InitSession] NickName [] , type = [102] keyword configs = [[{测试1 101 欢迎新人${username}入群。  [{妮可 大家好，我是妮可，想打麻将的自己进入房间，在群里喊人就好啦，群里打麻将的非常非常多，耐心等待，就有人来啦！ } {开房 群内只允许在圈内打牌，目前圈内的4人房间有28129  三人房有74259 19695 62137 36456 31040 52552 14667 } {群规 在“牌友圈”搜索ID“18774”申请加入，另：
+1.本群为牌乐门小额押金群，只打一毛一分白板麻将，群内打其他金额发生跑单现象概不退款。每8局结算，概不赊账。赊账者扣除押金T群处理。补齐欠款才可进群游戏。
+2.任何形式打“兄弟牌”，一经发现将踢群扣除押金.输钱后乱说别人作弊打通牌的不发图和证据并私自在群里乱说一通捣乱的一经发现立刻踢群扣除押金。
+3.请将“群昵称”和“游戏昵称”设为一致，方便识别，造成收付款出错后果自负。
+4.结账采用扫码支付，输家都统一扫给大赢家，大赢家支付5毛房费，大赢家扫给小赢家。群内禁止红包结算！
+5.不要私下同意任何人的欠帐。被跑单请第一时间发图说，我会负责。私下欠帐造成的损失，自行承担。
+6.游戏结束后，继续玩的请别退房间，不玩的请第一时间退出房间让别人进来。
+7.任何人中途挂机5分钟以上或者需中途退出，其他三家投票结算游戏，按最终系统结算的截图结算。
+8.群内再发其他圈外房间和其他游戏的，一次警告二次T群扣除押金
+9.群内只允许在圈内打牌，目前圈内的4人房间有28129 82181 三人房有74259 19695 62137 36456 } {打牌 本群为牌乐门广东麻将诚信群【圈子18774】 ，欢迎大家来约牌
+【玩法】正宗推倒胡1底分6个码1分一毛，每8把按照输赢分数结算^O^
+【押金】新人进群交押金5元，退群退押金
+【结算】所有输家转账给大赢家，大赢家转账给其他赢家。全部扫码支付
+【房费】每局结束大赢家支付5毛房费，2元以下免收（含）
+下载地址：http://dwz.mn/AU } {房费 请大赢家扫描上面的二维码自觉交房费给群主！ http://120.92.52.210:8000/storage/app/upload/1f5/2c1/ce9/李婕收款二维码.jpg}]} { 102   [{妮可 大家好，我是妮可，想打麻将的自己进入房间，在群里喊人就好啦，群里打麻将的非常非常多，耐心等待，就有人来啦！ } {开房 群内只允许在圈内打牌，目前圈内的4人房间有28129  三人房有74259 19695 62137 36456 31040 52552 14667 } {群规 在“牌友圈”搜索ID“18774”申请加入，另：
+1.本群为牌乐门小额押金群，只打一毛一分白板麻将，群内打其他金额发生跑单现象概不退款。每8局结算，概不赊账。赊账者扣除押金T群处理。补齐欠款才可进群游戏。
+2.任何形式打“兄弟牌”，一经发现将踢群扣除押金.输钱后乱说别人作弊打通牌的不发图和证据并私自在群里乱说一通捣乱的一经发现立刻踢群扣除押金。
+3.请将“群昵称”和“游戏昵称”设为一致，方便识别，造成收付款出错后果自负。
+4.结账采用扫码支付，输家都统一扫给大赢家，大赢家支付5毛房费，大赢家扫给小赢家。群内禁止红包结算！
+5.不要私下同意任何人的欠帐。被跑单请第一时间发图说，我会负责。私下欠帐造成的损失，自行承担。
+6.游戏结束后，继续玩的请别退房间，不玩的请第一时间退出房间让别人进来。
+7.任何人中途挂机5分钟以上或者需中途退出，其他三家投票结算游戏，按最终系统结算的截图结算。
+8.群内再发其他圈外房间和其他游戏的，一次警告二次T群扣除押金
+9.群内只允许在圈内打牌，目前圈内的4人房间有28129 82181 三人房有74259 19695 62137 36456 } {打牌 本群为牌乐门广东麻将诚信群【圈子18774】 ，欢迎大家来约牌
+【玩法】正宗推倒胡1底分6个码1分一毛，每8把按照输赢分数结算^O^
+【押金】新人进群交押金5元，退群退押金
+【结算】所有输家转账给大赢家，大赢家转账给其他赢家。全部扫码支付
+【房费】每局结束大赢家支付5毛房费，2元以下免收（含）
+下载地址：http://dwz.mn/AU } {房费 请大赢家扫描上面的二维码自觉交房费给群主！ http://120.92.52.210:8000/storage/app/upload/1f5/2c1/ce9/李婕收款二维码.jpg}]}]]
+I0726 10:05:54.470773   45179 loginHandler.go:38] >>> [LoginScan] Request JSON Data = [&{2 2}]
+I0726 10:05:54.605869   45179 webwxapi.go:78] >>> [WebwxLogin] http response body = [window.code=200;
+window.redirect_uri="https://wx.qq.com/cgi-bin/mmwebwx-bin/webwxnewloginpage?ticket=ARfHWK00w1wmq0dr_tqnO4Kv@qrticket_0&uuid=oeRF6SIzaA==&lang=zh_CN&scan=1501034745";]
+I0726 10:05:54.605975   45179 session.go:176] >>> [LoginPolling] sec-3 WebwxLogin success, uuid = oeRF6SIzaA==
+I0726 10:05:54.842144   45179 webwxapi.go:111] >>> [WebNewLoginPage] http response body = [<error><ret>0</ret><message></message><skey>@crypt_d1ec4fe2_04c88b28e1fe9c21e46228aff4330c96</skey><wxsid>TJZXXX/C7YOx616n</wxsid><wxuin>1836981980</wxuin><pass_ticket>tt1BcbFJF1B6gwauW7tv8Hs8gQc8%2BJNHBO7rWXHaZWq4AQ2dygtJiJIHfV%2BIl5sT</pass_ticket><isgrayscale>1</isgrayscale></error>]
+I0726 10:05:55.423363   45179 session.go:268] >>> [Serve] Serve start userID = 2
+I0726 10:06:20.575882   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:06:45.821081   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:07:10.973286   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:07:36.125340   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:08:01.262019   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:08:26.530432   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:08:51.687157   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:09:16.946100   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:09:42.109138   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:10:07.259557   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:10:32.412913   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:10:57.577893   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:11:22.766043   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:11:47.930341   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:12:13.065505   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:12:38.310237   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:13:03.454589   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:13:28.599750   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:13:53.742613   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:14:18.893702   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:14:44.029939   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:15:09.172363   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:15:34.411581   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:15:59.568280   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:16:24.718443   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:16:49.855930   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:17:15.013774   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:17:40.165791   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:18:05.342137   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:18:30.503924   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:18:55.759092   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:19:20.899042   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:19:46.053573   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:20:11.208184   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:20:36.346027   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:21:01.499052   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:21:26.643238   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:21:51.808389   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:22:16.992792   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:22:42.156202   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:23:07.335992   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:23:32.493562   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:23:57.635535   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:24:22.803032   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:24:47.967112   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:25:13.112987   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:25:38.267455   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:26:03.508433   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:26:28.667038   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:26:53.807257   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:27:18.951008   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:27:20.857826   45179 exitHandler.go:37] >>> [Exit] Request JSON Data = [&{5 2}]
+I0726 10:27:20.857857   45179 exitHandler.go:49] >>> [Exit] Session 2 unserve and deleted
+I0726 10:27:44.110917   45179 session.go:367] >>> [Serve] Session selector = 0, userID = 2
+I0726 10:27:44.110980   45179 session.go:378] >>> [Serve] Serve stop userID = 2

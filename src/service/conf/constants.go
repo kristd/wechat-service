@@ -63,22 +63,12 @@ const (
 
 var (
 	/*
-			*	扫码加入群/第三方拉入群/群主拉入群
-			*	英文/中文
-		a
-			"李晓云"邀请"TJ"加入了群聊
-			"TJ" invited "李晓云" to the group chat
-		b
-			"TJ"通过扫描你分享的二维码加入了群聊
-			"李晓云" joined the group chat via your shared QR Code
-		c
-			"李晓云"通过扫描"TJ"分享的二维码加入了群聊
-			"李晓云" joined the group chat via the QR Code shared by "TJ"
-		d
-			你邀请"李晓云"加入了群聊
-			You've invited "Oscar" to the group chat
-		e
-			雨辰通过游戏中心加入群聊
+		扫码加入群/第三方拉入群/群主拉入群/游戏中心进入群
+			"李晓云"邀请"TJ"加入了群聊 || "TJ" invited "李晓云" to the group chat
+			"TJ"通过扫描你分享的二维码加入了群聊 || "李晓云" joined the group chat via your shared QR Code
+			"李晓云"通过扫描"TJ"分享的二维码加入了群聊 || "李晓云" joined the group chat via the QR Code shared by "TJ"
+			你邀请"李晓云"加入了群聊 || You've invited "Oscar" to the group chat
+			李晓云通过游戏中心加入群聊
 	*/
 	WELCOME_MESSAGE_PATTERN = [...]string{`邀请(.+)加入了群聊`, `(.+)通过扫描`, `invited (.+) to the`, `(.+) joined the group`}
 )
