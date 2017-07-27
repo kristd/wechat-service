@@ -78,16 +78,6 @@ func GetSessionGroupFromJc(jc *conf.JsonConfig) ([]*User, error) {
 			NickName: c["NickName"].(string),
 		}
 
-		//fields := reflect.ValueOf(group).Elem()
-		//for k, v := range contact.(map[string]interface{}) {
-		//	field := fields.FieldByName(k)
-		//	if vv, ok := v.(float64); ok {
-		//		field.Set(reflect.ValueOf(int(vv)))
-		//	} else {
-		//		field.Set(reflect.ValueOf(v))
-		//	}
-		//}
-
 		groupList = append(groupList, group)
 	}
 

@@ -94,3 +94,7 @@ func FindNewJoinerName(message string) (string, error) {
 		return newJoiner, nil
 	}
 }
+
+func GetTimeNow() string {
+	return time.Unix(time.Now().Unix(), 0).String()
+}

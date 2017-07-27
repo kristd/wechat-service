@@ -26,7 +26,7 @@ func init() {
 	quit = make(chan os.Signal)
 	module.SessionTable = make(map[int]*module.Session)
 
-	flag.StringVar(&cfgFile, "config", "cfg.json", "config file")
+	flag.StringVar(&cfgFile, "config", "cfg.json", "Config file")
 }
 
 func StatNotify() {
@@ -71,8 +71,13 @@ func Stop(q chan os.Signal)  {
 	if conf.Config.NOTIFY_ON {
 		StatNotify()
 	}
-	glog.Info(">>> [Stop] Service exit ", len(module.SessionTable))
 
+	if conf.Config.MONGODB != "" {
+		module.DisConnect()
+		glog.Info(">>> [Stop] Disconnect from mongodb")
+	}
+
+	glog.Info(">>> [Stop] Service exit ", len(module.SessionTable))
 	os.Exit(0)
 }
 
@@ -91,6 +96,13 @@ func main() {
 	route.POST(conf.API_SEND, handler.SendMessage)
 	route.POST(conf.API_EXIT, handler.Exit)
 
+	if conf.Config.MONGODB != "" {
+		m := module.GetDBInstant()
+		if m == nil {
+			return
+		}
+	}
+
 	if conf.Config.NOTIFY_ON {
 		go func() {
 			for {
@@ -101,6 +113,5 @@ func main() {
 	}
 
 	go Stop(quit)
-
 	route.Run(conf.Config.PORT)
 }

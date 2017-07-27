@@ -3,6 +3,7 @@ package module
 import (
 	"fmt"
 	"github.com/golang/glog"
+	"gopkg.in/mgo.v2"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -12,6 +13,7 @@ import (
 	"service/wxapi"
 	"strings"
 	"sync"
+	"time"
 )
 
 type KeyWord struct {
@@ -44,13 +46,10 @@ type Session struct {
 
 	//user info
 	UserID          int
-	LoginStat       int
+	LoginStatus     int
 	AutoRepliesConf []AutoReplyConf
 
 	RedirectUrl string
-
-	//channels
-	Quit chan bool
 
 	//lock
 	statLock  sync.RWMutex
@@ -58,6 +57,9 @@ type Session struct {
 
 	//serve
 	Loop bool
+
+	//db session
+	DBSession *mgo.Session
 }
 
 var (
@@ -117,14 +119,14 @@ func (s *Session) SendImage(path, from, to string) (int, error) {
 
 func (s *Session) GetLoginStat() int {
 	s.statLock.Lock()
-	stat := s.LoginStat
+	stat := s.LoginStatus
 	s.statLock.Unlock()
 	return stat
 }
 
 func (s *Session) UpdateLoginStat(stat int) {
 	s.statLock.Lock()
-	s.LoginStat = stat
+	s.LoginStatus = stat
 	s.statLock.Unlock()
 }
 
@@ -299,6 +301,12 @@ func (s *Session) Serve() {
 						rmsg := s.Analize(v.(map[string]interface{}))
 						glog.Info(">>> [Serve] FromUser = [", rmsg.FromUserName, "] Message Content = [", rmsg.Content, "] MessageType =[", rmsg.MsgType, "] UserID = [", s.UserID, "]")
 
+						if strings.Contains(rmsg.FromUserName, "@@") {
+							s.Log2DB(conf.USER_GROUP, rmsg.FromUserName, rmsg.Content)
+						} else {
+							s.Log2DB(conf.USER_PERSON, rmsg.FromUserName, rmsg.Content)
+						}
+
 						switch int(rmsg.MsgType) {
 						case int(conf.MSG_TEXT):
 							go s.SendReplyUserMessage(rmsg.FromUserName, rmsg.Content)
@@ -338,6 +346,11 @@ func (s *Session) Serve() {
 						u := &common.User{
 							UserName: n["UserName"].(string),
 							NickName: n["NickName"].(string),
+						}
+
+						if !strings.Contains(u.UserName, "@@") {
+							u.Sex = int(n["Sex"].(float64))
+							u.City = n["City"].(string)
 						}
 
 						exist := false
@@ -569,4 +582,14 @@ func (s *Session) NewJoiner(user *common.User, newJoiner string) {
 			}
 		}
 	}
+}
+
+func (s *Session) Log2DB(msgType int, fromUser, content string)  {
+	r := common.DBRecord{
+		TimeStamp:	utils.GetTimeNow(),
+		MsgType:	msgType,
+		FromUser:	fromUser,
+		Content:	content,
+	}
+	s.DBSession.DB(conf.Config.DBNAME).C(conf.Config.TABLE).Insert(r)
 }

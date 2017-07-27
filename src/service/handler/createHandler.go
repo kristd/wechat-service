@@ -52,12 +52,15 @@ func SessionCreate(c *gin.Context) {
 				UserAgent:  common.DefaultCommon.UserAgent,
 				MediaCount: common.DefaultCommon.MediaCount,
 			},
-			WxWebXcg:   &conf.XmlConfig{},
-			WxApi:      &wxapi.WebwxApi{},
-			CreateTime: time.Now().Unix(),
-			LoginStat:  0,
-			Loop:       false,
-			Quit:       make(chan bool),
+			WxWebXcg:    &conf.XmlConfig{},
+			WxApi:       &wxapi.WebwxApi{},
+			CreateTime:  time.Now().Unix(),
+			LoginStatus: 0,
+			Loop:        false,
+		}
+
+		if conf.Config.MONGODB != "" {
+			s.DBSession = module.GetDBInstant()
 		}
 
 		s.UuID, s.QRcode = s.WxApi.WebwxGetUuid(s.WxWebCommon)

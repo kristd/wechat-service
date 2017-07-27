@@ -156,3 +156,10 @@ type ReceivedMessage struct {
 
 	RecommendInfo *RecommendInfo
 }
+
+type DBRecord struct {
+	TimeStamp 	string
+	MsgType		int
+	FromUser 	string
+	Content 	string
+}
