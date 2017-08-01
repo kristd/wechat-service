@@ -16,6 +16,7 @@ type GlobalConfig struct {
 	IMAGE_PATH  string `json:"image_path"`
 	NOTIFY_ON   bool   `json:"notify_on"`
 	NOTIFY_ADDR string `json:"notify_addr"`
+	DB_ON		bool   `json:"db_on"`
 	MONGODB     string `json:"mongodb"`
 	DBNAME  	string `json:"dbname"`
 	TABLE		string `json:"collection"`

@@ -48,7 +48,7 @@ func SessionCreate(c *gin.Context) {
 				Fun:        common.DefaultCommon.Fun,
 				LoginUrl:   common.DefaultCommon.LoginUrl,
 				Lang:       common.DefaultCommon.Lang,
-				DeviceID:   "e" + utils.GetRandomStringFromNum(15),
+				DeviceID:   "e" + utils.GetRandomStringFromNum("0123456789", 15),
 				UserAgent:  common.DefaultCommon.UserAgent,
 				MediaCount: common.DefaultCommon.MediaCount,
 			},
@@ -57,15 +57,23 @@ func SessionCreate(c *gin.Context) {
 			CreateTime:  time.Now().Unix(),
 			LoginStatus: 0,
 			Loop:        false,
+			MediaID:	 "",
 		}
 
-		if conf.Config.MONGODB != "" {
+		if conf.Config.DB_ON {
 			s.DBSession = module.GetDBInstant()
 		}
 
 		s.UuID, s.QRcode = s.WxApi.WebwxGetUuid(s.WxWebCommon)
 		if s.UuID != "" && s.QRcode != "" {
 			glog.Info(">>> [SessionCreate] UserID ", s.UserID, "'s uuid = ", s.UuID, " && qrcode = ", s.QRcode)
+
+			defer func() {
+				if err := recover(); err != nil {
+					glog.Error("[SessionCreate] Recover error = [", err, "]")
+				}
+			}()
+
 			InitSession(s, create_request)
 			create_response = makeCreateResponse(s.UserID, s.UuID, s.QRcode, 200, "success")
 		} else {
@@ -108,6 +116,25 @@ func InitSession(s *module.Session, request *common.Msg_Create_Request) {
 			s.AutoRepliesConf[i].WlmImage = wlmImage
 		} else {
 			s.AutoRepliesConf[i].WlmImage = ""
+		}
+
+		if s.AutoRepliesConf[i].UserType == conf.USER_PERSON {
+			massText, exist := request.Config[i]["mass_text"].(string)
+			if exist {
+				s.AutoRepliesConf[i].MassText = massText
+			} else {
+				s.AutoRepliesConf[i].MassText = ""
+			}
+
+			massImage, exist := request.Config[i]["mass_image"].(string)
+			if exist {
+				s.AutoRepliesConf[i].MassImage = massImage
+			} else {
+				s.AutoRepliesConf[i].MassImage = ""
+			}
+		} else {
+			s.AutoRepliesConf[i].MassText = ""
+			s.AutoRepliesConf[i].MassImage = ""
 		}
 
 		sections, exist := request.Config[i]["keywords"].([]interface{})

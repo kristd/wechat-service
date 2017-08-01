@@ -13,7 +13,6 @@ import (
 	"service/wxapi"
 	"strings"
 	"sync"
-	"time"
 )
 
 type KeyWord struct {
@@ -23,11 +22,13 @@ type KeyWord struct {
 }
 
 type AutoReplyConf struct {
-	NickName string
-	UserType int
-	WlmText  string
-	WlmImage string
-	KeyWords []KeyWord
+	NickName 	string
+	UserType 	int
+	WlmText  	string
+	WlmImage 	string
+	MassText 	string
+	MassImage	string
+	KeyWords 	[]KeyWord
 }
 
 type Session struct {
@@ -60,6 +61,9 @@ type Session struct {
 
 	//db session
 	DBSession *mgo.Session
+
+	//upload image
+	MediaID string
 }
 
 var (
@@ -85,7 +89,29 @@ func (s *Session) SendText(msg, from, to string) (string, string, error) {
 	return msgID, localID, nil
 }
 
-// SendImage: send img, upload then send
+func (s Session) GetMediaID(path string) (string, error) {
+	fileName, err := utils.LoadImage(path)
+	if err != nil {
+		glog.Error("[SendImage] Download image failed, err = ", err)
+		return "", fmt.Errorf("[SendImage] Download image failed, err = ", err)
+	}
+
+	ss := strings.Split(fileName, "/")
+	b, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		return "", err
+	}
+
+	mediaId, err := s.WxApi.WebWxUploadMedia(s.WxWebCommon, s.WxWebXcg, s.Cookies, ss[len(ss)-1], b)
+	if err != nil {
+		glog.Error("[SendImage] Upload image failed, err = ", err)
+		return "", fmt.Errorf("[SendImage] Upload image failed, err = ", err)
+	} else {
+		glog.Info(">>> [SendImage] Upload image success, mediaID = ", mediaId)
+		return mediaId, nil
+	}
+}
+
 func (s *Session) SendImage(path, from, to string) (int, error) {
 	fileName, err := utils.LoadImage(path)
 	if err != nil {
@@ -113,6 +139,17 @@ func (s *Session) SendImage(path, from, to string) (int, error) {
 		return ret, err
 	} else {
 		glog.Info(">>> [SendImage] Send image success, ret = ", ret)
+		return ret, nil
+	}
+}
+
+func (s *Session) SendMassImage(mediaId, from, to string) (int, error) {
+	ret, err := s.WxApi.WebWxSendMsgImg(s.WxWebCommon, s.WxWebXcg, s.Cookies, from, to, mediaId)
+	if err != nil || ret != 0 {
+		glog.Error("[SendMassImage] Send mass image failed, err = ", err, ", ret = ", ret)
+		return ret, err
+	} else {
+		glog.Info(">>> [SendMassImage] Send mass image success, ret = ", ret)
 		return ret, nil
 	}
 }
@@ -169,7 +206,7 @@ func (s *Session) LoginPolling() int {
 				s.UpdateLoginStat(-998)
 				return -998
 			} else {
-				glog.Info(">>> [LoginPolling] sec-3 WebwxLogin uuid = ", s.UuID, " retry =", tryCount)
+				glog.Info(">>> [LoginPolling] sec-3 WebwxLogin uuid = ", s.UuID, " retry = ", tryCount)
 			}
 		} else if strings.Contains(redirectUrl, "http") {
 			s.RedirectUrl = redirectUrl
@@ -299,19 +336,21 @@ func (s *Session) Serve() {
 					msgList, _ := jc.GetInterfaceSlice("AddMsgList")
 					for _, v := range msgList {
 						rmsg := s.Analize(v.(map[string]interface{}))
-						glog.Info(">>> [Serve] FromUser = [", rmsg.FromUserName, "] Message Content = [", rmsg.Content, "] MessageType =[", rmsg.MsgType, "] UserID = [", s.UserID, "]")
+						glog.Info(">>> [Serve] FromUser = [", s.ContactMgr.GetContactByUserName(rmsg.FromUserName).NickName, "] Message Content = [", rmsg.Content, "] MessageType =[", rmsg.MsgType, "] UserID = [", s.UserID, "]")
 
-						if strings.Contains(rmsg.FromUserName, "@@") {
-							s.Log2DB(conf.USER_GROUP, rmsg.FromUserName, rmsg.Content)
-						} else {
-							s.Log2DB(conf.USER_PERSON, rmsg.FromUserName, rmsg.Content)
+						if conf.Config.DB_ON {
+							if strings.Contains(rmsg.FromUserName, "@@") {
+								s.Log2DB(conf.USER_GROUP, s.ContactMgr.GetContactByUserName(rmsg.FromUserName), rmsg.Content)
+							} else {
+								s.Log2DB(conf.USER_PERSON, s.ContactMgr.GetContactByUserName(rmsg.FromUserName), rmsg.Content)
+							}
 						}
 
 						switch int(rmsg.MsgType) {
 						case int(conf.MSG_TEXT):
-							go s.SendReplyUserMessage(rmsg.FromUserName, rmsg.Content)
+							go s.ReplyUserMessage(s.ContactMgr.GetContactByUserName(rmsg.FromUserName), rmsg.Content)
 						case int(conf.MSG_SYS):
-							go s.SendReplySysMessage(rmsg.FromUserName, rmsg.Content)
+							go s.WelcomeNewGroupMember(rmsg.FromUserName, rmsg.Content)
 						}
 					}
 				}
@@ -365,7 +404,7 @@ func (s *Session) Serve() {
 							s.ContactMgr.AddContactFromUser(u)
 						}
 
-						go s.SendWelComeMessage(u.UserName)
+						go s.WelcomeNewContact(u)
 					}
 				}
 			case 7:
@@ -378,6 +417,7 @@ func (s *Session) Serve() {
 				}
 			default:
 				if selector == 0 {
+					glog.Info(">>> [Serve] Session selector = ", selector, ", userID = ", s.UserID)
 					continue
 				}
 
@@ -468,128 +508,110 @@ func (s *Session) Analize(msg map[string]interface{}) *common.ReceivedMessage {
 	return rmsg
 }
 
-func (s *Session) SendWelComeMessage(userName string) {
-Loop:
+func (s *Session) WelcomeNewContact(user *common.User) {
+	var text string
+
 	for _, userConf := range s.AutoRepliesConf {
 		if userConf.UserType == conf.USER_PERSON {
-			for _, user := range s.ContactMgr.GetPersonContacts() {
-				if user.UserName == userName {
-					if userConf.WlmText != "" {
-						var textMsg string
-						if strings.Contains(userConf.WlmText, conf.WELCOME_USER_PATTEN) {
-							textMsg = strings.Replace(userConf.WlmText, conf.WELCOME_USER_PATTEN, user.NickName, -1)
-						} else {
-							textMsg = userConf.WlmText
-						}
-						s.SendText(textMsg, s.Bot.UserName, userName)
-						glog.Info(">>> [SendWelComeMessage] Auto reply from [", s.UserID, "] to [", user.NickName, "] text = [", textMsg, "]")
-					}
-
-					if userConf.WlmImage != "" {
-						s.SendImage(userConf.WlmImage, s.Bot.UserName, userName)
-						glog.Info(">>> [SendWelComeMessage] Auto reply from [", s.UserID, "] to [", user.NickName, "] image = [", userConf.WlmImage, "]")
-					}
-					break Loop
+			if userConf.WlmText != "" {
+				if strings.Contains(userConf.WlmText, conf.WELCOME_USER_PATTEN) {
+					text = strings.Replace(userConf.WlmText, conf.WELCOME_USER_PATTEN, user.NickName, -1)
+				} else {
+					text = userConf.WlmText
 				}
+				s.SendText(text, s.Bot.UserName, user.UserName)
+				glog.Info(">>> [WelcomeNewContact] AutoReply from [", s.Bot.NickName, "] to [", user.NickName, "] text = [", text, "] UserID = [", s.UserID, "]")
 			}
-		}
-	}
-}
 
-func (s *Session) SendReplyUserMessage(userName, msg string) {
-	var userConf AutoReplyConf
-	var toUser *common.User
-	var contacts []*common.User
-	match := false
-
-	if strings.Contains(userName, "@@") {
-		contacts = s.ContactMgr.GetGroupContacts()
-	Loop1:
-		for _, toUser = range contacts {
-			if toUser.UserName == userName {
-				glog.Info(">>> [ReplyUserMessage] UserName match = [", userName, "]")
-
-				for _, userConf = range s.AutoRepliesConf {
-					if userConf.NickName == toUser.NickName {
-						glog.Info(">>> [ReplyUserMessage] NickName match = [", toUser.NickName, "]")
-						match = true
-						break Loop1
-					}
-				}
-			}
-		}
-	} else {
-		contacts = s.ContactMgr.GetPersonContacts()
-	Loop2:
-		for _, userConf = range s.AutoRepliesConf {
-			if userConf.UserType == conf.USER_PERSON {
-				for _, toUser = range contacts {
-					if toUser.UserName == userName {
-						glog.Info(">>> [ReplyUserMessage] UserName match = [", userName, "]")
-						match = true
-						break Loop2
-					}
-				}
-			}
-		}
-	}
-
-	if match {
-		for _, keyword := range userConf.KeyWords {
-			if strings.Contains(msg, keyword.Key) {
-				glog.Info(">>> [ReplyUserMessage] KeyWord match = [", keyword.Key, "]")
-
-				if keyword.Text != "" {
-					s.SendText(keyword.Text, s.Bot.UserName, userName)
-					glog.Info(">>> [ReplyUserMessage] Auto reply from [", s.UserID, "] to [", toUser.NickName, "] text = [", keyword.Text, "]")
-				}
-
-				if keyword.Image != "" {
-					s.SendImage(keyword.Image, s.Bot.UserName, userName)
-					glog.Info(">>> [ReplyUserMessage] Auto reply from [", s.UserID, "] to [", toUser.NickName, "] image = [", keyword.Image, "]")
-				}
-			}
-		}
-	}
-}
-
-func (s *Session) SendReplySysMessage(userName, message string) {
-	for _, user := range s.ContactMgr.ContactList {
-		if user.UserName == userName {
-			newJoiner, err := utils.FindNewJoinerName(message)
-			if err != nil {
-				glog.Error("[ReplySysMessage] Get new joiner from system message failed, err = ", err)
-			} else {
-				go s.NewJoiner(user, newJoiner)
+			if userConf.WlmImage != "" {
+				s.SendImage(userConf.WlmImage, s.Bot.UserName, user.UserName)
+				glog.Info(">>> [WelcomeNewContact] AutoReply from [", s.Bot.NickName, "] to [", user.NickName, "] image = [", userConf.WlmImage, "] UserID = [", s.UserID, "]")
 			}
 			break
 		}
 	}
 }
 
-func (s *Session) NewJoiner(user *common.User, newJoiner string) {
-	for _, vv := range s.AutoRepliesConf {
-		if vv.NickName == user.NickName {
-			if vv.WlmText != "" {
-				welcome := strings.Replace(vv.WlmText, conf.WELCOME_USER_PATTEN, newJoiner, -1)
-				s.SendText(welcome, s.Bot.UserName, user.UserName)
-				glog.Info(">>> [NewJoiner] Auto reply from [", s.UserID, "] to [", user.NickName, "] text = [", welcome, "]")
-			}
+func (s *Session) ReplyUserMessage(user *common.User, msg string) {
+	cfg := AutoReplyConf{}
+	match := false
 
-			if vv.WlmImage != "" {
-				s.SendImage(vv.WlmImage, s.Bot.UserName, user.UserName)
-				glog.Info(">>> [NewJoiner] Auto reply from [", s.UserID, "] to [", user.NickName, "] image = [", vv.WlmImage, "]")
+	if user.IsGroup() {
+		for _, cfg = range s.AutoRepliesConf {
+			if cfg.UserType == conf.USER_GROUP && user.NickName == cfg.NickName {
+				match = true
+				break
+			}
+		}
+	} else {
+		for _, cfg = range s.AutoRepliesConf {
+			if cfg.UserType == conf.USER_PERSON {
+				match = true
+				break
+			}
+		}
+	}
+
+	if match {
+		for _, keyword := range cfg.KeyWords {
+			if strings.Contains(msg, keyword.Key) {
+				glog.Info(">>> [ReplyUserMessage] KeyWord match = [", keyword.Key, "]")
+
+				if keyword.Text != "" {
+					s.SendText(keyword.Text, s.Bot.UserName, user.UserName)
+					glog.Info(">>> [ReplyUserMessage] AutoReply from [", s.Bot.NickName, "] to [", user.NickName, "] text = [", keyword.Text, "] UserID = [", s.UserID, "]")
+				}
+
+				if keyword.Image != "" {
+					s.SendImage(keyword.Image, s.Bot.UserName, user.UserName)
+					glog.Info(">>> [ReplyUserMessage] AutoReply from [", s.Bot.NickName, "] to [", user.NickName, "] image = [", keyword.Image, "] UserID = [", s.UserID, "]")
+				}
 			}
 		}
 	}
 }
 
-func (s *Session) Log2DB(msgType int, fromUser, content string)  {
+func (s *Session) WelcomeNewGroupMember(userName, message string) {
+	for _, user := range s.ContactMgr.ContactList {
+		if user.UserName == userName {
+			newContact := utils.FilterNewMemberNickName(message)
+			if newContact != "" {
+				s.AutoReplyNewContact(user, newContact)
+			}
+			break
+		}
+	}
+}
+
+func (s *Session) AutoReplyNewContact(user *common.User, newContact string) {
+	for _, userConf := range s.AutoRepliesConf {
+		if userConf.NickName == user.NickName {
+			if userConf.WlmText != "" {
+				welcome := strings.Replace(userConf.WlmText, conf.WELCOME_USER_PATTEN, newContact, -1)
+				s.SendText(welcome, s.Bot.UserName, user.UserName)
+				glog.Info(">>> [AutoReplyNewContact] AutoReply from [", s.Bot.NickName, "] to [", user.NickName, "] text = [", welcome, "] UserID = [", s.UserID, "]")
+			}
+
+			if userConf.WlmImage != "" {
+				s.SendImage(userConf.WlmImage, s.Bot.UserName, user.UserName)
+				glog.Info(">>> [AutoReplyNewContact] AutoReply from [", s.Bot.NickName, "] to [", user.NickName, "] image = [", userConf.WlmImage, "] UserID = [", s.UserID, "]")
+			}
+		}
+	}
+}
+
+func (s *Session) Log2DB(msgType int, fromUser *common.User, content string)  {
 	r := common.DBRecord{
 		TimeStamp:	utils.GetTimeNow(),
 		MsgType:	msgType,
-		FromUser:	fromUser,
+		FromUser:	fromUser.NickName,
+		Sex:		fromUser.Sex,
+		City:		fromUser.City,
 		Content:	content,
 	}
-	s.DBSession.DB(conf.Config.DBNAME).C(conf.Config.TABLE).Insert(r)
+
+	err := s.DBSession.DB(conf.Config.DBNAME).C(conf.Config.TABLE).Insert(r)
+	if err != nil {
+		glog.Error("[Log2DB] MongoDB insert record failed, err = [", err, "] record = [", r, "]")
+	}
 }

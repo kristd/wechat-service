@@ -67,9 +67,9 @@ func SendMessage(c *gin.Context) {
 			} else {
 				switch send_request.Params.Type {
 				case conf.TEXT_MSG:
-					go s.SendText(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
+					s.SendText(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
 				case conf.IMG_MSG:
-					go s.SendImage(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
+					s.SendImage(send_request.Params.Content, s.Bot.UserName, toUser.UserName)
 				}
 				send_response = makeSendResponse(s.UserID, 200, "success")
 			}

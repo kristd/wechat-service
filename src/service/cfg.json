@@ -3,7 +3,8 @@
   "image_path":   "./image/",
   "notify_on":    false,
   "notify_addr":  "http://120.92.52.210:9502/api/go/wechat/online",
+  "db_on":        true,
   "mongodb":      "127.0.0.1",
-  "dbname":       "service-log",
-  "collection":   "wechat"
+  "dbname":       "service",
+  "collection":   "wechat_log"
 }

@@ -1,10 +1,11 @@
 package conf
 
 const (
-	API_CREATE = "/api/create"
-	API_LOGIN  = "/api/login"
-	API_SEND   = "/api/send"
-	API_EXIT   = "/api/exit"
+	API_CREATE 	= "/api/create"
+	API_LOGIN  	= "/api/login"
+	API_SEND   	= "/api/send"
+	API_MASS	= "/api/mass"
+	API_EXIT   	= "/api/exit"
 
 	MAX_BUF_SIZE = 204800
 
@@ -35,12 +36,13 @@ const (
 	MSG_SYS         = 10000 // system message
 	MSG_WITHDRAW    = 10002 // withdraw notification message
 
-	CLIENT_CREATE = 1
-	CLIENT_LOGIN  = 2
-	CLIENT_BACK   = 3
-	CLIENT_SEND   = 4
-	CLIENT_EXIT   = 5
-	CLIENT_BEAT   = 6
+	CLIENT_CREATE 	= 1
+	CLIENT_LOGIN  	= 2
+	CLIENT_BACK   	= 3
+	CLIENT_SEND   	= 4
+	CLIENT_EXIT   	= 5
+	CLIENT_BEAT   	= 6
+	CLIENT_SENDALL	= 7
 
 	TEXT_MSG = 1
 	IMG_MSG  = 2

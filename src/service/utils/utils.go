@@ -2,7 +2,6 @@ package utils
 
 import (
 	"bytes"
-	"fmt"
 	"io"
 	"io/ioutil"
 	"math/rand"
@@ -13,6 +12,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"github.com/golang/glog"
 )
 
 func GetTimeStamp(len int) string {
@@ -20,8 +20,8 @@ func GetTimeStamp(len int) string {
 	return ts
 }
 
-func GetRandomStringFromNum(length int) string {
-	bytes := []byte("0123456789")
+func GetRandomStringFromNum(rangeStr string, length int) string {
+	bytes := []byte(rangeStr)
 	result := []byte{}
 	r := rand.New(rand.NewSource(time.Now().UnixNano()))
 	for i := 0; i < length; i++ {
@@ -62,16 +62,16 @@ func LoadImage(url string) (fileName string, err error) {
 	return fileName, nil
 }
 
-func FindNewJoinerName(message string) (string, error) {
+func FilterNewMemberNickName(message string) string {
 	newJoiner := ""
 	for k, v := range conf.WELCOME_MESSAGE_PATTERN {
 		r, err := regexp.Compile(v)
 		if err != nil {
-			return "", err
+			return ""
 		}
 
 		newJoiner = r.FindString(message)
-		if len(newJoiner) != 0 {
+		if newJoiner != "" {
 			switch k {
 			case 0:
 				newJoiner = strings.Replace(strings.Replace(newJoiner, "邀请", "", -1), "加入了群聊", "", -1)
@@ -88,11 +88,11 @@ func FindNewJoinerName(message string) (string, error) {
 		}
 	}
 
-	if len(newJoiner) == 0 {
-		return "", fmt.Errorf("[FindNewJoinerName] New joiner name empty")
-	} else {
-		return newJoiner, nil
+	if newJoiner == "" {
+		glog.Error("[FindNewJoinerName] New joiner name not match")
 	}
+
+	return newJoiner
 }
 
 func GetTimeNow() string {

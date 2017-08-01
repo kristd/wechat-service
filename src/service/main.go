@@ -72,7 +72,7 @@ func Stop(q chan os.Signal)  {
 		StatNotify()
 	}
 
-	if conf.Config.MONGODB != "" {
+	if conf.Config.DB_ON {
 		module.DisConnect()
 		glog.Info(">>> [Stop] Disconnect from mongodb")
 	}
@@ -94,13 +94,16 @@ func main() {
 	route.POST(conf.API_CREATE, handler.SessionCreate)
 	route.POST(conf.API_LOGIN, handler.LoginScan)
 	route.POST(conf.API_SEND, handler.SendMessage)
+	route.POST(conf.API_MASS, handler.MassMessage)
 	route.POST(conf.API_EXIT, handler.Exit)
 
-	if conf.Config.MONGODB != "" {
+	if conf.Config.DB_ON {
 		m := module.GetDBInstant()
 		if m == nil {
 			return
 		}
+
+		glog.Info(">>> [main] MongoDB addr = [", conf.Config.MONGODB, "]")
 	}
 
 	if conf.Config.NOTIFY_ON {
@@ -110,6 +113,8 @@ func main() {
 				time.Sleep(conf.HEARTBEAT_INTERVAL * time.Second)
 			}
 		}()
+
+		glog.Info(">>> [main] Notify addr = [", conf.Config.NOTIFY_ADDR, "]")
 	}
 
 	go Stop(quit)

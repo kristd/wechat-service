@@ -75,8 +75,7 @@ func (s *ContactManager) AddContactFromBytes(cb []byte) error {
 	return nil
 }
 
-// AddContactFromUser
-// add a new user contact to contact manager
+
 func (s *ContactManager) AddContactFromUser(user *User) {
 	if user == nil {
 		return
@@ -91,8 +90,7 @@ func (s *ContactManager) AddContactFromUser(user *User) {
 	s.ContactList = append(s.ContactList, user)
 }
 
-// GetContactByUserName
-// get contact by UserName
+
 func (s *ContactManager) GetContactByUserName(un string) *User {
 	for _, v := range s.ContactList {
 		if v.UserName == un {
@@ -102,7 +100,7 @@ func (s *ContactManager) GetContactByUserName(un string) *User {
 	return nil
 }
 
-// GetGroupContacts: get group contacts
+
 func (s *ContactManager) GetGroupContacts() []*User {
 	clarray := make([]*User, 0)
 	for _, v := range s.ContactList {

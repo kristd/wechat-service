@@ -3,6 +3,7 @@ package common
 import (
 	"reflect"
 	"service/conf"
+	"strings"
 )
 
 // User: contact struct
@@ -82,4 +83,12 @@ func GetSessionGroupFromJc(jc *conf.JsonConfig) ([]*User, error) {
 	}
 
 	return groupList, nil
+}
+
+func (u *User) IsGroup() bool {
+	if strings.Contains(u.UserName, "@@") {
+		return true
+	} else {
+		return false
+	}
 }

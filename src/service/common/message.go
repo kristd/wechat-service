@@ -47,6 +47,18 @@ type Msg_Send_Response struct {
 	Msg    string `json:"msg"`
 }
 
+type Msg_SendAll_Request struct {
+	Action   int    `json:"action"`
+	UserID   int    `json:"id"`
+}
+
+type Msg_SendAll_Response struct {
+	Action int    `json:"action"`
+	UserID int    `json:"id"`
+	Code   int    `json:"code"`
+	Msg    string `json:"msg"`
+}
+
 type Msg_Exit_Request struct {
 	Action int `json:"action"`
 	UserID int `json:"id"`
@@ -161,5 +173,7 @@ type DBRecord struct {
 	TimeStamp 	string
 	MsgType		int
 	FromUser 	string
+	Sex         int
+	City        string
 	Content 	string
 }
